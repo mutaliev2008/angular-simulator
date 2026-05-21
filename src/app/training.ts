@@ -1,4 +1,4 @@
-import { IUser } from '../interfaces/IUser.model';
+import { IUser } from '../interfaces/IUser.interface';
 
 type UploadStatus = 'loading' | 'success' | 'error';
 type TextFormat = 'uppercase' | 'lowercase' | 'capitalize';
