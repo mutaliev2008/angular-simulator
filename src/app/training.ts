@@ -1,4 +1,4 @@
-import { IUser } from '../interfaces/IUser.interface';
+import { IUser } from '../interfaces/IUser';
 
 type UploadStatus = 'loading' | 'success' | 'error';
 type TextFormat = 'uppercase' | 'lowercase' | 'capitalize';
@@ -36,20 +36,24 @@ function calculateSum(a: number, b: number): number {
 
 calculateSum(2, 4);
 
-function formatText(text: string, format: TextFormat) {
+function formatTextcapitalize(text: string): string {
+  return text
+    .split(' ')
+    .map((word) => {
+      if (word.length === 0) return word;
+      return word[0].toUpperCase() + word.slice(1).toLowerCase();
+    })
+    .join(' ');
+}
+
+function formatText(text: string, format: TextFormat): string {
   switch (format) {
     case 'uppercase':
       return text.toUpperCase();
     case 'lowercase':
       return text.toLowerCase();
     case 'capitalize':
-      return text
-        .split(' ')
-        .map((word) => {
-          if (word.length === 0) return word;
-          return word[0].toUpperCase() + word.slice(1).toLowerCase();
-        })
-        .join(' ');
+      return formatTextcapitalize(text);
     default:
       return text;
   }
@@ -62,7 +66,7 @@ function removeChar(text: string, symbol: string): string {
 removeChar('Привет мир', 'е');
 
 function filterUsers(users: IUser[], par: string): IUser[] {
-  return users.filter((user) => user.name === par);
+  return users.filter((user: IUser) => user.name === par);
 }
 
 filterUsers(users, 'Иван Петров');
