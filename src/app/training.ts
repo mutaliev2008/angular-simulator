@@ -36,7 +36,7 @@ function calculateSum(a: number, b: number): number {
 
 calculateSum(2, 4);
 
-function formatTextcapitalize(text: string): string {
+function formatTextCapitalize(text: string): string {
   return text
     .split(' ')
     .map((word) => {
@@ -53,7 +53,7 @@ function formatText(text: string, format: TextFormat): string {
     case 'lowercase':
       return text.toLowerCase();
     case 'capitalize':
-      return formatTextcapitalize(text);
+      return formatTextCapitalize(text);
     default:
       return text;
   }
