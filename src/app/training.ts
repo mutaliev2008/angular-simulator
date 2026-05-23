@@ -39,7 +39,7 @@ calculateSum(2, 4);
 function formatTextCapitalize(text: string): string {
   return text
     .split(' ')
-    .map((word) => {
+    .map((word: string) => {
       if (word.length === 0) return word;
       return word[0].toUpperCase() + word.slice(1).toLowerCase();
     })
