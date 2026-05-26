@@ -6,6 +6,11 @@
   font-family: 'Nunito Sans';
 }
 
+button,
+a {
+  cursor: pointer;
+}
+
 :root {
   --main-color: #fdfdfd;
   --black: #000;

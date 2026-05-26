@@ -1,5 +1,3 @@
-import { users } from '../auth/data/userData';
-
 export class Collection<T> {
   private collection: T[];
 
