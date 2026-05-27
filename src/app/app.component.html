@@ -5,14 +5,14 @@
       <p class="company-name semi-bold fz-16">{{ companyName }}</p>
     </div>
     <nav class="navigation">
-      <a href="/">Главная</a>
-      <a href="/">Про гида</a>
-      <a href="/">Программа тура</a>
-      <a href="/">Стоимость</a>
-      <a href="/">Блог</a>
-      <a href="/">Контакты</a>
+      <a href="/" id = 'main-link'>Главная</a>
+      <a href="/" id = 'about-guide-link'>Про гида</a>
+      <a href="/" id = 'program-link'>Программа тура</a>
+      <a href="/" id = 'cost-link'>Стоимость</a>
+      <a href="/" id = 'blog-link'>Блог</a>
+      <a href="/" id = 'contscts-link'>Контакты</a>
     </nav>
-    <button class="consultation-btn">Консультация</button>
+    <button id="consultation-btn" class="consultation-btn">Консультация</button>
   </div>
 </header>
 
@@ -24,7 +24,7 @@
     <div class="search-panel">
       <div class="search-inputs-container">
         <div class="input-group">
-          <select class="custom-select">
+          <select id = 'tour-location-section' class="custom-select">
             <option value="" disabled selected>Локация для тура</option>
             <option></option>
             <option>2 человека</option>
@@ -43,7 +43,7 @@
           <label class="input-label regular">укажите дату</label>
         </div>
         <div class="input-group">
-          <select class="custom-select">
+          <select id="participants" class="custom-select">
             <option value="" disabled selected>Участники</option>
             <option>1 человек</option>
             <option>2 человека</option>

@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
-import { Colors } from '../enum/Color';
+import { Color } from '../enum/Color';
 import { Collection } from '../collection/collection';
 import { users } from '../auth/data/userData';
 import { posts } from '../auth/data/postData';
+import { IPost } from '../auth/interface/IPost';
+import { IUser } from '../auth/interface/IUser';
 
 @Component({
   selector: 'app-root',
@@ -10,19 +12,22 @@ import { posts } from '../auth/data/postData';
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
-export class AppComponent {
-  companyName: string = 'РУМТИБЕТ';
-  collectionUsers = new Collection(users);
-  collectionPosts = new Collection(posts);
 
-  colors: Colors[] = Object.values(Colors);
+export class AppComponent {
+
+  companyName: string = 'РУМТИБЕТ';
+
+  collectionUsers = new Collection<IUser>(users);
+  collectionPosts = new Collection<IPost>(posts);
+
   constructor() {
     this.trackLastVisit();
     this.saveOpenWeb();
   }
 
-  checkColor(color: Colors): boolean {
-    return this.colors.includes(color);
+  checkColor(color: Color): boolean {
+    const basicColor = [Color.BLUE, Color.GREEN, Color.RED]
+    return basicColor.includes(color)
   }
 
   trackLastVisit(): void {
@@ -31,14 +36,7 @@ export class AppComponent {
 
   saveOpenWeb(): void {
     let quantityOpen: null | string = localStorage.getItem('quantityOpen') || '0';
-    if (quantityOpen === null) {
-      quantityOpen = '0';
-    }
+    localStorage.setItem('quantityOpen', `${Number(quantityOpen) + 1}`)
 
-    window.addEventListener('pageshow ', (event) => {
-      if (quantityOpen !== null) {
-        localStorage.setItem('quantityOpen', `${Number(quantityOpen) + 1}`);
-      }
-    });
   }
 }

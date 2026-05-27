@@ -1,4 +1,6 @@
+
 export class Collection<T> {
+
   private collection: T[];
 
   constructor(items: T[]) {
@@ -9,38 +11,21 @@ export class Collection<T> {
     return this.collection;
   }
 
-  getCollectionItem(value: string | number): T | undefined {
-    for (let item of this.collection) {
-      for (let key in item) {
-        if (item[key] === value) {
-          return item;
-        }
-      }
-    }
-    return undefined;
+  getCollectionItem(index:number): T | undefined {
+      return this.collection.at(index)
   }
 
   removeAll(): void {
     this.collection.splice(0);
   }
 
-  deletCollectionItem(value: string | number): void {
-    for (let item of this.collection) {
-      for (let key in item) {
-        if (item[key] === value) {
-          this.collection.splice(this.collection.indexOf(item));
-        }
-      }
-    }
+  deletCollectionItem(index:number): void {
+    this.collection.splice(index, 1)   
   }
 
-  replaceCollectionItem(value: string | number, obj: T): void {
-    for (let item of this.collection) {
-      for (let key in item) {
-        if (item[key] === value) {
-          this.collection.splice(this.collection.indexOf(item), 1, obj);
+  replaceCollectionItem(index:number, obj: T): void {
+        if (this.collection.at(index)) {
+          this.collection.splice(index, 1, obj);
         }
-      }
-    }
   }
 }
