@@ -12,22 +12,20 @@ import { IUser } from '../auth/interface/IUser';
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
-
 export class AppComponent {
-
   companyName: string = 'РУМТИБЕТ';
 
-  collectionUsers = new Collection<IUser>(users);
-  collectionPosts = new Collection<IPost>(posts);
+  collectionUsers: Collection<IUser> = new Collection<IUser>(users);
+  collectionPosts: Collection<IPost> = new Collection<IPost>(posts);
 
   constructor() {
     this.trackLastVisit();
     this.saveOpenWeb();
   }
 
-  checkColor(color: Color): boolean {
-    const basicColor = [Color.BLUE, Color.GREEN, Color.RED]
-    return basicColor.includes(color)
+  isPrimaryColor(color: Color): boolean {
+    const basicColor: string[] = [Color.BLUE, Color.GREEN, Color.RED];
+    return basicColor.includes(color);
   }
 
   trackLastVisit(): void {
@@ -35,8 +33,7 @@ export class AppComponent {
   }
 
   saveOpenWeb(): void {
-    let quantityOpen: null | string = localStorage.getItem('quantityOpen') || '0';
-    localStorage.setItem('quantityOpen', `${Number(quantityOpen) + 1}`)
-
+    let quantityOpen: string = localStorage.getItem('quantityOpen') || '0';
+    localStorage.setItem('quantityOpen', `${Number(quantityOpen) + 1}`);
   }
 }
