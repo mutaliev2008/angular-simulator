@@ -12,7 +12,9 @@ import { IUser } from '../auth/interface/IUser';
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
+
 export class AppComponent {
+  
   companyName: string = 'РУМТИБЕТ';
 
   collectionUsers: Collection<IUser> = new Collection<IUser>(users);
@@ -20,7 +22,7 @@ export class AppComponent {
 
   constructor() {
     this.trackLastVisit();
-    this.saveOpenWeb();
+    this.trackPageOpen();
   }
 
   isPrimaryColor(color: Color): boolean {
@@ -32,8 +34,9 @@ export class AppComponent {
     localStorage.setItem('lastVisit', Date.now().toLocaleString());
   }
 
-  saveOpenWeb(): void {
-    let quantityOpen: string = localStorage.getItem('quantityOpen') || '0';
-    localStorage.setItem('quantityOpen', `${Number(quantityOpen) + 1}`);
+  trackPageOpen(): void {
+    let currentCount: number = Number(localStorage.getItem('quantityOpen') || '0');
+    currentCount = currentCount + 1
+    localStorage.setItem('quantityOpen', ` ${Number(currentCount) + 1} `);
   }
 }
