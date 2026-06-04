@@ -36,7 +36,8 @@ export class AppComponent {
 
   trackPageOpen(): void {
     let currentCount: number = Number(localStorage.getItem('quantityOpen') || '0');
-    currentCount = currentCount + 1
-    localStorage.setItem('quantityOpen', ` ${Number(currentCount) + 1} `);
+    currentCount = currentCount + 1;
+    localStorage.setItem('quantityOpen', currentCount.toString());
   }
+
 }
