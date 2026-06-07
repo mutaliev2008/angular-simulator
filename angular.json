@@ -8,8 +8,12 @@
   "projects": {
     "angular-simulator": {
       "projectType": "application",
-      "schematics": { 
-        "@schematics/angular:component": { "type": "component", "style": "scss", "skipTests": true },
+      "schematics": {
+        "@schematics/angular:component": {
+          "type": "component",
+          "style": "scss",
+          "skipTests": true
+        },
         "@schematics/angular:directive": { "type": "directive", "skipTests": true },
         "@schematics/angular:service": { "type": "service", "skipTests": true },
         "@schematics/angular:guard": { "typeSeparator": ".", "skipTests": true },
@@ -34,12 +38,8 @@
                 "input": "public"
               }
             ],
-            "styles": [
-              "src/styles.scss"
-            ],
-            "polyfills": [
-              "zone.js"
-            ]
+            "styles": ["src/assets/styles.scss"],
+            "polyfills": ["zone.js"]
           },
           "configurations": {
             "production": {
