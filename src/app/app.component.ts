@@ -17,6 +17,7 @@ import { Data } from '@angular/router';
   styleUrl: './app.component.scss',
 })
 
+
 export class AppComponent {
   
   tours: ICard[] = tours;
