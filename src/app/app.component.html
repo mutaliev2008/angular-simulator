@@ -1,12 +1,9 @@
-<<<<<<< HEAD
 @if(isLoading) {
   <div class="overflow">
     <img src="images/icon/loading-icon.svg" class="overflow__spinner" alt="Загрузка...">
   </div>
 }
 
-=======
->>>>>>> c5ee033be8ed1ea54dd5ddc1bcb91f409d2bb700
 <header class="header w-full">
   <div class="header-content-wrapper">
     <div class="logo-container">
@@ -23,7 +20,6 @@
     </nav>
     <button id="consultation-btn" class="consultation-btn">Консультация</button>
   </div>
-<<<<<<< HEAD
   <div class="header__toggle-view">
     @if(switchBtnContent === 'Показать кликер') {
       <p>{{timerValue}}</p>
@@ -37,8 +33,6 @@
     }
     <button id="switch-button" class="header__switch-button" (click)="changeSwitchContent()">{{switchBtnContent}}</button>
   </div>
-=======
->>>>>>> c5ee033be8ed1ea54dd5ddc1bcb91f409d2bb700
 </header>
 
 <section class="hero-tour-search w-full">
@@ -49,15 +43,12 @@
     <div class="search-panel">
       <div class="search-inputs-container">
         <div class="input-group">
-<<<<<<< HEAD
           <select id="tour-location-section" class="custom-select" [(ngModel)]='tourLocation'>
             <option value="" disabled selected>Локация для тура</option>
             <option>1 человека</option>
-=======
           <select id="tour-location-section" class="custom-select">
             <option value="" disabled selected>Локация для тура</option>
             <option></option>
->>>>>>> c5ee033be8ed1ea54dd5ddc1bcb91f409d2bb700
             <option>2 человека</option>
             <option>3 человека</option>
             <option>4+ человек</option>
@@ -70,19 +61,13 @@
             placeholder="Дата похода"
             type="date"
             value="2026-05-24"
-<<<<<<< HEAD
             [(ngModel)]='tourData'
-=======
->>>>>>> c5ee033be8ed1ea54dd5ddc1bcb91f409d2bb700
           />
           <label class="input-label regular">укажите дату</label>
         </div>
         <div class="input-group">
-<<<<<<< HEAD
           <select id="participants" class="custom-select" [(ngModel)]='tourParticipants'>
-=======
           <select id="participants" class="custom-select">
->>>>>>> c5ee033be8ed1ea54dd5ddc1bcb91f409d2bb700
             <option value="" disabled selected>Участники</option>
             <option>1 человек</option>
             <option>2 человека</option>
@@ -91,7 +76,6 @@
           </select>
           <label class="input-label regular">выберите из списка</label>
         </div>
-<<<<<<< HEAD
         <button 
           id="search-btn" 
           class="search-program-btn" 
@@ -168,10 +152,8 @@
     </div>
   </div>
 </section>
-=======
         <button id="search-btn" class="search-program-btn">Найти программу</button>
       </div>
     </div>
   </div>
 </section>
->>>>>>> c5ee033be8ed1ea54dd5ddc1bcb91f409d2bb700

@@ -1,8 +1,5 @@
-<<<<<<< HEAD
 import { ICustomers } from '../auth/interface/ICustomers';
-=======
 import { IUser } from '../interfaces/IUser';
->>>>>>> c5ee033be8ed1ea54dd5ddc1bcb91f409d2bb700
 
 type UploadStatus = 'loading' | 'success' | 'error';
 type TextFormat = 'uppercase' | 'lowercase' | 'capitalize';
@@ -10,11 +7,9 @@ type TextFormat = 'uppercase' | 'lowercase' | 'capitalize';
 const uploadStatus: UploadStatus = 'loading';
 const textFormat: TextFormat = 'capitalize';
 
-<<<<<<< HEAD
 const users: ICustomers[] = [
-=======
+
 const users: IUser[] = [
->>>>>>> c5ee033be8ed1ea54dd5ddc1bcb91f409d2bb700
   {
     id: 1,
     name: 'Иван Петров',
@@ -73,13 +68,10 @@ function removeChar(text: string, symbol: string): string {
 }
 removeChar('Привет мир', 'е');
 
-<<<<<<< HEAD
 function filterUsers(users: ICustomers[], par: string): ICustomers[] {
   return users.filter((user: ICustomers) => user.name === par);
-=======
 function filterUsers(users: IUser[], par: string): IUser[] {
   return users.filter((user: IUser) => user.name === par);
->>>>>>> c5ee033be8ed1ea54dd5ddc1bcb91f409d2bb700
 }
 
 filterUsers(users, 'Иван Петров');
