@@ -4,23 +4,20 @@ export const tours: ICard[] = [
     title: 'Опытный гид',
     description:
       'Для современного мира базовый вектор развития предполагает независимые способы реализации соответствующих условий активизации.',
-    image: '/images/icon/people-icon.svg',
-    bgColor: '#E5EEEB',
+    imageName: 'people',
   },
   {
     id: 2,
     title: 'Безопасный поход',
     description:
       'Для современного мира базовый вектор развития предполагает независимые способы реализации соответствующих условий активизации.',
-    image: '/images/icon/shield-icon.svg',
-    bgColor: '#E3E6EE',
+    imageName: 'shield',
   },
   {
     id: 3,
     title: 'Лояльные цены',
     description:
       'Для современного мира базовый вектор развития предполагает независимые способы реализации соответствующих условий активизации.',
-    image: '/images/icon/tag-icon.svg',
-    bgColor: '#F3F1E1',
+    imageName: 'tag',
   },
 ];

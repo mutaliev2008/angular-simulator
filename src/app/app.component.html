@@ -1,6 +1,6 @@
-@if(isLoading) {
+@if (isLoading) {
   <div class="overflow">
-    <img src="images/icon/loading-icon.svg" class="overflow__spinner" alt="Загрузка...">
+    <img src="images/icon/loading-icon.svg" class="overflow__spinner" alt="Загрузка..." />
   </div>
 }
 
@@ -21,17 +21,29 @@
     <button id="consultation-btn" class="consultation-btn">Консультация</button>
   </div>
   <div class="header__toggle-view">
-    @if(switchBtnContent === 'Показать кликер') {
-      <p>{{timerValue}}</p>
-    }
-    @else {
+    @if (statusViewTimerBtn) {
+      <p>{{ timerValue }}</p>
+    } @else {
       <div class="header__counter">
-        <button id="counter-button-plus" (click)="addQuantity()" class="header__counter-button">+</button>
-        <p>{{currentQuantity}}</p>
-        <button id="counter-button-minus" (click)="reduceQuantity()" [disabled]="!currentQuantity" class="header__counter-button">-</button>
+        <button id="counter-button-plus" (click)="addQuantity()" class="header__counter-button">
+          +
+        </button>
+        <p>{{ currentQuantity }}</p>   
+        <button id="counter-button-minus" (click)="reduceQuantity()" [disabled]="!currentQuantity" class="header__counter-button">
+          -
+        </button>
       </div>
     }
-    <button id="switch-button" class="header__switch-button" (click)="changeSwitchContent()">{{switchBtnContent}}</button>
+    @if (statusViewTimerBtn) {
+      <button id="switch-button-clicker" class="header__switch-button" (click)="changeSwitchContent()">
+        Показать дату
+      </button>
+    } @else {
+      <button id="switch-button-timer" class="header__switch-button" (click)="changeSwitchContent()">
+        Показать кликер
+      </button>
+    }
+
   </div>
 </header>
 
@@ -43,7 +55,7 @@
     <div class="search-panel">
       <div class="search-inputs-container">
         <div class="input-group">
-          <select id="tour-location-section" class="custom-select" [(ngModel)]='tourLocation'>
+          <select id="tour-location-section" class="custom-select" [(ngModel)]="tourLocation">
             <option value="" disabled selected>Локация для тура</option>
             <option>1 человека</option>
             <option>2 человека</option>
@@ -58,12 +70,12 @@
             placeholder="Дата похода"
             type="date"
             value="2026-05-24"
-            [(ngModel)]='tourData'
+            [(ngModel)]="tourDate"
           />
           <label class="input-label regular">укажите дату</label>
         </div>
         <div class="input-group">
-          <select id="participants" class="custom-select" [(ngModel)]='tourParticipants'>
+          <select id="participants" class="custom-select" [(ngModel)]="tourParticipants">
             <option value="" disabled selected>Участники</option>
             <option>1 человек</option>
             <option>2 человека</option>
@@ -72,18 +84,23 @@
           </select>
           <label class="input-label regular">выберите из списка</label>
         </div>
-        <button 
-          id="search-btn" 
-          class="search-program-btn" 
-          [disabled]="!tourLocation || !tourParticipants || !tourData"
+        <button
+          id="search-btn"
+          class="search-program-btn"
+          [disabled]="!tourLocation || !tourParticipants || !tourDate"
         >
           Найти программу
         </button>
       </div>
-    </div>  
+    </div>
     <div class="live-input-container">
-      <input class="custom-select" placeholder="Введите текст..." [(ngModel)]="liveInputValue" type="text">
-      <p>{{liveInputValue}}</p>
+      <input
+        class="custom-select"
+        placeholder="Введите текст..."
+        [(ngModel)]="liveInputValue"
+        type="text"
+      />
+      <p>{{ liveInputValue }}</p>
     </div>
   </div>
 </section>
@@ -91,10 +108,14 @@
 <section class="about-tour w-full">
   <div class="about-tour__container">
     <div class="about-tour__media">
-      <img src="/images/gallery/about-tour-mountains.png" alt="Фото гор">
-      <img src="/images/gallery/about-tour-lodge.png" alt="Фото домик в лесу" class="about-tour__above-picture">
+      <img src="/images/gallery/about-tour-mountains.png" alt="Фото гор" />
+      <img
+        src="/images/gallery/about-tour-lodge.png"
+        alt="Фото домик в лесу"
+        class="about-tour__above-picture"
+      />
       <button id="play-button" class="about-tour__media-play-btn">
-        <img src="/images/icon/play-icon.svg" alt="Play video">
+        <img src="/images/icon/play-icon.svg" alt="Play video" />
       </button>
     </div>
     <div class="about-tour__content">
@@ -103,10 +124,10 @@
         <h2 class="about-tour__title">Исследуйте все горные массивы мира вместе с нами</h2>
       </div>
       <p class="about-tour__description">
-        Его корни уходят в один фрагмент классической латыни 45 года н.э., то есть более двух тысячелетий назад.
-        Ричард МакКлинток, профессор латыни из колледжа Hampden-Sydney, 
-        штат Вирджиния, взял одно из самых странных слов в Lorem Ipsum,
-        "consectetur"и занялся его поисками в классической латинской литературе.
+        Его корни уходят в один фрагмент классической латыни 45 года н.э., то есть более двух
+        тысячелетий назад. Ричард МакКлинток, профессор латыни из колледжа Hampden-Sydney, штат
+        Вирджиния, взял одно из самых странных слов в Lorem Ipsum, "consectetur"и занялся его
+        поисками в классической латинской литературе.
       </p>
       <button id="program-btn" class="about-tour__program-button">Программа тура</button>
     </div>
@@ -121,30 +142,45 @@
         <h2 class="our-offer__title">Лучшие программы для тебя</h2>
       </div>
       <p class="our-offer__description">
-        Его корни уходят в один фрагмент классической латыни 45 года н.э., 
-        то есть более двух тысячелетий назад. Ричард МакКлинток, 
-        профессор латыни из колледжа.
+        Его корни уходят в один фрагмент классической латыни 45 года н.э., то есть более двух
+        тысячелетий назад. Ричард МакКлинток, профессор латыни из колледжа.
       </p>
       <div class="tours-catalog">
         @for (tour of tours; track tour.id) {
           <div class="tours-catalog__card">
-            <div class="tours-catalog__icon" [ngStyle]="{'background-color': tour.bgColor}">
-              <img src="{{tour.image}}" alt="Иконки карточек">
+            <div class="tours-catalog__icon">
+              <img src="/images/icon/{{ tour.imageName }}-icon.svg" alt="Иконки карточек" />
             </div>
             <div class="tours-catalog__content">
-              <h3 class="tours-catalog__title">{{tour.title}}</h3>
-              <p class="tours-catalog__description">{{tour.description}}</p>
+              <h3 class="tours-catalog__title">{{ tour.title }}</h3>
+              <p class="tours-catalog__description">{{ tour.description }}</p>
             </div>
           </div>
         }
       </div>
       <button class="our-offer__program-button" id="cost-program-btn">Стоимость программ</button>
     </div>
-     <div class="our-offer__media">
-      <img src="/images/gallery/our-offer-coffe.png" alt="Фото коффе на фоне гор" class="our-offer__above-picture">  
-      <img src="/images/gallery/our-offer-canyon.png" alt="Фото мужчина у каньона" class="our-offer__above-picture">     
-      <img src="/images/gallery/our-offer-snow.png" alt="Фото мужчина на снегоходе" class="our-offer__above-picture">  
-      <img src="/images/gallery/our-offer-hills.png" alt="Фото холмы" class="our-offer__above-picture">        
+    <div class="our-offer__media">
+      <img
+        src="/images/gallery/our-offer-coffe.png"
+        alt="Фото коффе на фоне гор"
+        class="our-offer__above-picture"
+      />
+      <img
+        src="/images/gallery/our-offer-canyon.png"
+        alt="Фото мужчина у каньона"
+        class="our-offer__above-picture"
+      />
+      <img
+        src="/images/gallery/our-offer-snow.png"
+        alt="Фото мужчина на снегоходе"
+        class="our-offer__above-picture"
+      />
+      <img
+        src="/images/gallery/our-offer-hills.png"
+        alt="Фото холмы"
+        class="our-offer__above-picture"
+      />
     </div>
   </div>
 </section>

@@ -8,28 +8,26 @@ import { IUser } from '../auth/interface/IUser';
 import { NgStyle } from '@angular/common';
 import { tours } from '../auth/data/cardData';
 import { FormsModule } from '@angular/forms';
-import { Data } from '@angular/router';
 
 @Component({
   selector: 'app-root',
-  imports: [NgStyle, FormsModule],
+  imports: [FormsModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
-
-
 export class AppComponent {
-  
+
   tours: ICard[] = tours;
   companyName: string = 'РУМТИБЕТ';
   timerValue: string = '';
   tourLocation: string = '';
-  tourData: string = '';
+  tourDate: string = '';
   tourParticipants: string = '';
-  switchBtnContent: string = 'Показать дату';
   currentQuantity: number = 0;
-  liveInputValue: string = ''
+  liveInputValue: string = '';
   isLoading: boolean = true;
+  statusViewClickerBtn: boolean = true;
+  statusViewTimerBtn: boolean = false;
 
   collectionUsers: Collection<IUser> = new Collection<IUser>(users);
   collectionPosts: Collection<IPost> = new Collection<IPost>(posts);
@@ -37,8 +35,8 @@ export class AppComponent {
   constructor() {
     this.trackLastVisit();
     this.trackPageOpen();
-    this.updateTimer()
-    this.toggleLoading()
+    this.updateTimer();
+    this.toggleLoading();
   }
 
   isPrimaryColor(color: Color): boolean {
@@ -48,30 +46,32 @@ export class AppComponent {
 
   toggleLoading(): void {
     setTimeout(() => {
-      this.isLoading = false
-    }, 2000)
+      this.isLoading = false;
+    }, 2000);
   }
 
   reduceQuantity(): void {
-    this.currentQuantity -= 1
+    this.currentQuantity -= 1;
   }
 
   addQuantity(): void {
-    this.currentQuantity += 1
+    this.currentQuantity += 1;
   }
 
   changeSwitchContent(): void {
-    if(this.switchBtnContent === 'Показать дату') {
-      this.switchBtnContent = 'Показать кликер'
-    } else{
-        this.switchBtnContent = 'Показать дату'
-      }
+    if (this.statusViewClickerBtn === true) {
+      this.statusViewTimerBtn = true;
+      this.statusViewClickerBtn = false;
+    } else {
+        this.statusViewTimerBtn = false;
+        this.statusViewClickerBtn = true;
+    }
   }
 
   private updateTimer(): void {
     setInterval(() => {
       this.timerValue = new Date().toLocaleString();
-    }, 1000)
+    }, 1000);
   }
 
   private trackLastVisit(): void {
@@ -79,8 +79,8 @@ export class AppComponent {
   }
 
   private trackPageOpen(): void {
-    let currentCount: number = Number(localStorage.getItem('quantity-open') || '0');
+    let currentCount: number = Number(localStorage.getItem('quantity-visit') || '0');
     currentCount = currentCount + 1;
-    localStorage.setItem('quantity-open', currentCount.toString());
+    localStorage.setItem('quantity-visit', currentCount.toString());
   }
 }
