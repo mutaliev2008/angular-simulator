@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Color } from '../enum/Color';
+import { Color, SwitchBtnStatus } from '../enum/Color';
 import { Collection } from '../collection/collection';
 import { users } from '../auth/data/userData';
 import { posts } from '../auth/data/postData';
@@ -8,6 +8,7 @@ import { IUser } from '../auth/interface/IUser';
 import { NgStyle } from '@angular/common';
 import { tours } from '../auth/data/cardData';
 import { FormsModule } from '@angular/forms';
+import { ITour } from '../auth/interface/ITour';
 
 @Component({
   selector: 'app-root',
@@ -17,7 +18,7 @@ import { FormsModule } from '@angular/forms';
 })
 export class AppComponent {
 
-  tours: ICard[] = tours;
+  tours: ITour[] = tours;
   companyName: string = 'РУМТИБЕТ';
   timerValue: string = '';
   tourLocation: string = '';
@@ -26,8 +27,7 @@ export class AppComponent {
   currentQuantity: number = 0;
   liveInputValue: string = '';
   isLoading: boolean = true;
-  statusViewClickerBtn: boolean = true;
-  statusViewTimerBtn: boolean = false;
+  switchBtnStatus: SwitchBtnStatus = 'date'
 
   collectionUsers: Collection<IUser> = new Collection<IUser>(users);
   collectionPosts: Collection<IPost> = new Collection<IPost>(posts);
@@ -58,14 +58,8 @@ export class AppComponent {
     this.currentQuantity += 1;
   }
 
-  changeSwitchContent(): void {
-    if (this.statusViewClickerBtn === true) {
-      this.statusViewTimerBtn = true;
-      this.statusViewClickerBtn = false;
-    } else {
-        this.statusViewTimerBtn = false;
-        this.statusViewClickerBtn = true;
-    }
+  changeSwitchContent(status: SwitchBtnStatus): void {
+    this.switchBtnStatus = status;
   }
 
   private updateTimer(): void {

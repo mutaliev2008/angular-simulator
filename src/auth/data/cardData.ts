@@ -1,4 +1,6 @@
-export const tours: ICard[] = [
+import { ITour } from "../interface/ITour";
+
+export const tours: ITour[] = [
   {
     id: 1,
     title: 'Опытный гид',

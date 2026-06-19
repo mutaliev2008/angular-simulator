@@ -21,9 +21,9 @@
     <button id="consultation-btn" class="consultation-btn">Консультация</button>
   </div>
   <div class="header__toggle-view">
-    @if (statusViewTimerBtn) {
+    @if (switchBtnStatus === 'date') {
       <p>{{ timerValue }}</p>
-    } @else {
+    } @else if (switchBtnStatus === 'count'){
       <div class="header__counter">
         <button id="counter-button-plus" (click)="addQuantity()" class="header__counter-button">
           +
@@ -34,16 +34,15 @@
         </button>
       </div>
     }
-    @if (statusViewTimerBtn) {
-      <button id="switch-button-clicker" class="header__switch-button" (click)="changeSwitchContent()">
+    @if (switchBtnStatus === 'date') {
+      <button id="switch-button-clicker" class="header__switch-button" (click)="changeSwitchContent('count')">
         Показать дату
       </button>
-    } @else {
-      <button id="switch-button-timer" class="header__switch-button" (click)="changeSwitchContent()">
+    } @else if ((switchBtnStatus === 'count')) {
+      <button id="switch-button-timer" class="header__switch-button" (click)="changeSwitchContent('date')">
         Показать кликер
       </button>
     }
-
   </div>
 </header>
 
