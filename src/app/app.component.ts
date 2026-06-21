@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Color, SwitchBtnStatus } from '../enum/Color';
+import { Color } from '../enum/Color';
 import { Collection } from '../collection/collection';
 import { users } from '../auth/data/userData';
 import { posts } from '../auth/data/postData';
@@ -9,6 +9,8 @@ import { NgStyle } from '@angular/common';
 import { tours } from '../auth/data/cardData';
 import { FormsModule } from '@angular/forms';
 import { ITour } from '../auth/interface/ITour';
+
+export type currentView = 'date' | 'count'
 
 @Component({
   selector: 'app-root',
@@ -27,7 +29,7 @@ export class AppComponent {
   currentQuantity: number = 0;
   liveInputValue: string = '';
   isLoading: boolean = true;
-  switchBtnStatus: SwitchBtnStatus = 'date'
+  currentView: currentView = 'date'
 
   collectionUsers: Collection<IUser> = new Collection<IUser>(users);
   collectionPosts: Collection<IPost> = new Collection<IPost>(posts);
@@ -58,8 +60,8 @@ export class AppComponent {
     this.currentQuantity += 1;
   }
 
-  changeSwitchContent(status: SwitchBtnStatus): void {
-    this.switchBtnStatus = status;
+  changeCurrentView(status: currentView): void {
+    this.currentView = status;
   }
 
   private updateTimer(): void {
@@ -78,3 +80,4 @@ export class AppComponent {
     localStorage.setItem('quantity-visit', currentCount.toString());
   }
 }
+

@@ -6,5 +6,3 @@ export enum Color {
   WHITE = 'WHITE',
   ORANGE = 'ORANGE',
 }
-
-export type SwitchBtnStatus = 'date' | 'count'
