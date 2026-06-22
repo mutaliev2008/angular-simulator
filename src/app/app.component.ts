@@ -1,21 +1,35 @@
 import { Component } from '@angular/core';
 import { Color } from '../enum/Color';
 import { Collection } from '../collection/collection';
-import { users } from '../auth/data/userData';
-import { posts } from '../auth/data/postData';
-import { IPost } from '../auth/interface/IPost';
-import { IUser } from '../auth/interface/IUser';
+import { users } from '../data/userData';
+import { posts } from '../data/postData';
+import { IPost } from '../interface/IPost';
+import { IUser } from '../interface/IUser';
+import { NgStyle } from '@angular/common';
+import { tours } from '../data/cardData';
+import { FormsModule } from '@angular/forms';
+import { ITour } from '../interface/ITour';
+
+export type currentView = 'date' | 'count'
 
 @Component({
   selector: 'app-root',
-  imports: [],
+  imports: [FormsModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
-
 export class AppComponent {
-  
+
+  tours: ITour[] = tours;
   companyName: string = 'РУМТИБЕТ';
+  timerValue: string = '';
+  tourLocation: string = '';
+  tourDate: string = '';
+  tourParticipants: string = '';
+  currentQuantity: number = 0;
+  liveInputValue: string = '';
+  isLoading: boolean = true;
+  currentView: currentView = 'date'
 
   collectionUsers: Collection<IUser> = new Collection<IUser>(users);
   collectionPosts: Collection<IPost> = new Collection<IPost>(posts);
@@ -23,6 +37,8 @@ export class AppComponent {
   constructor() {
     this.trackLastVisit();
     this.trackPageOpen();
+    this.updateTimer();
+    this.toggleLoading();
   }
 
   isPrimaryColor(color: Color): boolean {
@@ -30,14 +46,38 @@ export class AppComponent {
     return basicColor.includes(color);
   }
 
-  trackLastVisit(): void {
+  toggleLoading(): void {
+    setTimeout(() => {
+      this.isLoading = false;
+    }, 2000);
+  }
+
+  reduceQuantity(): void {
+    this.currentQuantity -= 1;
+  }
+
+  addQuantity(): void {
+    this.currentQuantity += 1;
+  }
+
+  changeCurrentView(status: currentView): void {
+    this.currentView = status;
+  }
+
+  private updateTimer(): void {
+    setInterval(() => {
+      this.timerValue = new Date().toLocaleString();
+    }, 1000);
+  }
+
+  private trackLastVisit(): void {
     localStorage.setItem('lastVisit', Date.now().toLocaleString());
   }
 
-  trackPageOpen(): void {
-    let currentCount: number = Number(localStorage.getItem('quantityOpen') || '0');
+  private trackPageOpen(): void {
+    let currentCount: number = Number(localStorage.getItem('quantity-visit') || '0');
     currentCount = currentCount + 1;
-    localStorage.setItem('quantityOpen', currentCount.toString());
+    localStorage.setItem('quantity-visit', currentCount.toString());
   }
-
 }
+

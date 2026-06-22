@@ -6,6 +6,16 @@
   font-family: 'Nunito Sans';
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+}
+
 button,
 a {
   cursor: pointer;
@@ -13,11 +23,24 @@ a {
 
 :root {
   --main-color: #fdfdfd;
+  --second-most-color: #18121e;
   --black: #000;
-  --secondery-color: #1a3e3e;
-  --container-width: 1180px;
-  --bg-lighter: #fff;
+  --tagtle-color: #f2be22;
+  --accent-color: #1a3e3e;
+  --bg-white: #fff;
   --bg-darker: #f3f5f4;
+  --container-width: 1180px;
+  --fz-xs: 12px;
+  --fz-sm: 14px;
+  --fz-md: 16px;
+  --fz-lg: 18px;
+  --fz-xl: 20px;
+  --fz-2xl: 24px;
+  --fz-3xl: 32px;
+  --fw-regular: 400;
+  --fw-semi-bold: 600;
+  --fw-bold: 700;
+  --fw-extra-bold: 800;
 }
 
 .fz-14 {
@@ -30,6 +53,18 @@ a {
 
 .fz-18 {
   font-size: 18px;
+}
+
+.fz-20 {
+  font-size: 20px;
+}
+
+.fz-22 {
+  font-size: 22px;
+}
+
+.fz-24 {
+  font-size: 24px;
 }
 
 .regular {

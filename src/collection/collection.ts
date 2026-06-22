@@ -1,4 +1,3 @@
-
 export class Collection<T> {
 
   private collection: T[];

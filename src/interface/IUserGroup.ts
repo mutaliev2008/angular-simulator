@@ -1,7 +1,8 @@
-import { IUser } from './IUser.model';
+import { ICustomer } from './ICustomer';
+
 export interface IUserGroup {
   id: number;
-  users: IUser[];
+  users: ICustomer[];
   groupName: string;
   groupNumber: number;
-}
+}  
