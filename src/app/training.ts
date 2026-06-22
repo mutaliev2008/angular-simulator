@@ -1,4 +1,4 @@
-import { ICustomer } from '../auth/interface/ICustomer';
+import { ICustomer } from '../interface/ICustomer';
 
 type UploadStatus = 'loading' | 'success' | 'error';
 type TextFormat = 'uppercase' | 'lowercase' | 'capitalize';

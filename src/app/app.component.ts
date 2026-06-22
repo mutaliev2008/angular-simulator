@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
 import { Color } from '../enum/Color';
 import { Collection } from '../collection/collection';
-import { users } from '../auth/data/userData';
-import { posts } from '../auth/data/postData';
-import { IPost } from '../auth/interface/IPost';
-import { IUser } from '../auth/interface/IUser';
+import { users } from '../data/userData';
+import { posts } from '../data/postData';
+import { IPost } from '../interface/IPost';
+import { IUser } from '../interface/IUser';
 import { NgStyle } from '@angular/common';
-import { tours } from '../auth/data/cardData';
+import { tours } from '../data/cardData';
 import { FormsModule } from '@angular/forms';
-import { ITour } from '../auth/interface/ITour';
+import { ITour } from '../interface/ITour';
 
 export type currentView = 'date' | 'count'
 
