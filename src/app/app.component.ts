@@ -11,7 +11,7 @@ import { ITour } from '../interface/ITour';
 import { IPopularPlace } from '../interface/IPopularPlace';
 import { ITravelBlog } from '../interface/ITravelBlog';
 import { ViewMode } from '../enum/ViewMode';
-import { MessageServices } from '../services/message.service';
+import { MessageService } from '../services/message.service';
 import { CommonModule } from '@angular/common';
 import { Message } from '../enum/Message';
 import { LocalStorageService } from '../services/local-storage.service';
@@ -26,8 +26,8 @@ export type currentView = 'date' | 'count'
 })
 export class AppComponent {
   
-  messageService: MessageServices = inject(MessageServices);
-  localStorageServices: LocalStorageService<string> = new LocalStorageService<string>();
+  messageService: MessageService = inject(MessageService);
+  localStorageServices: LocalStorageService = inject(LocalStorageService);
 
   popularPlace: IPopularPlace[] = popularPlace;
   travelBlog: ITravelBlog[] = travelBlog;
@@ -43,8 +43,8 @@ export class AppComponent {
   isLoading: boolean = true;
   currentView: currentView = 'date';
 
-  viewMode = ViewMode;
-  Messages = Message;
+  viewMode: typeof ViewMode = ViewMode;
+  viewMessage: typeof Message = Message;
 
   collectionUsers: Collection<IUser> = new Collection<IUser>(users);
   collectionPosts: Collection<IPost> = new Collection<IPost>(posts);
