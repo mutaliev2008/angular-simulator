@@ -4,6 +4,11 @@
   }
 }
 
+@keyframes slideUp {
+  from { opacity: 0; transform: translateX(30px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
 .header {
   z-index: 1;
   position: fixed;
@@ -390,3 +395,214 @@
   }
 }
 
+.popular-destination {
+  height: 900px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  
+  &__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 50px;
+  }
+
+  &__heading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__card {
+    width: 380px;
+    height: 500px;
+    display: flex;
+    align-items: flex-end; 
+    color: var(--main-color);
+    position: relative;
+  }
+
+  &__evaluation {
+    display: flex;
+    width: 65px;
+    height: 32px;
+    background-color: rgba(255, 255, 255, 0.3);
+    position: absolute;
+    top: 50px;
+    right: 0;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    border-radius: 4px 0 0 4px;
+
+      p {
+        margin-top: 1px;
+        font-size: var(--fz-sm);
+        font-weight: var(--fw-bold);
+      }
+  }
+
+  &__catagol {
+    display: flex;
+    gap: 20px;
+  }
+
+  &__rating-btn {
+    width: 244px;
+    height: 52px;
+    background-color: var(--accent-color);
+    color: var(--main-color);
+    border: 0;
+    border-radius: 4px;
+  }
+
+  &__description {
+    height: 90px;
+    backdrop-filter: blur(3px);
+    border-radius: 0 0 30px 30px;
+    background-color: rgba(255, 255, 255, 0.3);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  &__price {
+    padding: 8px 16px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 4px;
+    font-weight: 700;
+  }
+}
+
+.travel-blog {
+  width: 100%;
+  background-color: var(--bg-darker);
+  display: flex;
+  justify-content: center;
+  padding: 90px 0;
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: var(--container-width);
+    gap: 50px;
+  }
+
+  &__heading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__catagol {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 24px 20px;
+  }
+
+  &__card {
+    padding: 14px 16px;
+    background: #fff;
+    display: flex;
+    border-radius: 10px;
+    gap: 24px;
+    align-items: center;
+  }
+
+  &__card:hover {
+    box-shadow: 5px 5px 15px rgba(24, 18, 30, 0.12);
+    transition: 0.3s ease ;
+
+    h4 {
+      color: var(--accent-color);
+      text-decoration: underline;
+    }
+    
+  }
+
+  &__read-article{
+    color: #1A3E3E;
+  }
+
+  &__catalog-main-content {
+    display: flex;
+    flex-direction: column;
+    height: 87%;
+    justify-content: space-between;
+    width: 100%;
+
+    p {
+      line-height: 20px;
+    }
+
+    h4 {
+      line-height: 32px;
+    }
+  }
+
+  &__additional-info {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__date {
+    color: var(--tagtle-color);
+  }
+
+  &__text {
+    display: flex;
+    flex-direction: column;
+    gap: 24px
+  }
+
+  &__material-btn {
+    width: 220px;
+    height: 50px;
+    background-color: var(--accent-color);
+    color: var(--main-color);
+    border: 0;
+    border-radius: 4px;
+  }
+}
+
+.message-container {
+  position: fixed;
+  top: 150px;
+  right: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.message {
+  background-color: rgba(15, 23, 42, 0.85);
+  color: #E8E9EB;
+  border: 1px solid #fff;
+  gap: 15px;
+  width: 350px;
+  min-height: 70px;
+  border-radius: 10px;
+  display: flex;
+  position: relative;
+  padding: 15px;
+  animation: slideUp 0.5s ease ;
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  &__close-btn {
+    background-color: transparent;
+    border: 0;
+    position: absolute;
+    right: 6px;
+    top: 12px;
+  }
+}
