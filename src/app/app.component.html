@@ -157,7 +157,7 @@
           </div>
         }
       </div>
-      <button (click)="messageService.showMessage('Не удалось подключиться к серверу', viewMessage.ERROR)" class="our-offer__program-button" id="cost-program-btn">Стоимость программ</button>
+      <button (click)="messageService.showMessage('Не удалось подключиться к серверу', messageType.ERROR)" class="our-offer__program-button" id="cost-program-btn">Стоимость программ</button>
     </div>
     <div class="our-offer__media">
       <img
@@ -214,7 +214,7 @@
         </div>
       }
     </div>
-    <button (click)="messageService.showMessage('У вас 3 новых уведомления', viewMessage.INFO)" class="popular-destination__rating-btn">Рейтинг направлений</button>
+    <button (click)="messageService.showMessage('У вас 3 новых уведомления', messageType.INFO)" class="popular-destination__rating-btn">Рейтинг направлений</button>
   </div>
 </section>
 
@@ -243,7 +243,7 @@
         </div>
       }
     </div>
-    <button (click)="messageService.showMessage('Добро пожаловать в систему!', viewMessage.ERROR)" class="travel-blog__material-btn">Другие материалы</button>
+    <button (click)="messageService.showMessage('Добро пожаловать в систему!', messageType.ERROR)" class="travel-blog__material-btn">Другие материалы</button>
   </div>
 </section>
 

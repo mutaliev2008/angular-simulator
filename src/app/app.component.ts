@@ -44,7 +44,7 @@ export class AppComponent {
   currentView: currentView = 'date';
 
   viewMode: typeof ViewMode = ViewMode;
-  viewMessage: typeof Message = Message;
+  messageType: typeof Message = Message;
 
   collectionUsers: Collection<IUser> = new Collection<IUser>(users);
   collectionPosts: Collection<IPost> = new Collection<IPost>(posts);
