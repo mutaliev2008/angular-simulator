@@ -1,0 +1,45 @@
+<header class="header w-full">
+  <div class="header-content-wrapper">
+    <div class="logo-container">
+      <img class="logo" src="/images/logo/logo.svg" alt="Логотип горы" />
+      <p class="company-name semi-bold fz-16">{{ companyName }}</p>
+    </div>
+    <nav class="navigation">
+      @for (link of navLinks; track link.path) {
+        <a 
+          [routerLink]="link.path" 
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: link.path === '/' }"
+        >
+          {{ link.label }}
+        </a>
+      }
+    </nav>
+    
+    <button id="consultation-btn" class="consultation-btn">Консультация</button>
+  </div>
+  <div class="header__toggle-view">
+    @if (currentView === viewMode.DATE) {
+      <p>{{ timerValue }}</p>
+    } @else if (currentView === viewMode.COUNT){
+      <div class="header__counter">
+        <button id="counter-button-plus" (click)="addQuantity()" class="header__counter-button">
+          +
+        </button>
+        <p>{{ currentQuantity }}</p>   
+        <button id="counter-button-minus" (click)="reduceQuantity()" [disabled]="!currentQuantity" class="header__counter-button">
+          -
+        </button>
+      </div>
+    }
+    @if (currentView === viewMode.DATE) {
+      <button id="switch-button-clicker" class="header__switch-button" (click)="changeCurrentView(viewMode.COUNT)">
+        Показать дату
+      </button>
+    } @else if ((currentView === viewMode.COUNT)) {
+      <button id="switch-button-timer" class="header__switch-button" (click)="changeCurrentView(viewMode.DATE)">
+        Показать кликер
+      </button>
+    }
+  </div>
+</header>

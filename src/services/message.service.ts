@@ -3,13 +3,32 @@ import { IMessage } from '../interface/IMessage';
 import { Message } from '../enum/Message';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class MessageService {
-
   messages: IMessage[] = [];
 
-  showMessage(text: string, messageType: Message): void {
+  showWarn(text: string, messageType: Message.WARN): void {
+    this.showMessage(text, messageType);
+  }
+
+  showError(text: string, messageType: Message.ERROR): void {
+    this.showMessage(text, messageType);
+  }
+
+  showSuccess(text: string, messageType: Message.SUCCESS): void {
+    this.showMessage(text, messageType);
+  }
+
+  showInfo(text: string, messageType: Message.INFO): void {
+    this.showMessage(text, messageType);
+  }
+
+  close(message: IMessage): void {
+    this.messages = this.messages.filter((msg: IMessage) => msg !== message);
+  }
+
+  private showMessage(text: string, messageType: Message): void {
     const newId: number = Math.random();
     const content: IMessage = { id: newId, content: text, messageType: messageType };
     this.messages = [content, ...this.messages];
@@ -18,9 +37,5 @@ export class MessageService {
       this.close(content);
     }, 5000);
   }
-
-  close(message: IMessage): void {
-    this.messages = this.messages.filter((msg: IMessage) => msg !== message);
-  }
-
+  
 }

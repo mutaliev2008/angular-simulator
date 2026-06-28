@@ -10,40 +10,33 @@ import { FormsModule } from '@angular/forms';
 import { ITour } from '../interface/ITour';
 import { IPopularPlace } from '../interface/IPopularPlace';
 import { ITravelBlog } from '../interface/ITravelBlog';
-import { ViewMode } from '../enum/ViewMode';
-import { MessageService } from '../services/message.service';
 import { CommonModule } from '@angular/common';
 import { Message } from '../enum/Message';
 import { LocalStorageService } from '../services/local-storage.service';
-
-export type currentView = 'date' | 'count'
+import { FooterComponent } from './core/components/footer/footer.component';
+import { HeaderComponent } from './core/components/header/header.component';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
-  imports: [FormsModule, CommonModule],
+  imports: [FormsModule, CommonModule, FooterComponent, HeaderComponent, RouterOutlet],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
   
-  messageService: MessageService = inject(MessageService);
   localStorageServices: LocalStorageService = inject(LocalStorageService);
 
   popularPlace: IPopularPlace[] = popularPlace;
   travelBlog: ITravelBlog[] = travelBlog;
   tours: ITour[] = tours;
 
-  companyName: string = 'РУМТИБЕТ';
-  timerValue!: string;
-  tourLocation: string = '';
-  tourDate!: string;
-  tourParticipants: string = '';
-  currentQuantity: number = 0;
   liveInputValue: string = '';
   isLoading: boolean = true;
-  currentView: currentView = 'date';
+  tourParticipants: string = '';
+  tourDate!: string;
+  tourLocation: string = '';
 
-  viewMode: typeof ViewMode = ViewMode;
   viewMessage: typeof Message = Message;
 
   collectionUsers: Collection<IUser> = new Collection<IUser>(users);
@@ -52,7 +45,6 @@ export class AppComponent {
   constructor() {
     this.trackLastVisit();
     this.trackPageOpen();
-    this.updateTimer();
     this.toggleLoading();
   }
 
@@ -65,24 +57,6 @@ export class AppComponent {
     setTimeout(() => {
       this.isLoading = false;
     }, 2000);
-  }
-
-  reduceQuantity(): void {
-    this.currentQuantity -= 1;
-  }
-
-  addQuantity(): void {
-    this.currentQuantity += 1;
-  }
-
-  changeCurrentView(status: currentView): void {
-    this.currentView = status;
-  }
-
-  private updateTimer(): void {
-    setInterval(() => {
-      this.timerValue = new Date().toLocaleString();
-    }, 1000);
   }
 
   private trackLastVisit(): void {
