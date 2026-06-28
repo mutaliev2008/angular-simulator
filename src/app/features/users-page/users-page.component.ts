@@ -10,6 +10,8 @@ import { Message } from '../../../enum/Message';
   styleUrl: './users-page.component.scss',
 })
 export class UsersPageComponent {
-  messageService: MessageService = inject(MessageService)
+
+  messageService: MessageService = inject(MessageService);
   messageType: typeof Message = Message;
+
 }

@@ -44,4 +44,5 @@ export class HeaderComponent {
       this.timerValue = new Date().toLocaleString();
     }, 1000);
   }
+  
 }

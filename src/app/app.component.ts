@@ -68,5 +68,5 @@ export class AppComponent {
     currentCount = currentCount + 1;
     this.localStorageServices.setItem('quantity-visit', currentCount.toString());
   }
+  
 }
-

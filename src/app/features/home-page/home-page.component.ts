@@ -17,7 +17,7 @@ import { MessageComponent } from '../../core/components/message/message.componen
 })
 export class HomePageComponent {
 
-  messageService: MessageService = inject(MessageService)
+  messageService: MessageService = inject(MessageService);
 
   popularPlace: IPopularPlace[] = popularPlace;
   travelBlog: ITravelBlog[] = travelBlog;
@@ -30,4 +30,5 @@ export class HomePageComponent {
   tourLocation: string = '';
 
   messageType: typeof Message = Message;
+
 }
