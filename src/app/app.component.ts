@@ -14,8 +14,8 @@ import { CommonModule } from '@angular/common';
 import { Message } from '../enum/Message';
 import { LocalStorageService } from '../services/local-storage.service';
 import { FooterComponent } from './core/components/footer/footer.component';
-import { HeaderComponent } from './core/components/header/header.component';
 import { RouterOutlet } from '@angular/router';
+import { HeaderComponent } from './core/components/header/header.component';
 
 @Component({
   selector: 'app-root',
@@ -37,7 +37,7 @@ export class AppComponent {
   tourDate!: string;
   tourLocation: string = '';
 
-  viewMessage: typeof Message = Message;
+  messageType: typeof Message = Message;
 
   collectionUsers: Collection<IUser> = new Collection<IUser>(users);
   collectionPosts: Collection<IPost> = new Collection<IPost>(posts);

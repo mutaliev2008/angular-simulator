@@ -29,5 +29,5 @@ export class HomePageComponent {
   tourDate!: string;
   tourLocation: string = '';
 
-  viewMessage: typeof Message = Message;
+  messageType: typeof Message = Message;
 }

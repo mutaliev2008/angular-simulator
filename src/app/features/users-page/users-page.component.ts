@@ -11,5 +11,5 @@ import { Message } from '../../../enum/Message';
 })
 export class UsersPageComponent {
   messageService: MessageService = inject(MessageService)
-  viewMessage: typeof Message = Message;
+  messageType: typeof Message = Message;
 }
