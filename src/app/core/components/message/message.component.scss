@@ -1,0 +1,37 @@
+.message-container {
+  position: fixed;
+  top: 150px;
+  right: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.message {
+  background-color: rgba(15, 23, 42, 0.85);
+  color: #E8E9EB;
+  border: 1px solid #fff;
+  gap: 15px;
+  width: 350px;
+  min-height: 70px;
+  border-radius: 10px;
+  display: flex;
+  position: relative;
+  padding: 15px;
+  animation: slideUp 0.5s ease ;
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  &__close-btn {
+    background-color: transparent;
+    border: 0;
+    position: absolute;
+    right: 6px;
+    top: 12px;
+  }
+}

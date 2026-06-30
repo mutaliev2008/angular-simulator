@@ -1,0 +1,238 @@
+<section class="hero-tour-search w-full">
+  <div class="search-content-wrapper">
+    <h1 class="first-title regular">
+      Насладись прогулкой в горах <br />с командой единомышленников
+    </h1>
+    <div class="search-panel">
+      <div class="search-inputs-container">
+        <div class="input-group">
+          <select id="tour-location-section" class="custom-select" [(ngModel)]="tourLocation">
+            <option value="" disabled selected>Локация для тура</option>
+            <option>1 человека</option>
+            <option>2 человека</option>
+            <option>3 человека</option>
+            <option>4+ человек</option>
+          </select>
+          <label class="input-label regular">выберите из списка</label>
+        </div>
+        <div class="input-group">
+          <input
+            class="custom-select search-input"
+            placeholder="Дата похода"
+            type="date"
+            value="2026-05-24"
+            [(ngModel)]="tourDate"
+          />
+          <label class="input-label regular">укажите дату</label>
+        </div>
+        <div class="input-group">
+          <select id="participants" class="custom-select" [(ngModel)]="tourParticipants">
+            <option value="" disabled selected>Участники</option>
+            <option>1 человек</option>
+            <option>2 человека</option>
+            <option>3 человека</option>
+            <option>4+ человек</option>
+          </select>
+          <label class="input-label regular">выберите из списка</label>
+        </div>
+        <button
+          id="search-btn"
+          class="search-program-btn"
+          [disabled]="!tourLocation || !tourParticipants || !tourDate"
+        >
+          Найти программу
+        </button>
+      </div>
+    </div>
+    <div class="live-input-container">
+      <input
+        class="custom-select"
+        placeholder="Введите текст..."
+        [(ngModel)]="liveInputValue"
+        type="text"
+      />
+      <p>{{ liveInputValue }}</p>
+    </div>
+  </div>
+</section>
+
+<section class="about-tour w-full">
+  <div class="about-tour__container">
+    <div class="about-tour__media">
+      <img src="/images/gallery/about-tour-mountains.png" alt="Фото гор" />
+      <img
+        src="/images/gallery/about-tour-lodge.png"
+        alt="Фото домик в лесу"
+        class="about-tour__above-picture"
+      />
+      <button id="play-button" class="about-tour__media-play-btn">
+        <img src="/images/icon/play-icon.svg" alt="Play video" />
+      </button>
+    </div>
+    <div class="about-tour__content">
+      <div class="about-tour__heading">
+        <p class="tagline">о нашем походе</p>
+        <h2 class="about-tour__title">Исследуйте все горные массивы мира вместе с нами</h2>
+      </div>
+      <p class="about-tour__description">
+        Его корни уходят в один фрагмент классической латыни 45 года н.э., то есть более двух
+        тысячелетий назад. Ричард МакКлинток, профессор латыни из колледжа Hampden-Sydney, штат
+        Вирджиния, взял одно из самых странных слов в Lorem Ipsum, "consectetur"и занялся его
+        поисками в классической латинской литературе.
+      </p>
+      <button id="program-btn" class="about-tour__program-button">Программа тура</button>
+    </div>
+  </div>
+</section>
+
+<section class="our-offer w-full">
+  <div class="our-offer__container">
+    <div class="our-offer__content">
+      <div class="our-offer__heading">
+        <p class="tagline">наше предложение</p>
+        <h2 class="our-offer__title">Лучшие программы для тебя</h2>
+      </div>
+      <p class="our-offer__description">
+        Его корни уходят в один фрагмент классической латыни 45 года н.э., то есть более двух
+        тысячелетий назад. Ричард МакКлинток, профессор латыни из колледжа.
+      </p>
+      <div class="tours-catalog">
+        @for (tour of tours; track tour.id) {
+          <div class="tours-catalog__card">
+            <div class="tours-catalog__icon">
+              <img src="/images/icon/{{ tour.imageName }}-icon.svg" alt="Иконки карточек" />
+            </div>
+            <div class="tours-catalog__content">
+              <h3 class="tours-catalog__title">{{ tour.title }}</h3>
+              <p class="tours-catalog__description">{{ tour.description }}</p>
+            </div>
+          </div>
+        }
+      </div>
+      <button
+        (click)="messageService.showError('Не удалось подключиться к серверу')"
+        class="our-offer__program-button"
+        id="cost-program-btn"
+      >
+        Стоимость программ
+      </button>
+    </div>
+    <div class="our-offer__media">
+      <img
+        src="/images/gallery/our-offer-coffe.png"
+        alt="Фото коффе на фоне гор"
+        class="our-offer__above-picture"
+      />
+      <img
+        src="/images/gallery/our-offer-canyon.png"
+        alt="Фото мужчина у каньона"
+        class="our-offer__above-picture"
+      />
+      <img
+        src="/images/gallery/our-offer-snow.png"
+        alt="Фото мужчина на снегоходе"
+        class="our-offer__above-picture"
+      />
+      <img
+        src="/images/gallery/our-offer-hills.png"
+        alt="Фото холмы"
+        class="our-offer__above-picture"
+      />
+    </div>
+  </div>
+</section>
+
+<section class="popular-destination">
+  <div class="popular-destination__container">
+    <div class="popular-destination__heading">
+      <p class="tagline">по версии отдыхающих</p>
+      <h2 class="popular-destination__title extra-bold fz-32">Популярные направления</h2>
+    </div>
+    <div class="popular-destination__catagol">
+      @for (place of popularPlace; track place.id) {
+        <div
+          class="popular-destination__card"
+          [style.background-image]="
+            'url(/images/gallery/popular-destination-' + place.imgName + '.png)'
+          "
+        >
+          <div class="popular-destination__evaluation">
+            <img src="/images/icon/star-icon.svg" alt="Star" />
+            <p class="stars">{{ place.stars }}</p>
+          </div>
+          <div class="popular-destination__description w-full">
+            <div class="popular-destination__text">
+              <h4 class="bold fz-24">{{ place.title }}</h4>
+              <p class="regular fz-14">{{ place.description }}</p>
+            </div>
+            <div class="popular-destination__price">
+              <p class="popular-destination__price-text">{{ place.price }} $</p>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+    <button
+      (click)="messageService.showInfo('У вас 3 новых уведомления')"
+      class="popular-destination__rating-btn"
+    >
+      Рейтинг направлений
+    </button>
+  </div>
+</section>
+
+<section class="travel-blog">
+  <div class="travel-blog__container">
+    <div class="travel-blog__heading">
+      <p class="tagline">делимся впечатлениями</p>
+      <h2 class="travel-blog__title extra-bold fz-32">Блог о путешествиях</h2>
+    </div>
+    <div class="travel-blog__catagol">
+      @for (trave of travelBlog; track trave.id) {
+        <div class="travel-blog__card">
+          <div class="travel-blog__media-block">
+            <img src="/images/gallery/travel-blog-{{ trave.imgName }}.png" alt="" />
+          </div>
+          <div class="travel-blog__catalog-main-content">
+            <div class="travel-blog__text">
+              <h4 class="bold fz-24">{{ trave.title }}</h4>
+              <p class="regular fz-14">{{ trave.description }}</p>
+            </div>
+            <div class="travel-blog__additional-info">
+              <p class="travel-blog__date fw-bold fz-14">{{ trave.date }}</p>
+              <p class="travel-blog__read-article fw-bold fz-14">читать статью</p>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+    <button
+      (click)="messageService.showSuccess('Добро пожаловать в систему!')"
+      class="travel-blog__material-btn"
+    >
+      Другие материалы
+    </button>
+  </div>
+</section>
+
+<section class="photo-report w-full">
+  <div class="travel-blog__heading">
+    <p class="tagline">фото-отчет</p>
+    <h2 class="travel-blog__title extra-bold fz-32">Делимся впечатлениями</h2>
+  </div>
+  <div class="photo-report__content-container">
+    <div class="photo-report__content">
+      <img src="/images/gallery/photo-report-balls.png" alt="Фото отчет" />
+      <img src="/images/gallery/photo-report-cart.png" alt="Фото отчет" />
+      <img src="/images/gallery/photo-report-city.png" alt="Фото отчет" />
+    </div>
+    <div class="photo-report__content">
+      <img src="/images/gallery/photo-report-beach.png" alt="Фото отчет" />
+      <img src="/images/gallery/photo-report-canyon.png" alt="Фото отчет" />
+      <img src="/images/gallery/photo-report-camera.png" alt="Фото отчет" />
+    </div>
+  </div>
+  <button class="photo-report__btn">Наш pinterest</button>
+</section>
+
+<app-message></app-message>
