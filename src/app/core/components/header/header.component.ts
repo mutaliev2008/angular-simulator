@@ -16,7 +16,7 @@ export class HeaderComponent {
   navLinks: INavLink[] = [
     { path: '/', label: 'Главная' },
     { path: '/users', label: 'Пользователи' },
-  ]
+  ];
   viewMode: typeof ViewMode = ViewMode;
   currentView: currentView = 'date';
   currentQuantity: number = 0;

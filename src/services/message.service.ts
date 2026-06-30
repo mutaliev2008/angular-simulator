@@ -8,20 +8,20 @@ import { Message } from '../enum/Message';
 export class MessageService {
   messages: IMessage[] = [];
 
-  showWarn(text: string, messageType: Message.WARN): void {
-    this.showMessage(text, messageType);
+  showWarn(text: string): void {
+    this.showMessage(text, Message.WARN);
   }
 
-  showError(text: string, messageType: Message.ERROR): void {
-    this.showMessage(text, messageType);
+  showError(text: string): void {
+    this.showMessage(text, Message.ERROR);
   }
 
-  showSuccess(text: string, messageType: Message.SUCCESS): void {
-    this.showMessage(text, messageType);
+  showSuccess(text: string): void {
+    this.showMessage(text, Message.SUCCESS);
   }
 
-  showInfo(text: string, messageType: Message.INFO): void {
-    this.showMessage(text, messageType);
+  showInfo(text: string): void {
+    this.showMessage(text, Message.INFO);
   }
 
   close(message: IMessage): void {
@@ -37,5 +37,4 @@ export class MessageService {
       this.close(content);
     }, 5000);
   }
-  
 }

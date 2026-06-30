@@ -109,7 +109,13 @@
           </div>
         }
       </div>
-      <button (click)="messageService.showError('Не удалось подключиться к серверу', messageType.ERROR)" class="our-offer__program-button" id="cost-program-btn">Стоимость программ</button>
+      <button
+        (click)="messageService.showError('Не удалось подключиться к серверу')"
+        class="our-offer__program-button"
+        id="cost-program-btn"
+      >
+        Стоимость программ
+      </button>
     </div>
     <div class="our-offer__media">
       <img
@@ -166,7 +172,12 @@
         </div>
       }
     </div>
-    <button (click)="messageService.showInfo('У вас 3 новых уведомления', messageType.INFO)" class="popular-destination__rating-btn">Рейтинг направлений</button>
+    <button
+      (click)="messageService.showInfo('У вас 3 новых уведомления')"
+      class="popular-destination__rating-btn"
+    >
+      Рейтинг направлений
+    </button>
   </div>
 </section>
 
@@ -195,7 +206,12 @@
         </div>
       }
     </div>
-    <button (click)="messageService.showSuccess('Добро пожаловать в систему!', messageType.SUCCESS)" class="travel-blog__material-btn">Другие материалы</button>
+    <button
+      (click)="messageService.showSuccess('Добро пожаловать в систему!')"
+      class="travel-blog__material-btn"
+    >
+      Другие материалы
+    </button>
   </div>
 </section>
 
@@ -206,15 +222,15 @@
   </div>
   <div class="photo-report__content-container">
     <div class="photo-report__content">
-    <img src="/images/gallery/photo-report-balls.png" alt="Фото отчет">
-    <img src="/images/gallery/photo-report-cart.png" alt="Фото отчет">
-    <img src="/images/gallery/photo-report-city.png" alt="Фото отчет">
-  </div>
-  <div class="photo-report__content">
-    <img src="/images/gallery/photo-report-beach.png" alt="Фото отчет">
-    <img src="/images/gallery/photo-report-canyon.png" alt="Фото отчет">
-    <img src="/images/gallery/photo-report-camera.png" alt="Фото отчет">
-  </div>
+      <img src="/images/gallery/photo-report-balls.png" alt="Фото отчет" />
+      <img src="/images/gallery/photo-report-cart.png" alt="Фото отчет" />
+      <img src="/images/gallery/photo-report-city.png" alt="Фото отчет" />
+    </div>
+    <div class="photo-report__content">
+      <img src="/images/gallery/photo-report-beach.png" alt="Фото отчет" />
+      <img src="/images/gallery/photo-report-canyon.png" alt="Фото отчет" />
+      <img src="/images/gallery/photo-report-camera.png" alt="Фото отчет" />
+    </div>
   </div>
   <button class="photo-report__btn">Наш pinterest</button>
 </section>
