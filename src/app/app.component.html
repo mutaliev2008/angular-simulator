@@ -1,12 +1,9 @@
+<app-loader></app-loader>
+
 <app-header></app-header>
 
-<router-outlet></router-outlet>
+<router-outlet>
+    <app-message></app-message>
+</router-outlet>
 
 <app-footer></app-footer>
-
-
-@if (isLoading) {
-  <div class="overflow">
-    <img src="images/icon/loading-icon.svg" class="overflow__spinner" alt="Загрузка..." />
-  </div>
-}

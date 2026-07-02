@@ -4,7 +4,7 @@ import { Collection } from '../collection/collection';
 import { users } from '../data/userData';
 import { posts } from '../data/postData';
 import { IPost } from '../interface/IPost';
-import { IUser } from '../interface/IUser';
+import { IClient } from '../interface/IClient';
 import { popularPlace, tours, travelBlog } from '../data/cardData';
 import { FormsModule } from '@angular/forms';
 import { ITour } from '../interface/ITour';
@@ -16,47 +16,43 @@ import { LocalStorageService } from '../services/local-storage.service';
 import { FooterComponent } from './core/components/footer/footer.component';
 import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './core/components/header/header.component';
+import { LoaderService } from '../services/loader.service';
+import { LoaderComponent } from './core/components/loader/loader.component';
+import { MessageComponent } from './core/components/message/message.component';
 
 @Component({
   selector: 'app-root',
-  imports: [FormsModule, CommonModule, FooterComponent, HeaderComponent, RouterOutlet],
+  imports: [FormsModule, CommonModule, FooterComponent, HeaderComponent, MessageComponent, RouterOutlet, LoaderComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
   
   localStorageServices: LocalStorageService = inject(LocalStorageService);
+  loaderService: LoaderService = inject(LoaderService);
 
   popularPlace: IPopularPlace[] = popularPlace;
   travelBlog: ITravelBlog[] = travelBlog;
   tours: ITour[] = tours;
 
-  liveInputValue: string = '';
-  isLoading: boolean = true;
-  tourParticipants: string = '';
-  tourDate!: string;
-  tourLocation: string = '';
-
   messageType: typeof Message = Message;
 
-  collectionUsers: Collection<IUser> = new Collection<IUser>(users);
+  collectionUsers: Collection<IClient> = new Collection<IClient>(users);
   collectionPosts: Collection<IPost> = new Collection<IPost>(posts);
 
   constructor() {
     this.trackLastVisit();
     this.trackPageOpen();
-    this.toggleLoading();
+    this.loaderService.showLoader();
+
+    setTimeout(() => {
+      this.loaderService.hideLoader();
+    }, 3000);
   }
 
   isPrimaryColor(color: Color): boolean {
     const basicColor: string[] = [Color.BLUE, Color.GREEN, Color.RED];
     return basicColor.includes(color);
-  }
-
-  toggleLoading(): void {
-    setTimeout(() => {
-      this.isLoading = false;
-    }, 2000);
   }
 
   private trackLastVisit(): void {
