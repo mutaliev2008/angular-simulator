@@ -28,7 +28,7 @@ export class MessageService {
   }
 
   close(message: IMessage): void {
-    const current = this.messageSubject.value;
+    const current: IMessage[] = this.messageSubject.value;
     this.messageSubject.next(
       current.filter((msg: IMessage) =>  msg !== message)
     );

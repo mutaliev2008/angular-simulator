@@ -19,25 +19,21 @@ export class UserService {
   private usersSubject: BehaviorSubject<IUser[]> = new BehaviorSubject<IUser[]>([]);
   users$: Observable<IUser[]> = this.usersSubject.asObservable();
   
-  loadUsers(): void {
-      this.userApiService.getUsers()
+  loadUsers(): Observable<IUser[]> {
+    this.loaderService.showLoader();
+    return this.userApiService.getUsers()
         .pipe(
-          tap((users) => {
-            this.loaderService.showLoader();
+          tap((users: IUser[]) => {
             this.setUsers(users);
-
           }),
-          catchError((err) => {
+          catchError((err: string) => {
             this.messageService.showError(err);
             return of([]);
           }),
           finalize(() => {
-            setTimeout(() => {
-              this.loaderService.hideLoader();
-            }, 3000);
+            this.loaderService.hideLoader();
           })
         )
-        .subscribe()
   }
 
   getUsers(): IUser[] {

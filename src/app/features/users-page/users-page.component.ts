@@ -19,7 +19,7 @@ export class UsersPageComponent {
   users$: Observable<IUser[]> = this.userService.users$;
 
   ngOnInit() {
-    this.userService.loadUsers();
+    this.userService.loadUsers().subscribe()
   }
 
 }
