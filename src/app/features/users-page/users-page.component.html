@@ -1,2 +1,73 @@
-<button (click)="messageService.showError('wfwfew', messageType.ERROR)"></button>
-<app-message></app-message>
+<div class="users-container">
+    <h1 class="users-container__title">Список Пользователей</h1>
+    <div class="user-list">
+        @for (user of users$ | async; track $index) {
+            <div class="user">
+                <div class="user__name">
+                    <h2>{{ user.name }}</h2>
+                    <p class="user__beige-text">{{ user.username }}</p>
+                </div>
+                <div class="user__contacts-list">
+                    <h3 class="user__contacts-subtitle">Контакты</h3>
+                    <div class="user__contacts-data">
+                        <div class="user__data-list">
+                            <p class="user__key">Эл. почта:</p>
+                            <p class="user__value">{{ user.email }}</p>
+                        </div>
+                        <div class="user__data-list">
+                            <p class="user__key">Телефон:</p>
+                            <p class="user__value">{{ user.phone }}</p>
+                        </div>
+                        <div class="user__data-list">
+                            <p class="user__key">Веб-сайт:</p>
+                            <p class="user__value">{{ user.website }}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="user__adress-list">
+                    <h3 class="user__adress-subtitle">Адрес Проживания</h3>
+                    <div class="user__adress-data">
+                        <div class="user__data-list">
+                            <p class="user__key">Город:</p>
+                            <p class="user__value">{{ user.address.city }}</p>
+                        </div>
+                        <div class="user__data-list">
+                            <p class="user__key">Улица:</p>
+                            <p class="user__value">{{ user.address.street }}</p>
+                        </div>
+                        <div class="user__data-list">
+                            <p class="user__key">Офис:</p>
+                            <p class="user__value">{{ user.address.suite }}</p>
+                        </div>
+                        <div class="user__data-list">
+                            <p class="user__key">Индекс:</p>
+                            <p class="user__value">{{ user.address.zipcode }}</p>
+                        </div>
+                        <div class="user__data-list">
+                            <p class="user__key">Координаты:</p>
+                            <p class="user__value geo-styling">{{ user.address.geo.lat }}</p>
+                            <p class="user__value geo-styling">{{ user.address.geo.lng }}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="user__place-work-list">
+                    <h3 class="user__place-work-subtitle">Контакты</h3>
+                    <div class="user__place-work-data">
+                        <div class="user__data-work-list">
+                            <p class="user__key">Компания:</p>
+                            <p class="user__value">{{ user.company.name }}</p>
+                        </div>
+                        <div class="user__data-work-list">
+                            <p class="user__key">Миссия:</p>
+                            <p class="user__value">{{ user.company.catchPhrase }}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="user__data-list">
+                    <p class="user__key">Специализация:</p>
+                    <p class="user__value">{{ user.company.bs }}</p>
+                </div>
+            </div>
+        }
+    </div>
+</div>

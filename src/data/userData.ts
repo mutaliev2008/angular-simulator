@@ -1,6 +1,6 @@
-import { IUser } from '../interface/IUser';
+import { IClient } from '../interface/IClient';
 
-export const users: IUser[] = [
+export const users: IClient[] = [
   {
     id: 1,
     name: 'Алексей Иванов',

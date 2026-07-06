@@ -1,22 +1,22 @@
-<div class="message-container"> 
-  @for(message of messageService.messages; track $index) {
-      <ng-container 
-        [ngTemplateOutlet]="myMessage"
-        [ngTemplateOutletContext]="{ currentMessage: message }"
-      >
-      </ng-container>
+<div class="message-container">
+  @for (message of messageService.message$ | async; track $index) {
+    <ng-container
+      [ngTemplateOutlet]="myMessage"
+      [ngTemplateOutletContext]="{ currentMessage: message }"
+    >
+    </ng-container>
   }
 </div>
 
 <ng-template #myMessage let-message="currentMessage">
   <div class="message">
-    <img class="message__icon" src="/images/icon/message-icon.svg" alt="Конверт">
+    <img class="message__icon" src="/images/icon/message-icon.svg" alt="Конверт" />
     <div class="message__content">
       <h3 class="message__type">{{ message.messageType }}</h3>
       <p class="message__text">{{ message.content }}</p>
     </div>
     <button class="message__close-btn" (click)="messageService.close(message)">
-      <img src="/images/icon/close-btn-icon.svg" alt="Крестик">
+      <img src="/images/icon/close-btn-icon.svg" alt="Крестик" />
     </button>
   </div>
 </ng-template>
