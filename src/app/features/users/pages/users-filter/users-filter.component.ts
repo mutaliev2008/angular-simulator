@@ -13,7 +13,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 })
 export class UsersFilterComponent implements OnInit {
 
-  destroyRef = inject(DestroyRef)
+  destroyRef = inject(DestroyRef);
 
   @Output() searchTerm: EventEmitter<string> = new EventEmitter<string>();
 
@@ -23,7 +23,7 @@ export class UsersFilterComponent implements OnInit {
     this.name.valueChanges.pipe(
       debounceTime(200),
       distinctUntilChanged(),
-      tap((value: string) => {this.searchTerm.emit(value), console.log(value)}),
+      tap((value: string) => this.searchTerm.emit(value.toLocaleLowerCase().trim())),
       takeUntilDestroyed(this.destroyRef)
     ).subscribe()
   }

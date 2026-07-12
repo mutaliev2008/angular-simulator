@@ -11,9 +11,9 @@ import { IUser } from '../../../../../interface/IUser';
 })
 export class UserCreateComponent {
 
-  userService: UserService = inject(UserService)
-
-  fb: FormBuilder = inject(FormBuilder)
+  userService: UserService = inject(UserService);
+  fb: FormBuilder = inject(FormBuilder);
+  
   createForm: FormGroup = this.fb.group({
     name: ['rfwerfwf', [Validators.required, Validators.minLength(2), Validators.maxLength(100)]],
     username: ['wrfwerf', [Validators.required, Validators.minLength(3), Validators.maxLength(30)]],
@@ -38,11 +38,11 @@ export class UserCreateComponent {
   })
 
   createUser(): void {
-    const data: Omit<IUser, 'id'> = this.createForm.getRawValue()
+    const data: Omit<IUser, 'id'> = this.createForm.getRawValue();
 
     if(this.createForm.valid) {
-      this.userService.createUsers({id: Date.now(), ...data})
-      this.createForm.reset()
+      this.userService.createUsers({id: Date.now(), ...data});
+      this.createForm.reset();
     } 
   }
 

@@ -10,16 +10,8 @@ export class UserApiService {
   
   private http: HttpClient = inject(HttpClient);
 
-  getUsers(): IUser[] {
-    let data: IUser[] = []
-    this.http.get<IUser[]>('https://jsonplaceholder.typicode.com/users').pipe(
-      tap((users) => {
-         data = users
-      })
-    ).subscribe() 
-    return data
+  getUsers(): Observable<IUser[]> {
+    return this.http.get<IUser[]>('https://jsonplaceholder.typicode.com/users');
   }
-
- 
 
 }

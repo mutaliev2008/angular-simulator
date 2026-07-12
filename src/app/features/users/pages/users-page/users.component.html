@@ -5,7 +5,7 @@
         <app-users-filter (searchTerm)="searchUser($event)"></app-users-filter>
         @if (userService.getUsers().length > 0) {
             @for (user of filteredUsers$ | async; track $index) {
-                <app-user-card [user]="user" (removeUser)="userService.removeUsers(user)"></app-user-card>
+                <app-user-card [user]="user" (removeUser)="userService.removeUsers($event)"></app-user-card>
             }
         } @else {
             <div class="user-list__not-found-users">Нет пользователей для отображения</div>
