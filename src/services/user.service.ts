@@ -22,18 +22,16 @@ export class UserService {
   users$: Observable<IUser[]> = this.usersSubject.asObservable();
   
   loadUsers(): Observable<IUser[]> {
-    this.loaderService.showLoader();
     const localData: IUser[] | null = this.localStorageService.getItem('users');
     
-
     if(localData && localData.length > 0) {
-      this.loaderService.hideLoader();
       this.setUsers(localData);
       return of(localData);
     }
 
     return this.userApiService.getUsers().pipe(
       tap((users: IUser[]) => {
+        this.loaderService.showLoader();
         this.setUsers(users);
         if(localData && localData.length > 0) {
           this.localStorageService.setItem('users', users);
@@ -61,13 +59,11 @@ export class UserService {
   createUsers(user: IUser): void {
     const newUserList: IUser[] = [user, ...this.getUsers()];
     this.setUsers(newUserList);
-    this.localStorageService.setItem('users', newUserList);
   }
 
   removeUsers(userId: number): void {
     const updatedUsers: IUser[] = this.getUsers().filter((user: IUser) => user.id !== userId);
-    this.usersSubject.next(updatedUsers);
-    this.localStorageService.setItem('users', updatedUsers);
+    this.setUsers(updatedUsers)
   }
 
 }

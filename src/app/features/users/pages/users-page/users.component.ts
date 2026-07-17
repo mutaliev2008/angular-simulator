@@ -15,21 +15,20 @@ import { UsersFilterComponent } from "../users-filter/users-filter.component";
   styleUrl: './users.component.scss',
 })
 export class UsersComponent implements OnInit {
+  
   destroyRef = inject(DestroyRef);
   userService: UserService = inject(UserService);
+
   users$: Observable<IUser[]> = this.userService.users$;
   filteredSubject: BehaviorSubject<string> =  new BehaviorSubject<string>('');
   filteredUsers$: Observable<IUser[]> = combineLatest([this.userService.users$, this.filteredSubject]).pipe(
-    map(([users, filter]) => {
+    map(([users, filter]: [IUser[], string]) => {
      return users.filter((user: IUser) => user.name.toLowerCase().trim().includes(filter));
     })
   )
 
-  ngOnInit() {
-    this.userService.loadUsers()
-    .pipe(
-      takeUntilDestroyed(this.destroyRef)
-    ).subscribe()
+  ngOnInit(): void {
+    this.userService.loadUsers().subscribe()
   }
 
   searchUser(name: string): void {

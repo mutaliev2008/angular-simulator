@@ -3,11 +3,10 @@
     <h1 class="users-container__title">Список Пользователей</h1>
     <div class="user-list">
         <app-users-filter (searchTerm)="searchUser($event)"></app-users-filter>
-        @if (userService.getUsers().length > 0) {
             @for (user of filteredUsers$ | async; track $index) {
                 <app-user-card [user]="user" (removeUser)="userService.removeUsers($event)"></app-user-card>
             }
-        } @else {
+         @empty {
             <div class="user-list__not-found-users">Нет пользователей для отображения</div>
         }
     </div>

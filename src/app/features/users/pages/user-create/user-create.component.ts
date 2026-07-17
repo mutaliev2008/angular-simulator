@@ -41,7 +41,7 @@ export class UserCreateComponent {
     const data: Omit<IUser, 'id'> = this.createForm.getRawValue();
 
     if(this.createForm.valid) {
-      this.userService.createUsers({id: Date.now(), ...data});
+      this.userService.createUsers({ id: Date.now(), ...data });
       this.createForm.reset();
     } 
   }
