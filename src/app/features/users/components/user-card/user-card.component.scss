@@ -1,31 +1,14 @@
-.users-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 80px;
-    padding: 160px 0;
-
-    &__title {
-        font-weight: var(--fw-extra-bold);
-        color: var(--accent-color);
-        font-size: 48px;
-        line-height: 29.9px;
-    }
-}
-
-.user-list {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 50px 70px;
-    justify-items: center;
-    align-items: center;
-    width: 100%;
-}
-
 .user {
-    border-top: 2px solid  #D4A373; 
-    padding-top: 12px;  
-    max-width: 440px;
+    border-top: 2px solid #D4A373;
+    padding-top: 12px;
+    width: 440px;
+    box-shadow: 5px 5px 15px #0000000F;
+    padding: 35px 30px;
+    display: flex;
+    border-radius: 4px;
+    flex-direction: column;
+    gap: 20px;
+
 
     &__data-list {
         display: flex;
@@ -58,6 +41,18 @@
         font-size: 14px;
         line-height: 19.6px;
         color: #667C7C;
+    }
+    
+    &__delete-btn {
+        height: 50px;
+        background-color: var(--accent-color);
+        color: var(--main-color);
+        display: flex;
+        border: 0;
+        border-radius: 4px;
+        margin-top: 20px;
+        justify-content: center;
+        align-items: center;
     }
 }
 
