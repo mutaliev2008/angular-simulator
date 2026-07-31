@@ -66,7 +66,7 @@
         class="about-tour__above-picture"
       />
       <button id="play-button" class="about-tour__media-play-btn">
-        <img src="/images/icon/play-icon.svg" alt="Play video" />
+        <i class="fa-solid fa-play"></i>
       </button>
     </div>
     <div class="about-tour__content">
@@ -100,7 +100,7 @@
         @for (tour of tours; track tour.id) {
           <div class="tours-catalog__card">
             <div class="tours-catalog__icon">
-              <img src="/images/icon/{{ tour.imageName }}-icon.svg" alt="Иконки карточек" />
+              <i class="fa-solid fa-{{ tour.imageName }} catalog__icon"></i>
             </div>
             <div class="tours-catalog__content">
               <h3 class="tours-catalog__title">{{ tour.title }}</h3>
@@ -157,7 +157,7 @@
           "
         >
           <div class="popular-destination__evaluation">
-            <img src="/images/icon/star-icon.svg" alt="Star" />
+            <i class="fa-solid fa-star"></i>
             <p class="stars">{{ place.stars }}</p>
           </div>
           <div class="popular-destination__description w-full">

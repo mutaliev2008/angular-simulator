@@ -9,7 +9,7 @@ export const tours: ITour[] = [
     title: 'Опытный гид',
     description:
       'Для современного мира базовый вектор развития предполагает независимые способы реализации соответствующих условий активизации.',
-    imageName: 'people',
+    imageName: 'signs-post',
   },
   {
     id: 2,

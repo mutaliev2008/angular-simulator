@@ -136,9 +136,11 @@
   &__media-play-btn {
     position: relative;
     bottom: 455px;
-    right: 77px;
+    right: 60px;
     border: 0;
-    background-color: transparent;
+    border-radius: 20px;
+    height: 40px;
+    width: 40px;
   }
 
   &__above-picture {
