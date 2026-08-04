@@ -62,7 +62,7 @@
 
     .search-program-btn:disabled {
       cursor: default;
-      background-color: #e1e3e4;
+      background-color: var(--main-color);
       color: var(--second-most-color);
       transition: all 0.3s ease;
     }
@@ -76,7 +76,7 @@
       line-height: 150%;
       width: 270px;
       justify-content: space-between;
-      border: #e1e3e4 1px solid;
+      border: var(--main-color) 1px solid;
       padding: 14px;
       border-radius: 8px;
 
@@ -119,7 +119,7 @@
 
 .about-tour {
   height: 726px;
-  background-color: var(--bg-white);
+  background-color: var(--main-color);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -255,7 +255,7 @@
   }
 
   &__card:hover {
-    background-color: #e1e3e4;
+    background-color:  var(--main-color);
     transition: all 0.3s ease;
     border-radius: 4px;
   } 
@@ -402,7 +402,7 @@
 
   &__card {
     padding: 14px 16px;
-    background: #fff;
+    background:  var(--main-color);
     display: flex;
     border-radius: 10px;
     gap: 24px;

@@ -8,10 +8,11 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { MessageService } from '../../../services/message.service';
 import { MessageComponent } from '../../core/components/message/message.component';
+import { ButtonModule } from 'primeng/button';
 
 @Component({
   selector: 'app-home-page',
-  imports: [FormsModule, CommonModule, MessageComponent],
+  imports: [FormsModule, CommonModule, MessageComponent, ButtonModule],
   templateUrl: './home-page.component.html',
   styleUrl: './home-page.component.scss',
 })

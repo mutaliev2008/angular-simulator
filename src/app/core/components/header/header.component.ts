@@ -1,17 +1,23 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { ViewMode } from '../../../../enum/ViewMode';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { INavLink } from '../../../../enum/INavLink';
+import { ToggleSwitch } from 'primeng/toggleswitch';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { ThemeService } from '../../../../services/theme.service';
 
 type currentView = 'date' | 'count';
 
 @Component({
   selector: 'app-header',
-  imports: [RouterLink, RouterLinkActive],
+  imports: [RouterLink, RouterLinkActive, ToggleSwitch, FormsModule, CommonModule],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
 })
 export class HeaderComponent {
+
+  themeService: ThemeService = inject(ThemeService)
 
   navLinks: INavLink[] = [
     { path: '/', label: 'Главная' },

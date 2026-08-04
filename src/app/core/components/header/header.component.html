@@ -18,6 +18,13 @@
 
     <button id="consultation-btn" class="consultation-btn">Консультация</button>
   </div>
+
+  <p-toggleswitch [(ngModel)]="themeService.darkThemeActive$" (click)="themeService.changeTheme()">
+    <ng-template #handle let-checked="checked">
+        <i [ngClass]="['!text-xs', 'pi', checked ? 'pi-check' : 'pi-times']"></i>
+    </ng-template>
+</p-toggleswitch>
+
   <div class="header__toggle-view">
     @if (currentView === viewMode.DATE) {
       <p>{{ timerValue }}</p>
