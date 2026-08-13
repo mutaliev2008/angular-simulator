@@ -66,7 +66,7 @@
         class="about-tour__above-picture"
       />
       <button id="play-button" class="about-tour__media-play-btn">
-        <i class="fa-solid fa-play"></i>
+        <fa-icon [icon]="faPlay" color="#1a3e3e"></fa-icon>
       </button>
     </div>
     <div class="about-tour__content">
@@ -101,6 +101,7 @@
           <div class="tours-catalog__card">
             <div class="tours-catalog__icon">
               <i class="fa-solid fa-{{ tour.imageName }} catalog__icon"></i>
+              <fa-icon [icon]="tour.imageName"></fa-icon>
             </div>
             <div class="tours-catalog__content">
               <h3 class="tours-catalog__title">{{ tour.title }}</h3>
@@ -157,7 +158,7 @@
           "
         >
           <div class="popular-destination__evaluation">
-            <i class="fa-solid fa-star"></i>
+            <fa-icon [icon]="faStar" style="color: #ffcc00"></fa-icon>
             <p class="stars">{{ place.stars }}</p>
           </div>
           <div class="popular-destination__description w-full">

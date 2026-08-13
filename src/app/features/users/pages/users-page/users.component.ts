@@ -1,11 +1,10 @@
 import { Component, DestroyRef, inject, OnInit } from '@angular/core';
 import { UserService } from '../../../../../services/user.service';
-import { BehaviorSubject, combineLatest, map, Observable, tap } from 'rxjs';
+import { BehaviorSubject, combineLatest, map, Observable,  } from 'rxjs';
 import { IUser } from '../../../../../interface/IUser';
 import { CommonModule } from '@angular/common';
 import { UserCardComponent } from '../../components/user-card/user-card.component';
 import { UserCreateComponent } from '../user-create/user-create.component';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { UsersFilterComponent } from "../users-filter/users-filter.component";
 
 @Component({
@@ -28,7 +27,7 @@ export class UsersComponent implements OnInit {
   )
 
   ngOnInit(): void {
-    this.userService.loadUsers().subscribe()
+    this.userService.loadUsers().subscribe();
   }
 
   searchUser(name: string): void {

@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
 import { Color } from '../enum/Color';
 import { Collection } from '../collection/collection';
 import { users } from '../data/userData';
@@ -15,15 +15,16 @@ import { Message } from '../enum/Message';
 import { LocalStorageService } from '../services/local-storage.service';
 import { FooterComponent } from './core/components/footer/footer.component';
 import { RouterOutlet } from '@angular/router';
-import { HeaderComponent } from './core/components/header/header.component';
 import { LoaderService } from '../services/loader.service';
 import { LoaderComponent } from './core/components/loader/loader.component';
 import { MessageComponent } from './core/components/message/message.component';
+import { HeaderComponent } from './core/components/header/header.component';
 
 @Component({
   selector: 'app-root',
   imports: [FormsModule, CommonModule, FooterComponent, HeaderComponent, MessageComponent, RouterOutlet, LoaderComponent],
   templateUrl: './app.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './app.component.scss',
 })
 export class AppComponent {

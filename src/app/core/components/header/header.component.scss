@@ -64,6 +64,12 @@
 }
   }
 
+  .header-buttons-container {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+  }
+
   .logo-container {
     width: 143px;
 
