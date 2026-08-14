@@ -100,8 +100,7 @@
         @for (tour of tours; track tour.id) {
           <div class="tours-catalog__card">
             <div class="tours-catalog__icon">
-              <i class="fa-solid fa-{{ tour.imageName }} catalog__icon"></i>
-              <fa-icon [icon]="tour.imageName"></fa-icon>
+              <fa-icon class="catalog__icon" [icon]="tour.imageName"></fa-icon>
             </div>
             <div class="tours-catalog__content">
               <h3 class="tours-catalog__title">{{ tour.title }}</h3>

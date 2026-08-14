@@ -9,8 +9,8 @@ import { ThemeService } from '../../../../services/theme.service';
 import { ButtonModule } from 'primeng/button';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { tap } from 'rxjs';
-import { ThemeStatus } from '../../../../enum/ThemeStatus';
-import { ISatetOptions } from '../../../../interface/IStateOptions';
+import { AppTheme } from '../../../../enum/AppTheme';
+import { IThemeOption  } from '../../../../interface/IThemeOption';
 import { faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeModule, IconDefinition } from '@fortawesome/angular-fontawesome';
 
@@ -35,16 +35,16 @@ export class HeaderComponent {
   
   themeService: ThemeService = inject(ThemeService);
 
-  stateOptions: ISatetOptions[] = [
-    { label: 'Nora', value: ThemeStatus.NORA },
-    { label: 'Aura', value: ThemeStatus.AURA },
-    { label: 'Lara', value: ThemeStatus.LARA },
+  stateOptions: IThemeOption [] = [
+    { label: 'Nora', value: AppTheme.NORA },
+    { label: 'Aura', value: AppTheme.AURA },
+    { label: 'Lara', value: AppTheme.LARA },
   ];
   navLinks: INavLink[] = [
     { path: '/', label: 'Главная' },
     { path: '/users', label: 'Пользователи' },
   ];
-  value: ThemeStatus = ThemeStatus.AURA;
+  value: AppTheme = AppTheme.AURA;
   viewMode: typeof ViewMode = ViewMode;
   currentView: currentView = 'date';
   currentQuantity: number = 0;
@@ -58,7 +58,7 @@ export class HeaderComponent {
     this.themeService.darkThemeActive$.subscribe();
     this.themeService.colorMode$
       .pipe(
-        tap((colotTheme: ThemeStatus) => {
+        tap((colotTheme: AppTheme) => {
           this.value = colotTheme;
         }),
       )

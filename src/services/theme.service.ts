@@ -1,11 +1,12 @@
 import { inject, Injectable } from '@angular/core';
 import { BehaviorSubject, filter, map, Observable, tap } from 'rxjs';
 import { LocalStorageService } from './local-storage.service';
-import { ThemeStatus } from '../enum/ThemeStatus';
-import { BaseDesignTokens, Preset, usePreset } from '@primeuix/themes';
+import { AppTheme } from '../enum/AppTheme';
+import { usePreset } from '@primeuix/themes';
 import Nora from '@primeuix/themes/nora';
 import Aura from '@primeuix/themes/aura';
 import Lara from '@primeuix/themes/lara';
+import { ToggleSwitchChangeEvent } from 'primeng/toggleswitch';
 
 @Injectable({
   providedIn: 'root',
@@ -13,10 +14,11 @@ import Lara from '@primeuix/themes/lara';
 export class ThemeService {
 
   private localStorage: LocalStorageService = inject(LocalStorageService);
-  private darkThemeActiveSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-  private colorModeSubject: BehaviorSubject<ThemeStatus> = new BehaviorSubject<ThemeStatus>(ThemeStatus.AURA);
+  
+  private colorModeSubject: BehaviorSubject<AppTheme> = new BehaviorSubject<AppTheme>(AppTheme.AURA);
+  colorMode$: Observable<AppTheme> = this.colorModeSubject.asObservable();   
 
-  colorMode$: Observable<ThemeStatus> = this.colorModeSubject.asObservable();
+  private darkThemeActiveSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(this.getSavedTheme());
   darkThemeActive$: Observable<boolean> = this.darkThemeActiveSubject.asObservable().pipe(
     tap((isDark: boolean) => {
       const element: HTMLElement = document.documentElement;
@@ -29,40 +31,44 @@ export class ThemeService {
   );
 
   constructor() {
-    this.darkThemeActiveSubject.next(localStorage.getItem('theme') === 'true');
     this.checkColorStorage();
   }
 
   checkColorStorage(): void {
-    const savedState: ThemeStatus = localStorage.getItem('color') as ThemeStatus;
+    const savedState: AppTheme = localStorage.getItem('color') as AppTheme;
   
-    if (savedState && Object.values(ThemeStatus).includes(savedState)) {
+    if (savedState && Object.values(AppTheme).includes(savedState)) {
       this.applyTheme(savedState);
     } else {
-      this.colorModeSubject.next(ThemeStatus.AURA);
+      this.colorModeSubject.next(AppTheme.AURA);
     }
   }
   
-  applyTheme(color: ThemeStatus): void {
+  applyTheme(color: AppTheme): void {
     this.colorModeSubject.next(color);
     this.localStorage.setItem('color', color);
     switch (color) {
-      case ThemeStatus.AURA:
+      case AppTheme.AURA:
         usePreset(Aura);
         break;
-      case ThemeStatus.LARA:
+      case AppTheme.LARA:
         usePreset(Lara);
         break;
-      case ThemeStatus.NORA:
+      case AppTheme.NORA:
         usePreset(Nora);
         break;
     }
   }
 
-  changeTheme(): void {
-    const newValue: boolean = !this.darkThemeActiveSubject.value;
-    this.darkThemeActiveSubject.next(newValue);
-    this.localStorage.setItem('theme', newValue);
+  getSavedTheme(): boolean {
+    const localData: string | null = localStorage.getItem('theme');
+    const theme: boolean = localData? JSON.parse(localData) : false;
+    return theme
+  }
+
+  changeTheme(event: ToggleSwitchChangeEvent): void {
+    this.darkThemeActiveSubject.next(event.checked);
+    this.localStorage.setItem('theme', event.checked);
   }
 
 }

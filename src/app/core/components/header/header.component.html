@@ -16,14 +16,14 @@
       }
     </nav>
     <div class="header-buttons-container">
-      <p-toggleswitch [ngModel]="themeService.darkThemeActive$ | async" (onChange)="themeService.changeTheme()">
+      <p-toggleswitch [ngModel]="themeService.darkThemeActive$ | async" (onChange)="themeService.changeTheme($event)">
         <ng-template #handle let-checked="checked">
-            <fa-icon [icon]="checked ? faMoon : faSun" style="color: #ffcc00"></fa-icon>
+            <fa-icon [icon]="checked ? faMoon : faSun" style="color: #ffcc00 "></fa-icon>
         </ng-template>
       </p-toggleswitch>
 
       <div class="switch-theme-btn-container">
-        <p-selectbutton (onOptionClick)="themeService.applyTheme(value)" [options]="stateOptions" [(ngModel)]="value" optionLabel="label" optionValue="value" aria-labelledby="basic" />
+        <p-selectbutton (onChange)="themeService.applyTheme($event.value)" [options]="stateOptions" [(ngModel)]="value" optionLabel="label" optionValue="value" aria-labelledby="basic" />
       </div>
 
     <button id="consultation-btn" class="consultation-btn">Консультация</button></div>

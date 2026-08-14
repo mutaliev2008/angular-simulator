@@ -6,19 +6,19 @@ import { provideHttpClient, withXhr } from '@angular/common/http';
 import Aura from '@primeuix/themes/aura';
 import Lara from '@primeuix/themes/lara';
 import Nara from '@primeuix/themes/nora';
-import { ThemeStatus } from '../enum/ThemeStatus';
+import { AppTheme } from '../enum/AppTheme';
 import { Preset } from '@primeuix/themes';
 
   function getPreset(): Preset {
     const theme: string | null = localStorage.getItem('color');
     switch (theme) {
-      case ThemeStatus.AURA:
+      case AppTheme.AURA:
         return Aura
         break;
-      case ThemeStatus.LARA:
+      case AppTheme.LARA:
         return Lara
         break;
-      case ThemeStatus.NORA:
+      case AppTheme.NORA:
         return Nara
         break;
       default:
