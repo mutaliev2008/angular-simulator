@@ -23,7 +23,7 @@
       </p-toggleswitch>
 
       <div class="switch-theme-btn-container">
-        <p-selectbutton (onChange)="themeService.applyTheme($event.value)" [options]="stateOptions" [(ngModel)]="value" optionLabel="label" optionValue="value" aria-labelledby="basic" />
+        <p-selectbutton (onChange)="themeService.applyTheme($event.value)" [options]="stateOptions" [ngModel]="themeService.colorMode$ | async" optionLabel="label" optionValue="value" aria-labelledby="basic" />
       </div>
 
     <button id="consultation-btn" class="consultation-btn">Консультация</button></div>

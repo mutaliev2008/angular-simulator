@@ -44,7 +44,6 @@ export class HeaderComponent {
     { path: '/', label: 'Главная' },
     { path: '/users', label: 'Пользователи' },
   ];
-  value: AppTheme = AppTheme.AURA;
   viewMode: typeof ViewMode = ViewMode;
   currentView: currentView = 'date';
   currentQuantity: number = 0;
@@ -56,13 +55,7 @@ export class HeaderComponent {
   constructor() {
     this.updateTimer();
     this.themeService.darkThemeActive$.subscribe();
-    this.themeService.colorMode$
-      .pipe(
-        tap((colotTheme: AppTheme) => {
-          this.value = colotTheme;
-        }),
-      )
-      .subscribe();
+    this.themeService.colorMode$.subscribe();
   }
 
   changeCurrentView(status: currentView): void {

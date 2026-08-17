@@ -1,5 +1,5 @@
 import { inject, Injectable } from '@angular/core';
-import { BehaviorSubject, filter, map, Observable, tap } from 'rxjs';
+import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { LocalStorageService } from './local-storage.service';
 import { AppTheme } from '../enum/AppTheme';
 import { usePreset } from '@primeuix/themes';
@@ -14,7 +14,7 @@ import { ToggleSwitchChangeEvent } from 'primeng/toggleswitch';
 export class ThemeService {
 
   private localStorage: LocalStorageService = inject(LocalStorageService);
-  
+
   private colorModeSubject: BehaviorSubject<AppTheme> = new BehaviorSubject<AppTheme>(AppTheme.AURA);
   colorMode$: Observable<AppTheme> = this.colorModeSubject.asObservable();   
 
@@ -61,9 +61,9 @@ export class ThemeService {
   }
 
   getSavedTheme(): boolean {
-    const localData: string | null = localStorage.getItem('theme');
+    const localData: string | null = this.localStorage.getItem('theme');
     const theme: boolean = localData? JSON.parse(localData) : false;
-    return theme
+    return theme;
   }
 
   changeTheme(event: ToggleSwitchChangeEvent): void {
