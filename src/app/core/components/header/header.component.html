@@ -15,9 +15,20 @@
         </a>
       }
     </nav>
+    <div class="header-buttons-container">
+      <p-toggleswitch [ngModel]="themeService.darkThemeActive$ | async" (onChange)="themeService.changeTheme($event)">
+        <ng-template #handle let-checked="checked">
+            <fa-icon [icon]="checked ? faMoon : faSun" style="color: #ffcc00 "></fa-icon>
+        </ng-template>
+      </p-toggleswitch>
 
-    <button id="consultation-btn" class="consultation-btn">Консультация</button>
+      <div class="switch-theme-btn-container">
+        <p-selectbutton (onChange)="themeService.applyTheme($event.value)" [options]="stateOptions" [ngModel]="themeService.colorMode$ | async" optionLabel="label" optionValue="value" aria-labelledby="basic" />
+      </div>
+
+    <button id="consultation-btn" class="consultation-btn">Консультация</button></div>
   </div>
+
   <div class="header__toggle-view">
     @if (currentView === viewMode.DATE) {
       <p>{{ timerValue }}</p>

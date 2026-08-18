@@ -1,4 +1,4 @@
-import { ICustomer } from "../interface/ICustomer";
+import { faShield, faTag, faUsers } from "@fortawesome/free-solid-svg-icons";
 import { IPopularPlace } from "../interface/IPopularPlace";
 import { ITour } from "../interface/ITour";
 import { ITravelBlog } from "../interface/ITravelBlog";
@@ -9,21 +9,21 @@ export const tours: ITour[] = [
     title: 'Опытный гид',
     description:
       'Для современного мира базовый вектор развития предполагает независимые способы реализации соответствующих условий активизации.',
-    imageName: 'people',
+    imageName: faUsers,
   },
   {
     id: 2,
     title: 'Безопасный поход',
     description:
       'Для современного мира базовый вектор развития предполагает независимые способы реализации соответствующих условий активизации.',
-    imageName: 'shield',
+    imageName: faShield,
   },
   {
     id: 3,
     title: 'Лояльные цены',
     description:
       'Для современного мира базовый вектор развития предполагает независимые способы реализации соответствующих условий активизации.',
-    imageName: 'tag',
+    imageName: faTag,
   },
 ];
 

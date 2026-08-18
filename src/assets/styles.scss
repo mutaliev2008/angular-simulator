@@ -24,10 +24,8 @@ a {
 :root {
   --main-color: #fdfdfd;
   --second-most-color: #18121e;
-  --black: #000;
   --tagtle-color: #f2be22;
   --accent-color: #1a3e3e;
-  --bg-white: #fff;
   --bg-darker: #f3f5f4;
   --container-width: 1180px;
   --fz-xs: 12px;
@@ -41,6 +39,14 @@ a {
   --fw-semi-bold: 600;
   --fw-bold: 700;
   --fw-extra-bold: 800;
+}
+
+.my-app-dark {
+  --main-color: #0d0d0d;
+  --second-most-color: #f8f1ff;
+  --bg-darker: #030504;
+
+
 }
 
 .fz-14 {

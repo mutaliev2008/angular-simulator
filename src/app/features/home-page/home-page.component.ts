@@ -8,10 +8,13 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { MessageService } from '../../../services/message.service';
 import { MessageComponent } from '../../core/components/message/message.component';
+import { ButtonModule } from 'primeng/button';
+import { faPlay, faShield, faStar, faTag, faUsers, IconDefinition } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @Component({
   selector: 'app-home-page',
-  imports: [FormsModule, CommonModule, MessageComponent],
+  imports: [FormsModule, CommonModule, MessageComponent, ButtonModule, FontAwesomeModule],
   templateUrl: './home-page.component.html',
   styleUrl: './home-page.component.scss',
 })
@@ -30,5 +33,11 @@ export class HomePageComponent {
   tourLocation: string = '';
 
   messageType: typeof Message = Message;
+
+  faPlay: IconDefinition = faPlay;
+  faSheild: IconDefinition = faShield;
+  faUsers: IconDefinition = faUsers;
+  faTag: IconDefinition = faTag;
+  faStar: IconDefinition = faStar;
 
 }

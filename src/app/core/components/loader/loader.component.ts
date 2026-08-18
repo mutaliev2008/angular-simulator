@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { LoaderService } from '../../../../services/loader.service';
 
 @Component({
@@ -11,7 +11,7 @@ import { LoaderService } from '../../../../services/loader.service';
 })
 export class LoaderComponent {
 
-  loaderService: LoaderService = inject(LoaderService)
-  isLoading$: Observable<boolean> = this.loaderService.isLoading$
+  loaderService: LoaderService = inject(LoaderService);
+  isLoading$: Observable<boolean> = this.loaderService.isLoading$;
 
 }
