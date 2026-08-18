@@ -54,8 +54,6 @@ export class HeaderComponent {
 
   constructor() {
     this.updateTimer();
-    this.themeService.darkThemeActive$.subscribe();
-    this.themeService.colorMode$.subscribe();
   }
 
   changeCurrentView(status: currentView): void {

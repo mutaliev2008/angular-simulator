@@ -61,8 +61,8 @@ export class ThemeService {
   }
 
   getSavedTheme(): boolean {
-    const localData: string | null = this.localStorage.getItem('theme');
-    const theme: boolean = localData? JSON.parse(localData) : false;
+    const localData: boolean | null = this.localStorage.getItem('theme');
+    const theme: boolean = localData? localData : false;
     return theme;
   }
 
