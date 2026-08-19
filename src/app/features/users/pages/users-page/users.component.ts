@@ -6,10 +6,11 @@ import { CommonModule } from '@angular/common';
 import { UserCardComponent } from '../../components/user-card/user-card.component';
 import { UserCreateComponent } from '../user-create/user-create.component';
 import { UsersFilterComponent } from "../users-filter/users-filter.component";
+import { PluralPipe } from '../../../../shared/pipes/plural.pipe';
 
 @Component({
   selector: 'app-users-page',
-  imports: [CommonModule, UserCardComponent, UserCreateComponent, UsersFilterComponent, UsersFilterComponent],
+  imports: [CommonModule, UserCardComponent, UserCreateComponent, UsersFilterComponent, UsersFilterComponent, PluralPipe],
   templateUrl: './users.component.html',
   styleUrl: './users.component.scss',
 })
