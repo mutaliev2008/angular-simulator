@@ -13,7 +13,7 @@ import { GradientBorderDirective } from '../../../../shared/derectives/gradient-
 })
 export class UserCardComponent {
 
-  @Input({ required: true }) user!: IUser; 
+  @Input({ required: true }) user!: IUser;
   @Output() removeUser: EventEmitter<number> = new EventEmitter<number>();
 
   phoneFormat: typeof PhoneFormat = PhoneFormat;

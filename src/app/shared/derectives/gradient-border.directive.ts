@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Directive, Host, HostBinding, HostListener, Input, OnDestroy } from '@angular/core';
+import { ChangeDetectorRef, Directive, Host, HostBinding, HostListener, inject, Input, OnDestroy } from '@angular/core';
 import { IGradientConfiguration } from '../../../interface/IGradientConfiguration';
 
 @Directive({
@@ -6,7 +6,7 @@ import { IGradientConfiguration } from '../../../interface/IGradientConfiguratio
 })
 export class GradientBorderDirective implements OnDestroy {
 
-  @Input() GradientConfiguration: Partial<IGradientConfiguration> = {
+  @Input() gradientConfiguration: Partial<IGradientConfiguration> = {
     delay: 1000,
     colors:[
     '#1b5e20', 
@@ -17,9 +17,7 @@ export class GradientBorderDirective implements OnDestroy {
   }
 
   private timer!: number;
-
-  constructor(private cdr: ChangeDetectorRef) {}
-
+  cdr: ChangeDetectorRef = inject(ChangeDetectorRef);
   @HostBinding('style.border') border: string = '0';
   @HostBinding('style.border-image') brImg: string = '0';
   @HostBinding('style.animation') animation: string = '0';
@@ -29,9 +27,12 @@ export class GradientBorderDirective implements OnDestroy {
     this.timer = setTimeout(() => {
       this.border = '2px solid';
       this.animation = '10s rotate linear infinite';
-      this.brImg = `linear-gradient(var(--angle), ${this.GradientConfiguration.colors[0]}, ${this.GradientConfiguration.colors[1]}, ${this.GradientConfiguration.colors[2]}) 1`;
+      this.brImg = `linear-gradient(var(--angle),
+      ${ this.gradientConfiguration.colors[0] }, 
+      ${ this.gradientConfiguration.colors[1] }, 
+      ${ this.gradientConfiguration.colors[2] }) 1`;
       this.cdr.markForCheck();
-    }, this.GradientConfiguration.delay);
+    }, this.gradientConfiguration.delay);
   }
 
   @HostListener('mouseleave')
@@ -41,7 +42,7 @@ export class GradientBorderDirective implements OnDestroy {
     clearTimeout(this.timer);
   }
 
- ngOnDestroy(): void {
+  ngOnDestroy(): void {
     clearTimeout(this.timer);
   }
 
