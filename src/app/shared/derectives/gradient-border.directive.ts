@@ -6,18 +6,21 @@ import { IGradientConfiguration } from '../../../interface/IGradientConfiguratio
 })
 export class GradientBorderDirective implements OnDestroy {
 
-  @Input() gradientConfiguration: IGradientConfiguration = {};
+  @Input() gradientConfiguration: IGradientConfiguration = {}
 
-  private defaultConfig:IGradientConfiguration = {
-    delay: 1000,
-    colors: ['#1b5e20', '#f90202', '#6600ff'],
-    thickness: '6px',
-  };
+  private defaultConfig = {
+  delay: 1000,
+  colors: ['#1b5e20', '#f90202', '#6600ff'],
+  thickness: '6px'
+};
 
-  config: IGradientConfiguration = {
+get config() {
+  return {
     ...this.defaultConfig,
     ...this.gradientConfiguration
   };
+}
+
 
   private timer!: number;
   cdr: ChangeDetectorRef = inject(ChangeDetectorRef);
