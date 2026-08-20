@@ -30,10 +30,10 @@ export class FormatPhonePipe implements PipeTransform {
         return mainPhoneNumber.slice(2);
         break;
       case PhoneFormat.MASKED:
-        return "+" + `${cleanPhone.slice(0, 2)}
-        ${cleanPhone.slice(2, 5)} 
-        ${cleanPhone.slice(5, 10).replace(/\d/g, '*')}
-        ${cleanPhone.slice(10)}`;  
+        return "+" + `${ cleanPhone.slice(0, 2) }
+        ${ cleanPhone.slice(2, 5) } 
+        ${ cleanPhone.slice(5, 10).replace(/\d/g, '*') }
+        ${ cleanPhone.slice(10) }`;  
       default:
         return '+' + mainPhoneNumber.split(' ').join(''); 
         break;

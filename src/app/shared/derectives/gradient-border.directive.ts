@@ -6,15 +6,18 @@ import { IGradientConfiguration } from '../../../interface/IGradientConfiguratio
 })
 export class GradientBorderDirective implements OnDestroy {
 
-  @Input() gradientConfiguration: Partial<IGradientConfiguration> = {
+  @Input() gradientConfiguration: IGradientConfiguration = {};
+
+  private defaultConfig:IGradientConfiguration = {
     delay: 1000,
-    colors:[
-    '#1b5e20', 
-    '#f90202', 
-    '#6600ff', 
-    ],
-    thickness: '6px'
-  }
+    colors: ['#1b5e20', '#f90202', '#6600ff'],
+    thickness: '6px',
+  };
+
+  config: IGradientConfiguration = {
+    ...this.defaultConfig,
+    ...this.gradientConfiguration
+  };
 
   private timer!: number;
   cdr: ChangeDetectorRef = inject(ChangeDetectorRef);
@@ -28,11 +31,11 @@ export class GradientBorderDirective implements OnDestroy {
       this.border = '2px solid';
       this.animation = '10s rotate linear infinite';
       this.brImg = `linear-gradient(var(--angle),
-      ${ this.gradientConfiguration.colors[0] }, 
-      ${ this.gradientConfiguration.colors[1] }, 
-      ${ this.gradientConfiguration.colors[2] }) 1`;
+      ${ this.config.colors![0] }, 
+      ${ this.config.colors![1] }, 
+      ${ this.config.colors![2] }) 1`;
       this.cdr.markForCheck();
-    }, this.gradientConfiguration.delay);
+    }, this.config.delay);
   }
 
   @HostListener('mouseleave')
