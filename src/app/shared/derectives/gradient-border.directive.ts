@@ -8,18 +8,18 @@ export class GradientBorderDirective implements OnDestroy {
 
   @Input() gradientConfiguration: IGradientConfiguration = {}
 
-  private defaultConfig = {
+  private defaultConfig: IGradientConfiguration = {
   delay: 1000,
   colors: ['#1b5e20', '#f90202', '#6600ff'],
   thickness: '6px'
 };
 
-get config() {
-  return {
-    ...this.defaultConfig,
-    ...this.gradientConfiguration
-  };
-}
+  get config(): IGradientConfiguration {
+    return {
+      ...this.defaultConfig,
+      ...this.gradientConfiguration
+    };
+  }
 
 
   private timer!: number;
