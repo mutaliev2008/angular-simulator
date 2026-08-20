@@ -1,4 +1,4 @@
-import { Directive, HostBinding, HostListener, Input, OnDestroy } from '@angular/core';
+import { ChangeDetectorRef, Directive, Host, HostBinding, HostListener, Input, OnDestroy } from '@angular/core';
 import { IGradientConfiguration } from '../../../interface/IGradientConfiguration';
 
 @Directive({
@@ -6,40 +6,42 @@ import { IGradientConfiguration } from '../../../interface/IGradientConfiguratio
 })
 export class GradientBorderDirective implements OnDestroy {
 
-  @Input() GradientConfiguration: IGradientConfiguration = {
-    delay: 3000,
+  @Input() GradientConfiguration: Partial<IGradientConfiguration> = {
+    delay: 1000,
     colors:[
     '#1b5e20', 
-    '#2e7d32', 
-    '#66bb6a', 
+    '#f90202', 
+    '#6600ff', 
     ],
     thickness: '6px'
   }
 
   private timer!: number;
 
-  @HostBinding('style.border') border: string = '2px solid #0455f6';
+  constructor(private cdr: ChangeDetectorRef) {}
+
+  @HostBinding('style.border') border: string = '0';
+  @HostBinding('style.border-image') brImg: string = '0';
+  @HostBinding('style.animation') animation: string = '0';
 
   @HostListener('mouseenter')
   onEnter(): void {
-    console.log(this.timer)
-    if(this.timer) {
-      clearTimeout(this.timer);
-    }
     this.timer = setTimeout(() => {
-      this.border = `2px solid #f60404 !important`;
+      this.border = '2px solid';
+      this.animation = '10s rotate linear infinite';
+      this.brImg = `linear-gradient(var(--angle), ${this.GradientConfiguration.colors[0]}, ${this.GradientConfiguration.colors[1]}, ${this.GradientConfiguration.colors[2]}) 1`;
+      this.cdr.markForCheck();
     }, this.GradientConfiguration.delay);
-    console.log(this.timer)
-
   }
 
   @HostListener('mouseleave')
   onLeave(): void {
-    this.border = '0'
+    this.border = '0';
+    this.brImg = '0';
     clearTimeout(this.timer);
   }
 
- ngOnDestroy() {
+ ngOnDestroy(): void {
     clearTimeout(this.timer);
   }
 

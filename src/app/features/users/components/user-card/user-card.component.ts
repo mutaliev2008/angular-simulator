@@ -10,7 +10,6 @@ import { GradientBorderDirective } from '../../../../shared/derectives/gradient-
   imports: [UpperCasePipe, FormatPhonePipe, BoldOnHoverDirective, GradientBorderDirective],
   templateUrl: './user-card.component.html',
   styleUrl: './user-card.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush 
 })
 export class UserCardComponent {
 

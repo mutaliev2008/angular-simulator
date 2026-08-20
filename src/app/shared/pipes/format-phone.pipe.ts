@@ -13,7 +13,7 @@ export class FormatPhonePipe implements PipeTransform {
       ${cleanPhone.slice(2, 5)} 
       ${cleanPhone.slice(5, 8)} 
       ${cleanPhone.slice(8, 10)} 
-      ${cleanPhone.slice(10)}`
+      ${cleanPhone.slice(10)}`;
 
     if (cleanPhone.length === 0) {
       return '';
@@ -30,7 +30,7 @@ export class FormatPhonePipe implements PipeTransform {
         return mainPhoneNumber.slice(2);
         break;
       case PhoneFormat.MASKED:
-        return "+" + `${cleanPhone.slice(0, 2)} 
+        return "+" + `${cleanPhone.slice(0, 2)}
         ${cleanPhone.slice(2, 5)} 
         ${cleanPhone.slice(5, 10).replace(/\d/g, '*')}
         ${cleanPhone.slice(10)}`;  
