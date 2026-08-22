@@ -1,6 +1,9 @@
 <div class="users-container">
     <app-user-create></app-user-create>
     <h1 class="users-container__title">Список Пользователей</h1>
+    @if (users$ | async; as users) {
+        {{ users.length | plural :'пользователь' : 'пользователя' : 'пользователей' }}   
+    }
     <div class="user-list">
         <app-users-filter (searchTerm)="searchUser($event)"></app-users-filter>
             @for (user of filteredUsers$ | async; track $index) {

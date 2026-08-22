@@ -2,10 +2,11 @@ import { Component, inject } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { UserService } from '../../../../../services/user.service';
 import { IUser } from '../../../../../interface/IUser';
+import { GradientBorderDirective } from '../../../../shared/derectives/gradient-border.directive';
 
 @Component({
   selector: 'app-user-create',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, GradientBorderDirective],
   templateUrl: './user-create.component.html',
   styleUrl: './user-create.component.scss',
 })

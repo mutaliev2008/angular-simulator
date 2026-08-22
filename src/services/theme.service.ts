@@ -61,7 +61,7 @@ export class ThemeService {
   }
 
   getSavedTheme(): boolean {
-    const theme: boolean = this.localStorage.getItem('theme') ?? false
+    const theme: boolean = this.localStorage.getItem('theme') ?? false;
     return theme;
   }
 

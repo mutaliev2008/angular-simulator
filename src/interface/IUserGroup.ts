@@ -5,4 +5,4 @@ export interface IUserGroup {
   users: ICustomer[];
   groupName: string;
   groupNumber: number;
-}  
+}
