@@ -2,12 +2,14 @@ import { ApplicationConfig, provideBrowserGlobalErrorListeners, provideZoneChang
 import { provideRouter } from '@angular/router';
 import { providePrimeNG } from 'primeng/config';
 import { routes } from './app.routes';
-import { provideHttpClient, withXhr } from '@angular/common/http';
+import { provideHttpClient, withInterceptors, withXhr } from '@angular/common/http';
 import Aura from '@primeuix/themes/aura';
 import Lara from '@primeuix/themes/lara';
 import Nara from '@primeuix/themes/nora';
 import { AppTheme } from '../enum/AppTheme';
 import { Preset } from '@primeuix/themes';
+import { loggingInterceptor } from '../interceptor/logging.interceptor';
+import { errorInterceptor } from '../interceptor/error.interceptor';
 
   function getPreset(): Preset {
     const theme: string | null = localStorage.getItem('color');
@@ -39,6 +41,7 @@ export const appConfig: ApplicationConfig = {
             darkModeSelector: '.my-app-dark'
         }
     }
-    })
+    }),
+    provideHttpClient(withInterceptors([loggingInterceptor, errorInterceptor]))
   ]
 };
