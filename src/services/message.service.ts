@@ -43,4 +43,5 @@ export class MessageService {
       this.close(content);
     }, 5000);
   }
+  
 }

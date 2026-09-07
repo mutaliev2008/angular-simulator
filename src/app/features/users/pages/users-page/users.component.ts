@@ -1,4 +1,4 @@
-import { Component, DestroyRef, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { UserService } from '../../../../../services/user.service';
 import { BehaviorSubject, combineLatest, map, Observable,  } from 'rxjs';
 import { IUser } from '../../../../../interface/IUser';
@@ -16,7 +16,6 @@ import { PluralPipe } from '../../../../shared/pipes/plural.pipe';
 })
 export class UsersComponent implements OnInit {
   
-  destroyRef = inject(DestroyRef);
   userService: UserService = inject(UserService);
 
   users$: Observable<IUser[]> = this.userService.users$;
