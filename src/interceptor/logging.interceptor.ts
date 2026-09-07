@@ -7,22 +7,22 @@ export const loggingInterceptor: HttpInterceptorFn = (
 ): Observable<HttpEvent<unknown>> => {
   
   const initialTime: number = Date.now();
-  console.log(req.method);
-  console.log(req.url);
+  console.log(`Метод запроса ${req.method}`);
+  console.log(`URL запроса ${req.url}`);
 
   return next(req).pipe(
     tap((event: HttpEvent<unknown>) => {
       if (event instanceof HttpResponse) {
         const requestCompletionTime: number = Date.now() - initialTime;
-        console.log(event.status);
-        console.log(requestCompletionTime);
+        console.log(`Cтатус ответа ${event.status}`);
+        console.log(`Время выполнения запроса ${requestCompletionTime}`);
       }
     }),
     catchError((error: HttpErrorResponse) => {
       const requestCompletionTime: number = Date.now() - initialTime;
 
-      console.log(requestCompletionTime);
-      console.log(error.status);
+      console.log(`Время выполнения запроса ${requestCompletionTime}`);
+      console.log(`Cтатус ответа ${error.status}`);
       
       return throwError(() => error)
     })
