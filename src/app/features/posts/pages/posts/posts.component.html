@@ -1,1 +1,24 @@
-<p>posts works!</p>
+ @let postRespone = postService.postResponse$ | async;
+ <p-table
+    [value]="postRespone?.posts ?? []"
+    [paginator]="true"
+    [rows]="10"
+    [rowsPerPageOptions]="[10, 20, 50]"
+    [tableStyle]="{ 'max-width': '70rem', margin: '130px auto' }"
+    [totalRecords]="postRespone?.total ?? 0"
+    (onPage)="changePage($event)">
+    <ng-template #header>
+      <tr>
+        <th>Title</th>
+        <th>Tags</th>
+        <th>Views</th>
+      </tr>
+    </ng-template>
+    <ng-template #body let-post>
+      <tr>
+        <td>{{ post.title }}</td>
+        <td>{{ post.tags }}</td>
+        <td>{{ post.views }}</td>
+      </tr>
+    </ng-template>
+  </p-table>
