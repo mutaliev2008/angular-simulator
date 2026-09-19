@@ -1,0 +1,46 @@
+<div class="modal-header">
+  <h2>Редактирование записи</h2>
+</div>
+
+<form class="edit-form">
+  <div class="form-group">
+    <label for="title">Название</label>
+    <input
+      type="text"
+      id="title"
+      name="title"
+      [(ngModel)]="post.title"
+      placeholder="Введите название"
+    />
+  </div>
+
+  <div class="form-group">
+    <label for="tags">Теги</label>
+    <input
+      type="text"
+      id="tags"
+      name="tags"
+      [(ngModel)]="post.tags"
+      placeholder="Введите теги через запятую"
+    />
+    <span class="form-hint"> Например: горы, походы, туризм </span>
+  </div>
+
+  <div class="form-group">
+    <label for="views">Просмотры</label>
+    <input
+      type="number"
+      id="views"
+      name="views"
+      [(ngModel)]="post.views"
+      min="0"
+      placeholder="Количество просмотров"
+    />
+  </div>
+
+  <div class="modal-footer">
+    <button type="button" (click)="cansel()" class="btn btn-cancel">Отмена</button>
+
+    <button type="submit" (click)="onSubmit()" class="btn btn-save">Сохранить</button>
+  </div>
+</form>

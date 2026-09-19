@@ -1,1 +1,95 @@
-<p>post-create works!</p>
+<div class="page">
+  <form class="post-form" [formGroup]="postForm" (ngSubmit)="submit()">
+    <div class="form-header">
+      <span>НОВЫЙ ПОСТ</span>
+      <h1>Создание поста</h1>
+      <p>Заполните информацию о публикации</p>
+    </div>
+
+    <div class="section">
+      <h2>Основная информация</h2>
+
+      <div class="field">
+        <label for="title"> Заголовок </label>
+
+        <input
+          id="title"
+          type="text"
+          placeholder="Введите заголовок поста"
+          formControlName="title"
+        />
+
+        @if (postForm.get('title')?.touched && postForm.get('title')?.invalid) {
+          @if (postForm.get('title')?.hasError('required')) {
+            <small>Заголовок обязателен</small>
+          }
+
+          @if (postForm.get('title')?.hasError('minlength')) {
+            <small>Минимум 3 символа</small>
+          }
+        }
+      </div>
+
+      <div class="field">
+        <h2 for="body">Текст поста</h2>
+
+        <textarea
+          id="body"
+          rows="6"
+          placeholder="Введите текст поста..."
+          formControlName="body"
+        ></textarea>
+
+        @if (postForm.get('body')?.touched && postForm.get('body')?.invalid) {
+          @if (postForm.get('body')?.hasError('required')) {
+            <small>Текст поста обязателен</small>
+          }
+
+          @if (postForm.get('body')?.hasError('minlength')) {
+            <small>Минимум 10 символов</small>
+          }
+        }
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Теги</h2>
+
+      <div formArrayName="tags">
+        @for (tag of tags.controls; track tag) {
+          <div class="tag-row">
+            <input type="text" placeholder="Например: history" [formControlName]="$index" />
+
+            <button
+              type="button"
+              class="remove-btn"
+              (click)="removeTag(tag)"
+              [disabled]="tags.length === 1"
+            >
+              ×
+            </button>
+          </div>
+
+          @if (tag.invalid && tag.touched) {
+            <small class="tag-error"> Тег обязателен </small>
+          }
+        }
+      </div>
+
+      <button type="button" class="add-tag" (click)="addTag()">+ Добавить тег</button>
+    </div>
+
+    <div class="form-actions">
+      <button (click)="cansel()" type="button" class="cancel-btn">Отмена</button>
+
+      <button
+        type="submit"
+        [class.disabled]="postForm.invalid"
+        [disabled]="postForm.invalid"
+        class="submit-btn"
+      >
+        Создать пост
+      </button>
+    </div>
+  </form>
+</div>

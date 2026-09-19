@@ -10,17 +10,13 @@ export class LoaderService {
   isLoading$: Observable<boolean> = this.isLoadingSubject.asObservable();
 
   showLoader(): void {
-    this.isLoadingSubject.next(
-      true
-    )
-      document.body.style.overflow = 'hidden';
+    this.isLoadingSubject.next(true);
+    document.body.style.overflow = 'hidden';
   }
 
   hideLoader(): void {
-    this.isLoadingSubject.next(
-      false
-    )
-      document.body.style.overflow = '';
+    this.isLoadingSubject.next(false);
+    document.body.style.overflow = '';
   }
   
 }
