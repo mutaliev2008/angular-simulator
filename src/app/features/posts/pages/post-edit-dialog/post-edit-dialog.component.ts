@@ -22,7 +22,7 @@ export class PostEditDialogComponent {
 
   post: IPost = { ...this.config.data };
 
-  onSubmit() {
+  onSubmit(): void {
     const updatedPost: IPost = { ...this.post };
     this.postService
       .updatePost(this.post.id, updatedPost)
@@ -30,8 +30,8 @@ export class PostEditDialogComponent {
         tap(() => {
           this.messageService.showSuccess('Пост обновлен успешно');
         }),
-      )
-      .subscribe();
+      ).subscribe();
+      
     this.ref.close(updatedPost);
   }
 

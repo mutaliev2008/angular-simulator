@@ -21,6 +21,7 @@ import { MessageService } from '../../../../../services/message.service';
   providers: [DialogService],
 })
 export class PostsComponent implements OnInit {
+  
   postService: PostService = inject(PostService);
   messageService: MessageService = inject(MessageService);
   private router: Router = inject(Router);
@@ -89,4 +90,5 @@ export class PostsComponent implements OnInit {
       )
       .subscribe();
   }
+
 }

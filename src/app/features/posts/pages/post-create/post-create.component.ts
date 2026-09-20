@@ -18,7 +18,7 @@ export class PostCreateComponent {
   postService: PostService = inject(PostService);
   router: Router = inject(Router);
   messageService: MessageService = inject(MessageService);
-  private fb = inject(FormBuilder);
+  private fb: FormBuilder = inject(FormBuilder);
 
   postForm: FormGroup = this.fb.group({
     title: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(100)]],
@@ -33,7 +33,7 @@ export class PostCreateComponent {
 
   removeTag(control: AbstractControl): void {
     if (this.tags.length > 1) {
-      const index = this.tags.controls.indexOf(control);
+      const index: number = this.tags.controls.indexOf(control);
       this.tags.removeAt(index);
     }
   }

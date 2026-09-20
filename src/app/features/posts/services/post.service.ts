@@ -11,7 +11,7 @@ import { MessageService } from '../../../../services/message.service';
   providedIn: 'root',
 })
 export class PostService {
-  
+
   postApiService: PostApiService = inject(PostApiService);
   loadService: LoaderService = inject(LoaderService);
   messageService: MessageService = inject(MessageService);
@@ -108,8 +108,8 @@ export class PostService {
 
     return this.postApiService.deleteApiPost(id).pipe(
       tap((deletedPost: IPost) => {
-        const updatedPosts = this.postResponseSubject.value.posts.filter(
-          (post) => post.id !== deletedPost.id,
+        const updatedPosts: IPost[] = this.postResponseSubject.value.posts.filter(
+          (post: IPost) => post.id !== deletedPost.id,
         );
         this.setPosts({
           ...this.postResponseSubject.value,
