@@ -30,10 +30,28 @@
   </div>
 
   <div class="header__toggle-view">
-    @if (currentView === viewMode.DATE) {
-      <p>{{ timerValue }}</p>
-    } @else if (currentView === viewMode.COUNT) {
-      <div class="header__counter">
+    <div class="header__toggle-wrapper">
+      @if (currentView === viewMode.DATE) {
+        <button
+          id="switch-button-clicker"
+          class="header__switch-button"
+          (click)="changeCurrentView(viewMode.COUNT)"
+        >
+          Показать дату
+        </button>
+      } @else if (currentView === viewMode.COUNT) {
+        <button
+          id="switch-button-timer"
+          class="header__switch-button"
+          (click)="changeCurrentView(viewMode.DATE)"
+        >
+          Показать кликер
+        </button>
+      }
+      @if (currentView === viewMode.DATE) {
+        <p>{{ timerValue }}</p>
+      } @else if (currentView === viewMode.COUNT) {
+        <div class="header__counter">
         <button id="counter-button-plus" (click)="addQuantity()" class="header__counter-button">
           +
         </button>
@@ -48,22 +66,14 @@
         </button>
       </div>
     }
-    @if (currentView === viewMode.DATE) {
-      <button
-        id="switch-button-clicker"
-        class="header__switch-button"
-        (click)="changeCurrentView(viewMode.COUNT)"
-      >
-        Показать дату
-      </button>
-    } @else if (currentView === viewMode.COUNT) {
-      <button
-        id="switch-button-timer"
-        class="header__switch-button"
-        (click)="changeCurrentView(viewMode.DATE)"
-      >
-        Показать кликер
-      </button>
-    }
+  </div>
+    @let user = authService.authorizedUser$| async;
+     <div class="user-block">
+       <p-avatar [image]="`${ user?.image }`" size="large" shape="circle" />
+       <p class="userName"> {{ `${ user?.firstName } ${ user?.lastName }` }}</p>
+       <button class="logout" (click)="logout()">
+         <fa-icon size="xl" [icon]="faLogoutIcon"></fa-icon>
+       </button>
+     </div>
   </div>
 </header>

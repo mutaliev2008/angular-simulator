@@ -2,11 +2,10 @@ import { inject, Injectable } from '@angular/core';
 import { BehaviorSubject, catchError, finalize, Observable, of, tap } from 'rxjs';
 import { IUser } from '../interface/IUser';
 import { UserApiService } from './user-api.service';
-import { captureError } from 'rxjs/internal/util/errorContext';
 import { MessageService } from './message.service';
-import { LoaderComponent } from '../app/core/components/loader/loader.component';
 import { LoaderService } from './loader.service';
 import { LocalStorageService } from './local-storage.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
@@ -37,8 +36,8 @@ export class UserService {
           this.localStorageService.setItem('users', users);
         }
       }),
-      catchError((err: string) => {
-        this.messageService.showError(err);
+      catchError((err: HttpErrorResponse) => {
+        this.messageService.showError(err.error.message);
         return of([]);
       }),
       finalize(() => {
@@ -63,7 +62,7 @@ export class UserService {
 
   removeUsers(userId: number): void {
     const updatedUsers: IUser[] = this.getUsers().filter((user: IUser) => user.id !== userId);
-    this.setUsers(updatedUsers)
+    this.setUsers(updatedUsers);
   }
 
 }

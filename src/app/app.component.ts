@@ -13,22 +13,20 @@ import { ITravelBlog } from '../interface/ITravelBlog';
 import { CommonModule } from '@angular/common';
 import { Message } from '../enum/Message';
 import { LocalStorageService } from '../services/local-storage.service';
-import { FooterComponent } from './core/components/footer/footer.component';
 import { RouterOutlet } from '@angular/router';
 import { LoaderService } from '../services/loader.service';
 import { LoaderComponent } from './core/components/loader/loader.component';
 import { MessageComponent } from './core/components/message/message.component';
-import { HeaderComponent } from './core/components/header/header.component';
 
 @Component({
   selector: 'app-root',
-  imports: [FormsModule, CommonModule, FooterComponent, HeaderComponent, MessageComponent, RouterOutlet, LoaderComponent],
+  imports: [FormsModule, CommonModule, MessageComponent, RouterOutlet, LoaderComponent],
   templateUrl: './app.component.html',
   changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
-  
+
   localStorageServices: LocalStorageService = inject(LocalStorageService);
   loaderService: LoaderService = inject(LoaderService);
 
@@ -44,11 +42,6 @@ export class AppComponent {
   constructor() {
     this.trackLastVisit();
     this.trackPageOpen();
-    this.loaderService.showLoader();
-
-    setTimeout(() => {
-      this.loaderService.hideLoader();
-    }, 3000);
   }
 
   isPrimaryColor(color: Color): boolean {
@@ -65,5 +58,5 @@ export class AppComponent {
     currentCount = currentCount + 1;
     this.localStorageServices.setItem('quantity-visit', currentCount.toString());
   }
-  
+
 }

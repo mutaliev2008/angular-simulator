@@ -1,7 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { PostApiService } from './post-api.service';
 import { IPostResponse } from '../interface/IPostResponce';
-import { BehaviorSubject, catchError, finalize, Observable, of, tap, throwError } from 'rxjs';
+import { BehaviorSubject, catchError, finalize, Observable, tap, throwError } from 'rxjs';
 import { IPost } from '../interface/IPost';
 import { LoaderService } from '../../../../services/loader.service';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -35,7 +35,7 @@ export class PostService {
         this.setPosts(posts);
       }),
       catchError((error: HttpErrorResponse) => {
-        this.messageService.showError(error.message);
+        this.messageService.showError(error.error.message);
         return throwError(() => error);
       }),
       finalize(() => {
@@ -49,7 +49,7 @@ export class PostService {
 
     return this.postApiService.getApiPostById(id).pipe(
       catchError((error: HttpErrorResponse) => {
-        this.messageService.showError(error.message);
+        this.messageService.showError(error.error.message);
         return throwError(() => error);
       }),
       finalize(() => {
@@ -73,7 +73,7 @@ export class PostService {
         });
       }),
       catchError((error: HttpErrorResponse) => {
-        this.messageService.showError(error.message);
+        this.messageService.showError(error.error.message);
         return throwError(() => error);
       }),
       finalize(() => {
@@ -94,7 +94,7 @@ export class PostService {
         });
       }),
       catchError((error: HttpErrorResponse) => {
-        this.messageService.showError(error.message);
+        this.messageService.showError(error.error.message);
         return throwError(() => error);
       }),
       finalize(() => {
@@ -117,7 +117,7 @@ export class PostService {
         });
       }),
       catchError((error: HttpErrorResponse) => {
-        this.messageService.showError(error.message);
+        this.messageService.showError(error.error.message);
         return throwError(() => error);
       }),
       finalize(() => {
