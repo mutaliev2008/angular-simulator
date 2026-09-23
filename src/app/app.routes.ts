@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { authGuard } from './features/auth/guards/auth.guard';
 import { guestGuard } from './features/auth/guards/guest.guard';
+import { adminGuard } from './features/auth/guards/admin.guard';
 
 export const routes: Routes = [
   {
@@ -10,7 +11,7 @@ export const routes: Routes = [
       import('./layouts/unauthorized-user-layout/unauthorized-user-layout.component').then(
         (m) => m.UnauthorizedUserLayoutComponent,
       ),
-    
+
     children: [
       {
         path: '',
@@ -44,11 +45,13 @@ export const routes: Routes = [
       },
       {
         path: 'users',
+        canActivate: [adminGuard],
         loadComponent: () =>
           import('./features/users/pages/users-page/users.component').then((m) => m.UsersComponent),
       },
       {
         path: 'posts',
+        canActivate: [adminGuard],
         loadChildren: () => import('./features/posts/post.routes').then((m) => m.postRoutes),
       },
     ],

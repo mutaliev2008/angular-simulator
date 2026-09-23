@@ -1,3 +1,5 @@
+import { UserRole } from "../../enam/UserRole";
+
 export interface IUser {
   id: number;
   username: string;
@@ -6,6 +8,7 @@ export interface IUser {
   lastName: string;
   gender: string;
   image: string;
+  role: UserRole;
 }
 
 export interface IAuthResponse extends IUser, ITokens {}
