@@ -8,9 +8,9 @@ export interface IUser {
   image: string;
 }
 
-export interface IAuthResponse extends IUser, ITokens {}
+export interface IAuthResponse extends IUser, IToken {}
 
-export interface ITokens {
+export interface IToken {
   accessToken: string;
   refreshToken: string;
 }

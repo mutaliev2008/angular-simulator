@@ -1,7 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { AuthApiService } from './auth-api.service';
 import { BehaviorSubject, catchError, finalize, Observable, of, tap, throwError } from 'rxjs';
-import { IAuthResponse, ITokens, IUser } from '../interface/IAuth';
+import { IAuthResponse, IToken, IUser } from '../interface/IAuth';
 import { HttpErrorResponse } from '@angular/common/http';
 import { LocalStorageService } from '../../../../services/local-storage.service';
 import { LoaderService } from '../../../../services/loader.service';
@@ -13,9 +13,9 @@ import { Router } from '@angular/router';
 })
 export class AuthService {
 
-  authApiService: AuthApiService = inject(AuthApiService);
-  loaderServices: LoaderService = inject(LoaderService);
-  router: Router = inject(Router);
+  private authApiService: AuthApiService = inject(AuthApiService);
+  private loaderServices: LoaderService = inject(LoaderService);
+  private router: Router = inject(Router);
 
   private localStorage: LocalStorageService = inject(LocalStorageService);
 
@@ -24,7 +24,7 @@ export class AuthService {
 
   login(credentials: ICredentials): Observable<IAuthResponse> {
     this.loaderServices.showLoader();
-    return this.authApiService.loginApi(credentials).pipe(
+    return this.authApiService.login(credentials).pipe(
       tap((authResponse: IAuthResponse) => {
         const { accessToken, refreshToken, ...user } = authResponse;
 
@@ -46,22 +46,25 @@ export class AuthService {
     this.setUser(null);
   }
 
-  refresAuthToken(): Observable<ITokens> {
-    const authTokens: ITokens | null = this.localStorage.getItem('authTokens'); 
+  refresAuthToken(): Observable<IToken | null> {
+    const authTokens: IToken | null = this.localStorage.getItem('authTokens'); 
     const refreshToken: string | undefined = authTokens?.refreshToken;
 
-    return this.authApiService.refreshTokenApi(refreshToken).pipe(
-      tap((tokens: ITokens) => {
-        this.localStorage.setItem('authTokens', tokens);
-      })
-    )
+    if (refreshToken) {
+      return this.authApiService.refreshToken(refreshToken).pipe(
+        tap((tokens: IToken) => {
+          this.localStorage.setItem('authTokens', tokens);
+        })
+      )
+    }
+    return of(null);
   }
 
   loadCurrentUser(): Observable<IUser | null> {
-    const authTokens: ITokens | null = this.localStorage.getItem('authTokens');
+    const authTokens: IToken | null = this.localStorage.getItem('authTokens');
 
     if (authTokens?.accessToken) {
-      return this.authApiService.loadCurrentUserApi().pipe(
+      return this.authApiService.loadCurrentUser().pipe(
         tap((user:IUser) => {
           this.setUser(user);
           console.log(user)
