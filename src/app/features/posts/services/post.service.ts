@@ -35,7 +35,6 @@ export class PostService {
         this.setPosts(posts);
       }),
       catchError((error: HttpErrorResponse) => {
-        this.messageService.showError(error.message);
         return throwError(() => error);
       }),
       finalize(() => {
@@ -49,7 +48,6 @@ export class PostService {
 
     return this.postApiService.getApiPostById(id).pipe(
       catchError((error: HttpErrorResponse) => {
-        this.messageService.showError(error.message);
         return throwError(() => error);
       }),
       finalize(() => {
@@ -73,7 +71,6 @@ export class PostService {
         });
       }),
       catchError((error: HttpErrorResponse) => {
-        this.messageService.showError(error.message);
         return throwError(() => error);
       }),
       finalize(() => {
@@ -94,7 +91,6 @@ export class PostService {
         });
       }),
       catchError((error: HttpErrorResponse) => {
-        this.messageService.showError(error.message);
         return throwError(() => error);
       }),
       finalize(() => {
@@ -117,7 +113,6 @@ export class PostService {
         });
       }),
       catchError((error: HttpErrorResponse) => {
-        this.messageService.showError(error.message);
         return throwError(() => error);
       }),
       finalize(() => {

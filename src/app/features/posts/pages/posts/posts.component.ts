@@ -4,14 +4,15 @@ import { TableModule, TablePageEvent } from 'primeng/table';
 import { AsyncPipe } from '@angular/common';
 import { SkeletonModule } from 'primeng/skeleton';
 import { TagModule } from 'primeng/tag';
-import { BehaviorSubject, finalize, Observable, tap } from 'rxjs';
+import { BehaviorSubject, catchError, finalize, Observable, tap, throwError } from 'rxjs';
 import { ContextMenuModule } from 'primeng/contextmenu';
 import { MenuItem } from 'primeng/api';
 import { IPost } from '../../interface/IPost';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { PostEditDialogComponent } from '../post-edit-dialog/post-edit-dialog.component';
 import { MessageService } from '../../../../../services/message.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-posts',
@@ -66,6 +67,10 @@ export class PostsComponent implements OnInit {
     this.postService
       .loadPosts(skip, limit)
       .pipe(
+        catchError((error: HttpErrorResponse) => {
+          this.messageService.showError(error.error.message);
+          return throwError(() => error);
+        }),
         finalize(() => {
           this.isLoadingSubject.next(false);
         }),
@@ -87,6 +92,10 @@ export class PostsComponent implements OnInit {
         tap(() => {
           this.messageService.showSuccess('Пост удален успешно');
         }),
+        catchError((error: HttpErrorResponse) => {
+          this.messageService.showError(error.error.message);
+          return throwError(() => error);
+        }),        
       )
       .subscribe();
   }

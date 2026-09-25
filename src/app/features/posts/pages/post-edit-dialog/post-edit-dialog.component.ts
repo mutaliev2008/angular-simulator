@@ -1,10 +1,11 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { IPost } from '../../interface/IPost';
 import { FormsModule } from '@angular/forms';
 import { PostService } from '../../services/post.service';
 import { MessageService } from '../../../../../services/message.service';
-import { tap } from 'rxjs';
+import { catchError, tap, throwError } from 'rxjs';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-post-edit-dialog',
@@ -29,6 +30,10 @@ export class PostEditDialogComponent {
       .pipe(
         tap(() => {
           this.messageService.showSuccess('Пост обновлен успешно');
+        }),
+        catchError((error: HttpErrorResponse) => {
+          this.messageService.showError(error.error.message);
+          return throwError(() => error);
         }),
       ).subscribe();
       

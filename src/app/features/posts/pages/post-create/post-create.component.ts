@@ -2,9 +2,10 @@ import { Component, inject } from '@angular/core';
 import { AbstractControl, FormArray, FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { IPost } from '../../interface/IPost';
 import { PostService } from '../../services/post.service';
-import { delay, tap } from 'rxjs';
+import { catchError, delay, tap, throwError } from 'rxjs';
 import { Router } from '@angular/router';
 import { MessageService } from '../../../../../services/message.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-post-create',
@@ -59,6 +60,10 @@ export class PostCreateComponent {
         .pipe(
           tap(() => {
             this.messageService.showSuccess('Пост создан успешно');
+          }),
+          catchError((error: HttpErrorResponse) => {
+            this.messageService.showError(error.error.message);
+            return throwError(() => error);
           }),
         )
         .subscribe();
