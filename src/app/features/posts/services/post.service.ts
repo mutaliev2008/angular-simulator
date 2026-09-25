@@ -1,7 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { PostApiService } from './post-api.service';
 import { IPostResponse } from '../interface/IPostResponce';
-import { BehaviorSubject, catchError, finalize, Observable, of, tap, throwError } from 'rxjs';
+import { BehaviorSubject, catchError, finalize, Observable, tap, throwError } from 'rxjs';
 import { IPost } from '../interface/IPost';
 import { LoaderService } from '../../../../services/loader.service';
 import { HttpErrorResponse } from '@angular/common/http';

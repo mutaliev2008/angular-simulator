@@ -1,0 +1,42 @@
+<div class="login-page">
+  <div class="login-card">
+    <div class="login-header">
+      <span>АВТОРИЗАЦИЯ</span>
+      <h1>Вход в аккаунт</h1>
+      <p>Введите свои данные, чтобы продолжить</p>
+    </div>
+    <form [formGroup]="loginForm">
+      <div class="field">
+        <label for="username"> Логин </label>
+        <input id="username" type="text" placeholder="Введите логин" formControlName="username" />
+        @if (loginForm.get('username')?.invalid && loginForm.get('username')?.touched) {
+          @if (loginForm.get('username')?.hasError('required')) {
+            <small>Введите логин</small>
+          }
+          @if (loginForm.get('username')?.hasError('minlength')) {
+            <small>Логин должен содержать минимум 3 символа</small>
+          }
+        }
+      </div>
+      <div class="field">
+        <label for="password"> Пароль </label>
+
+        <input
+          id="password"
+          type="password"
+          placeholder="Введите пароль"
+          formControlName="password"
+        />
+        @if (loginForm.get('password')?.invalid && loginForm.get('password')?.touched) {
+          @if (loginForm.get('password')?.hasError('required')) {
+            <small>Введите пароль</small>
+          }
+          @if (loginForm.get('password')?.hasError('minlength')) {
+            <small>Пароль должен содержать минимум 6 символов</small>
+          }
+        }
+      </div>
+      <button (click)="submit()" type="submit" class="login-button">Войти</button>
+    </form>
+  </div>
+</div>

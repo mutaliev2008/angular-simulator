@@ -23,8 +23,14 @@
     display: flex;
     gap: 20px;
     width: var(--container-width);
-    justify-content: flex-end;
+    justify-content: space-between;
     align-items: center;
+  }
+
+  &__toggle-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 20px;
   }
 
   &__counter {
@@ -87,4 +93,15 @@
     border: 0;
     border-radius: 4px;
   }
+}
+
+.user-block {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+    
+    button {
+      background: transparent;
+      border: 0;
+    }
 }
