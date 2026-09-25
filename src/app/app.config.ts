@@ -13,22 +13,22 @@ import { errorInterceptor } from '../interceptor/error.interceptor';
 import { authInterceptor } from './features/auth/interceptor/auth.interceptor';
 import { AuthService } from './features/auth/services/auth.service';
 
-  function getPreset(): Preset {
-    const theme: string | null = localStorage.getItem('color');
-    switch (theme) {
-      case AppTheme.AURA:
-        return Aura
-        break;
-      case AppTheme.LARA:
-        return Lara
-        break;
-      case AppTheme.NORA:
-        return Nara
-        break;
-      default:
-        return Aura
-    }
+function getPreset(): Preset {
+  const theme: string | null = localStorage.getItem('color');
+  switch (theme) {
+  case AppTheme.AURA:
+    return Aura;
+    break;
+  case AppTheme.LARA:
+    return Lara;
+    break;
+  case AppTheme.NORA:
+    return Nara;
+    break;
+  default:
+    return Aura;
   }
+}
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -44,9 +44,9 @@ export const appConfig: ApplicationConfig = {
       theme: {
         preset: getPreset(),
         options: {
-            darkModeSelector: '.my-app-dark'
+          darkModeSelector: '.my-app-dark'
         }
-    }
+      }
     }),
     provideHttpClient(withInterceptors([loggingInterceptor, errorInterceptor, authInterceptor]))
   ]

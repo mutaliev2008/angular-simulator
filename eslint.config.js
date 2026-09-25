@@ -1,97 +1,130 @@
-const eslint = require('@eslint/js');
-const tseslint = require('typescript-eslint');
-const angular = require('angular-eslint');
-const unusedImports = require('eslint-plugin-unused-imports');
-const eslintPluginPrettierRecommended = require('eslint-plugin-prettier/recommended');
+// @ts-check
+const eslint = require("@eslint/js");
+const { defineConfig } = require("eslint/config");
+const tseslint = require("typescript-eslint");
+const angular = require("angular-eslint");
 
-module.exports = defineConfig(
+module.exports = defineConfig([
   {
-    files: ['**/*.ts'],
-    plugins: {
-      'unused-imports': unusedImports,
-    },
+    files: ["**/*.ts"],
     extends: [
       eslint.configs.recommended,
-      ...tseslint.configs.recommended,
-      ...tseslint.configs.stylistic,
-      ...angular.configs.tsRecommended,
-      eslintPluginPrettierRecommended,
+      tseslint.configs.recommended,
+      tseslint.configs.stylistic,
+      angular.configs.tsRecommended,
     ],
     processor: angular.processInlineTemplates,
     rules: {
-      'no-console': ['warn', { allow: ['warn', 'error'] }],
-
-      'lines-around-comment': [
-        'error',
+      "@typescript-eslint/explicit-member-accessibility": [
+        "error",
         {
-          beforeBlockComment: true,
-          allowBlockStart: true,
-          allowObjectStart: true,
-          allowArrayStart: true,
-          allowClassStart: true,
+          "accessibility": "explicit",
+          "overrides": {
+            "accessors": "explicit",
+            "methods": "no-public",
+            "properties": "no-public",
+            "constructors": 'off',
+            "parameterProperties": "explicit",
+          },
+        }
+      ],
+      "@typescript-eslint/naming-convention": [
+        "error",
+        {
+          selector: 'default',
+          format: ['strictCamelCase', 'UPPER_CASE', 'PascalCase'],
+          leadingUnderscore: 'allow',
+          trailingUnderscore: 'allow',
         },
-      ],
-      'lines-between-class-members': [
-        'error',
-        'always',
-        { exceptAfterSingleLine: true },
-      ],
-      'padded-blocks': ['error', { classes: 'always' }],
-
-      quotes: ['warn', 'single', { avoidEscape: true }],
-
-      'object-curly-spacing': ['warn', 'always'],
-
-      'template-curly-spacing': ['warn', 'always'],
-
-      semi: ['warn', 'always'],
-
-      '@typescript-eslint/explicit-member-accessibility': [
-        'error',
-        { accessibility: 'no-public' },
-      ],
-
-      '@typescript-eslint/naming-convention': [
-        'error',
         {
           selector: 'enumMember',
           format: ['UPPER_CASE'],
           leadingUnderscore: 'forbid',
+          trailingUnderscore: 'allow',
         },
         {
           selector: 'interface',
           format: ['PascalCase'],
-          prefix: ['I'],
-        },
+          prefix: ['I']
+        }
       ],
-
-      'no-unused-vars': 'off',
-      '@typescript-eslint/no-unused-vars': 'off',
-      'unused-imports/no-unused-imports': 'error',
-      'unused-imports/no-unused-vars': [
-        'warn',
+      "@typescript-eslint/no-inferrable-types": ['off'],
+      "no-console": [
+        "warn",
         {
-          vars: 'all',
-          varsIgnorePattern: '^_',
-          args: 'after-used',
-          argsIgnorePattern: '^_',
-        },
+          "allow": [
+            "warn",
+            "error",
+            "group",
+            "groupCollapsed",
+            "groupEnd"
+          ]
+        }
       ],
+      "padded-blocks": [
+        "warn",
+        {
+          "blocks": "never",
+          "classes": "always"
+        }
+      ],
+      "quotes": [
+        "warn",
+        "single",
+        {
+          "allowTemplateLiterals": true
+        }
+      ],
+      "object-curly-spacing": [
+        "warn",
+        "always"
+      ],
+      "template-curly-spacing": [
+        "warn",
+        "always",
+      ],
+      "no-template-curly-in-string": "error",
+      "semi": [
+        "warn",
+        "always",
+        {
+          "omitLastInOneLineBlock": true,
+          "omitLastInOneLineClassBody": true
+        }
+      ],
+      "lines-between-class-members": [
+        "warn",
+        "always",
+        {
+          "exceptAfterSingleLine": true
+        }
+      ],
+      "semi-style": ["error", "last"],
+      "semi-spacing": ["warn", { "before": false, "after": true }],
+      "no-extra-semi": "warn",
+      "comma-dangle": ["warn", "never"],
+      "space-in-parens": ["warn", "never"],
+      "block-spacing": "warn",
+      "no-multi-spaces": "warn",
+      "indent": ["warn", 2]
     },
   },
-
   {
-    files: ['**/*.html'],
+    files: ["**/*.html"],
     extends: [
-      ...angular.configs.templateRecommended,
-      ...angular.configs.templateAccessibility,
+      angular.configs.templateRecommended,
+      angular.configs.templateAccessibility
     ],
     rules: {
-      '@angular-eslint/template/banana-in-box': 'error',
-
-      '@angular-eslint/template/eqeqeq': ['warn', { allowNull: true }],
-
-      '@angular-eslint/template/valid-html': 'error',
+      "@angular-eslint/template/banana-in-box": [
+        "error"
+      ],
+      "@angular-eslint/template/eqeqeq": [
+        "warn"
+      ],
+      "@angular-eslint/template/prefer-self-closing-tags": [
+        "error"
+      ],
     },
   }
-);
+]);

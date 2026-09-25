@@ -1,4 +1,4 @@
-import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Color } from '../enum/Color';
 import { Collection } from '../collection/collection';
 import { users } from '../data/userData';
@@ -22,8 +22,7 @@ import { MessageComponent } from './core/components/message/message.component';
   selector: 'app-root',
   imports: [FormsModule, CommonModule, MessageComponent, RouterOutlet, LoaderComponent],
   templateUrl: './app.component.html',
-  changeDetection: ChangeDetectionStrategy.Eager,
-  styleUrl: './app.component.scss',
+  styleUrl: './app.component.scss'
 })
 export class AppComponent {
 

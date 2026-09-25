@@ -1,13 +1,13 @@
 <div class="users-container">
-    <app-user-create></app-user-create>
+    <app-user-create />
     <h1 class="users-container__title">Список Пользователей</h1>
     @if (users$ | async; as users) {
         {{ users.length | plural :'пользователь' : 'пользователя' : 'пользователей' }}   
     }
     <div class="user-list">
-        <app-users-filter (searchTerm)="searchUser($event)"></app-users-filter>
+        <app-users-filter (searchTerm)="searchUser($event)" />
             @for (user of filteredUsers$ | async; track $index) {
-                <app-user-card [user]="user" (removeUser)="userService.removeUsers($event)"></app-user-card>
+                <app-user-card [user]="user" (removeUser)="userService.removeUsers($event)" />
             }
          @empty {
             <div class="user-list__not-found-users">Нет пользователей для отображения</div>

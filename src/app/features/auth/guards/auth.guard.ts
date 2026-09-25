@@ -4,8 +4,7 @@ import { AuthService } from '../services/auth.service';
 import { IUser } from '../interface/IAuth';
 import { map, take } from 'rxjs';
 
-export const authGuard: CanActivateFn = (route, state) => {
-
+export const authGuard: CanActivateFn = () => {
   const router: Router = inject(Router);
   const authService: AuthService = inject(AuthService);
 
@@ -19,5 +18,4 @@ export const authGuard: CanActivateFn = (route, state) => {
       }
     })
   );
-  
-}
+};

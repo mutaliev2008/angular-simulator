@@ -7,6 +7,6 @@ import { HeaderComponent } from '../../core/components/header/header.component';
   selector: 'app-authorized-user-layout',
   imports: [RouterOutlet, FooterComponent, HeaderComponent],
   templateUrl: './authorized-user-layout.component.html',
-  styleUrl: './authorized-user-layout.component.scss',
+  styleUrl: './authorized-user-layout.component.scss'
 })
 export class AuthorizedUserLayoutComponent {}

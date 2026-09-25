@@ -3,9 +3,9 @@ import {
   HttpEvent,
   HttpHandlerFn,
   HttpInterceptorFn,
-  HttpRequest,
+  HttpRequest
 } from '@angular/common/http';
-import { catchError, Observable, switchMap, tap, throwError } from 'rxjs';
+import { catchError, Observable, switchMap, throwError } from 'rxjs';
 import { inject } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { LocalStorageService } from '../../../../services/local-storage.service';
@@ -14,16 +14,15 @@ import { IToken } from '../interface/IAuth';
 function addAuthHeader(req: HttpRequest<unknown>, token: string | undefined): HttpRequest<unknown> {
   return req.clone({
     setHeaders: {
-      Authorization: `Bearer ${ token }`,
-    },
+      Authorization: `Bearer ${ token }`
+    }
   });
 }
 
 export const authInterceptor: HttpInterceptorFn = (
   req: HttpRequest<unknown>,
-  next: HttpHandlerFn,
+  next: HttpHandlerFn
 ): Observable<HttpEvent<unknown>> => {
-
   const authService: AuthService = inject(AuthService);
   const localStorageService = inject(LocalStorageService);
   const authTokens: IToken | null = localStorageService.getItem('authTokens');
@@ -44,11 +43,10 @@ export const authInterceptor: HttpInterceptorFn = (
           catchError((err: HttpErrorResponse) => {
             authService.logout();
             return throwError(() => err);
-          }),
+          })
         );
       }
       return throwError(() => error);
-    }),
+    })
   );
-  
 };

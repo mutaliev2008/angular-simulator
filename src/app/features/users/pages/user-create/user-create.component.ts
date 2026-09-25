@@ -8,7 +8,7 @@ import { GradientBorderDirective } from '../../../../shared/derectives/gradient-
   selector: 'app-user-create',
   imports: [ReactiveFormsModule, GradientBorderDirective],
   templateUrl: './user-create.component.html',
-  styleUrl: './user-create.component.scss',
+  styleUrl: './user-create.component.scss'
 })
 export class UserCreateComponent {
 
@@ -29,14 +29,14 @@ export class UserCreateComponent {
       geo: this.fb.group({
         lat: ['werfwerf', [Validators.required]],
         lng: ['wewrfwer', [Validators.required]]
-    }),
+      })
     }),
     company: this.fb.group({
       name: ['dfvwe', [Validators.required, Validators.maxLength(50)]],
       catchPhrase: ['qwwqfrfwer', [Validators.maxLength(200)]],
       bs: ['qrfqr', [Validators.maxLength(100)]]
     })
-  })
+  });
 
   createUser(): void {
     const data: Omit<IUser, 'id'> = this.createForm.getRawValue();

@@ -7,7 +7,7 @@ import { API_URL } from '../../../core/constants/api.constants';
 
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class PostApiService {
 

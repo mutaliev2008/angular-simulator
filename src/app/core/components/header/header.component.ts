@@ -32,7 +32,7 @@ type currentView = 'date' | 'count';
     AsyncPipe
   ],
   templateUrl: './header.component.html',
-  styleUrl: './header.component.scss',
+  styleUrl: './header.component.scss'
 })
 export class HeaderComponent implements OnInit{
 
@@ -41,13 +41,15 @@ export class HeaderComponent implements OnInit{
   stateOptions: IThemeOption[] = [
     { label: 'Nora', value: AppTheme.NORA },
     { label: 'Aura', value: AppTheme.AURA },
-    { label: 'Lara', value: AppTheme.LARA },
+    { label: 'Lara', value: AppTheme.LARA }
   ];
+
   navLinks: INavLink[] = [
     { path: '/home', label: 'Главная' },
     { path: '/users', label: 'Пользователи' },
-    { path: '/posts', label: 'Посты' },
+    { path: '/posts', label: 'Посты' }
   ];
+
   viewMode: typeof ViewMode = ViewMode;
   currentView: currentView = 'date';
   currentQuantity: number = 0;

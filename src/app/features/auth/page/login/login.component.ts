@@ -11,7 +11,7 @@ import { MessageService } from '../../../../../services/message.service';
   selector: 'app-login',
   imports: [ReactiveFormsModule],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.scss',
+  styleUrl: './login.component.scss'
 })
 export class LoginComponent {
 
@@ -23,7 +23,7 @@ export class LoginComponent {
 
   loginForm: FormGroup = this.fb.group({
     username: ['', [Validators.required, Validators.minLength(3)]],
-    password: ['', [Validators.required, Validators.minLength(6)]],
+    password: ['', [Validators.required, Validators.minLength(6)]]
   });
 
   submit(): void {

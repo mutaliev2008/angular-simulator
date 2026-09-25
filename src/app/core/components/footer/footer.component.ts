@@ -7,7 +7,7 @@ import { faPinterest, faSkype, faTelegram, faVk } from '@fortawesome/free-brands
   selector: 'app-footer',
   imports: [FontAwesomeModule],
   templateUrl: './footer.component.html',
-  styleUrl: './footer.component.scss',
+  styleUrl: './footer.component.scss'
 })
 export class FooterComponent {
 

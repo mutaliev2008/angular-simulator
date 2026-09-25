@@ -9,7 +9,7 @@ import { ICredentials } from '../interface/ICredentials ';
 import { Router } from '@angular/router';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class AuthService {
 
@@ -36,7 +36,7 @@ export class AuthService {
       }),
       finalize(() => {
         this.loaderServices.hideLoader();
-      }),
+      })
     );
   }
 
@@ -55,7 +55,7 @@ export class AuthService {
         tap((tokens: IToken) => {
           this.localStorage.setItem('authTokens', tokens);
         })
-      )
+      );
     }
     return of(null);
   }
@@ -67,9 +67,8 @@ export class AuthService {
       return this.authApiService.loadCurrentUser().pipe(
         tap((user:IUser) => {
           this.setUser(user);
-          console.log(user)
         })
-      )
+      );
     }
 
     return of(null);
@@ -78,4 +77,5 @@ export class AuthService {
   private setUser(user: IUser | null): void {
     this.authorizedUserSubject.next(user);
   }
+
 }

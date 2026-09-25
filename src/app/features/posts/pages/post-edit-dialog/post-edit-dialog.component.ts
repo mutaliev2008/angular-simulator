@@ -11,7 +11,7 @@ import { HttpErrorResponse } from '@angular/common/http';
   selector: 'app-post-edit-dialog',
   imports: [FormsModule],
   templateUrl: './post-edit-dialog.component.html',
-  styleUrl: './post-edit-dialog.component.scss',
+  styleUrl: './post-edit-dialog.component.scss'
 })
 export class PostEditDialogComponent {
 
@@ -34,7 +34,7 @@ export class PostEditDialogComponent {
         catchError((error: HttpErrorResponse) => {
           this.messageService.showError(error.error.message);
           return throwError(() => error);
-        }),
+        })
       ).subscribe();
       
     this.ref.close(updatedPost);

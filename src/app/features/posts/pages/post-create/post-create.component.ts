@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 import { AbstractControl, FormArray, FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { IPost } from '../../interface/IPost';
 import { PostService } from '../../services/post.service';
-import { catchError, delay, tap, throwError } from 'rxjs';
+import { catchError, tap, throwError } from 'rxjs';
 import { Router } from '@angular/router';
 import { MessageService } from '../../../../../services/message.service';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -12,7 +12,7 @@ import { HttpErrorResponse } from '@angular/common/http';
   standalone: true,
   imports: [ReactiveFormsModule],
   templateUrl: './post-create.component.html',
-  styleUrl: './post-create.component.scss',
+  styleUrl: './post-create.component.scss'
 })
 export class PostCreateComponent {
   
@@ -24,8 +24,9 @@ export class PostCreateComponent {
   postForm: FormGroup = this.fb.group({
     title: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(100)]],
     body: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(1000)]],
-    tags: this.fb.array([this.fb.control('', Validators.required)]),
+    tags: this.fb.array([this.fb.control('', Validators.required)])
   });
+
   tags: FormArray = this.postForm.get('tags') as FormArray;
 
   addTag(): void {
@@ -51,8 +52,8 @@ export class PostCreateComponent {
         userId: 2,
         reactions: {
           likes: 0,
-          dislikes: 0,
-        },
+          dislikes: 0
+        }
       };
 
       this.postService
@@ -64,7 +65,7 @@ export class PostCreateComponent {
           catchError((error: HttpErrorResponse) => {
             this.messageService.showError(error.error.message);
             return throwError(() => error);
-          }),
+          })
         )
         .subscribe();
     }

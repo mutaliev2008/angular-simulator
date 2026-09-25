@@ -9,7 +9,7 @@ import Lara from '@primeuix/themes/lara';
 import { ToggleSwitchChangeEvent } from 'primeng/toggleswitch';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class ThemeService {
 
@@ -27,7 +27,7 @@ export class ThemeService {
       } else {
         element.classList.remove('my-app-dark');
       }
-    }),
+    })
   );
 
   constructor() {
@@ -48,15 +48,15 @@ export class ThemeService {
     this.colorModeSubject.next(color);
     this.localStorage.setItem('color', color);
     switch (color) {
-      case AppTheme.AURA:
-        usePreset(Aura);
-        break;
-      case AppTheme.LARA:
-        usePreset(Lara);
-        break;
-      case AppTheme.NORA:
-        usePreset(Nora);
-        break;
+    case AppTheme.AURA:
+      usePreset(Aura);
+      break;
+    case AppTheme.LARA:
+      usePreset(Lara);
+      break;
+    case AppTheme.NORA:
+      usePreset(Nora);
+      break;
     }
   }
 

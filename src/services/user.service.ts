@@ -8,7 +8,7 @@ import { LocalStorageService } from './local-storage.service';
 import { HttpErrorResponse } from '@angular/common/http';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class UserService {
   
@@ -43,7 +43,7 @@ export class UserService {
       finalize(() => {
         this.loaderService.hideLoader();
       })
-    )
+    );
   }
 
   getUsers(): IUser[] {
