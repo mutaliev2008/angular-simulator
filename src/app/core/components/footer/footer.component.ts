@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { faAngleRight } from '@fortawesome/free-solid-svg-icons';
+import { faAngleRight, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faPinterest, faSkype, faTelegram, faVk } from '@fortawesome/free-brands-svg-icons';
 
@@ -12,10 +12,10 @@ import { faPinterest, faSkype, faTelegram, faVk } from '@fortawesome/free-brands
 export class FooterComponent {
 
   companyName: string = 'РУМТИБЕТ';
-  faAngleRight = faAngleRight;
-  faVk = faVk;
-  faTelegram = faTelegram;
-  faPinterest = faPinterest;
-  faSkype = faSkype;
+  faAngleRight: IconDefinition = faAngleRight;
+  faVk: IconDefinition = faVk;
+  faTelegram: IconDefinition = faTelegram;
+  faPinterest: IconDefinition = faPinterest;
+  faSkype: IconDefinition = faSkype;
 
 }

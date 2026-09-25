@@ -1,0 +1,42 @@
+<div class="post">
+  <a routerLink="/posts" class="back-link">&larr; Ко всем постам</a>
+
+  <h2 class="post-title">О посте</h2>
+  <div class="post-content">
+    <div class="post-data">
+      <p class="post__key">Id:</p>
+      <p class="post__value">{{ post.id }}</p>
+    </div>
+    <div class="post-data">
+      <p class="post__key">Title:</p>
+      <p class="post__value">{{ post.title }}</p>
+    </div>
+    <div class="post-data">
+      <p class="post__key">Body:</p>
+      <p class="post__value">{{ post.body }}</p>
+    </div>
+    <div class="post-data">
+      <p class="post__key">User id:</p>
+      <p class="post__value">{{ post.userId }}</p>
+    </div>
+    <div class="post-data">
+      <p class="post__key">Views:</p>
+      <p class="post__value">{{ post.views }}</p>
+    </div>
+    <div class="post-data">
+      <p class="post__key">Tag:</p>
+      @for (tag of post.tags; track tag) {
+        <p class="post__value">{{ tag }}</p>
+      }
+    </div>
+    <div class="post-data">
+      <p class="post__key">Reactions:</p>
+      <div class="post__key-reactions">
+        <p class="post__key">Dislikes:</p>
+        <p class="post__value">{{ post.reactions.dislikes }}</p>
+        <p class="post__key">Likes:</p>
+        <p class="post__value">{{ post.reactions.likes }}</p>
+      </div>
+    </div>
+  </div>
+</div>
