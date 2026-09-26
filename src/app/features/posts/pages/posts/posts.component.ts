@@ -19,7 +19,7 @@ import { HttpErrorResponse } from '@angular/common/http';
   imports: [TableModule, AsyncPipe, SkeletonModule, TagModule, ContextMenuModule],
   templateUrl: './posts.component.html',
   styleUrl: './posts.component.scss',
-  providers: [DialogService],
+  providers: [DialogService]
 })
 export class PostsComponent implements OnInit {
   
@@ -33,19 +33,20 @@ export class PostsComponent implements OnInit {
     {
       label: 'View',
       icon: 'pi pi-fw pi-search',
-      command: () => this.goDetailInfoPage(this.selectedPost?.id!),
+      command: () => this.goDetailInfoPage(this.selectedPost!.id)
     },
     { label: 'Edit', icon: 'pi pi-fw pi-pencil', command: () => this.openEditDialog() },
     {
       label: 'Delete',
       icon: 'pi pi-fw pi-times',
-      command: () => this.deletePost(this.selectedPost?.id!),
-    },
+      command: () => this.deletePost(this.selectedPost!.id)
+    }
   ];
-  selectedPost!: IPost | null;
+
+  selectedPost: IPost | null = null;
   skipData: number = 0;
   limitData: number = 10;
-  quantitySkeleton: string[] = Array.from({ length: this.limitData }).map((_, i) => `Item #${i}`);
+  quantitySkeleton: string[] = Array.from({ length: this.limitData }).map((_, i) => `Item #${ i }`);
 
   private isLoadingSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   isLoading$: Observable<boolean> = this.isLoadingSubject.asObservable();
@@ -73,14 +74,14 @@ export class PostsComponent implements OnInit {
         }),
         finalize(() => {
           this.isLoadingSubject.next(false);
-        }),
+        })
       )
       .subscribe();
   }
 
   openEditDialog(): void {
     this.ref = this.dialogService.open(PostEditDialogComponent, {
-      data: this.selectedPost,
+      data: this.selectedPost
     });
     this.ref?.onClose.subscribe();
   }
@@ -95,7 +96,7 @@ export class PostsComponent implements OnInit {
         catchError((error: HttpErrorResponse) => {
           this.messageService.showError(error.error.message);
           return throwError(() => error);
-        }),        
+        })        
       )
       .subscribe();
   }

@@ -8,7 +8,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { MessageService } from '../../../../services/message.service';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class PostService {
 
@@ -20,8 +20,9 @@ export class PostService {
     posts: [],
     total: 0,
     skip: 0,
-    limit: 10,
+    limit: 10
   });
+
   postResponse$: Observable<IPostResponse> = this.postResponseSubject.asObservable();
 
   postSubject: BehaviorSubject<IPost[]> = new BehaviorSubject<IPost[]>([]);
@@ -39,7 +40,7 @@ export class PostService {
       }),
       finalize(() => {
         this.loadService.hideLoader();
-      }),
+      })
     );
   }
 
@@ -52,7 +53,7 @@ export class PostService {
       }),
       finalize(() => {
         this.loadService.hideLoader();
-      }),
+      })
     );
   }
 
@@ -62,12 +63,12 @@ export class PostService {
     return this.postApiService.updateApiPost(id, post).pipe(
       tap((updatedPost: IPost) => {
         const updatedPosts: IPost[] = this.postResponseSubject.value.posts.map((p: IPost) =>
-          p.id === updatedPost.id ? updatedPost : p,
+          p.id === updatedPost.id ? updatedPost : p
         );
 
         this.setPosts({
           ...this.postResponseSubject.value,
-          posts: updatedPosts,
+          posts: updatedPosts
         });
       }),
       catchError((error: HttpErrorResponse) => {
@@ -75,7 +76,7 @@ export class PostService {
       }),
       finalize(() => {
         this.loadService.hideLoader();
-      }),
+      })
     );
   }
 
@@ -87,7 +88,7 @@ export class PostService {
         const updatedPosts: IPost[] = [newPost, ...this.postResponseSubject.value.posts];
         this.setPosts({
           ...this.postResponseSubject.value,
-          posts: updatedPosts,
+          posts: updatedPosts
         });
       }),
       catchError((error: HttpErrorResponse) => {
@@ -95,7 +96,7 @@ export class PostService {
       }),
       finalize(() => {
         this.loadService.hideLoader();
-      }),
+      })
     );
   }
 
@@ -105,11 +106,11 @@ export class PostService {
     return this.postApiService.deleteApiPost(id).pipe(
       tap((deletedPost: IPost) => {
         const updatedPosts: IPost[] = this.postResponseSubject.value.posts.filter(
-          (post: IPost) => post.id !== deletedPost.id,
+          (post: IPost) => post.id !== deletedPost.id
         );
         this.setPosts({
           ...this.postResponseSubject.value,
-          posts: updatedPosts,
+          posts: updatedPosts
         });
       }),
       catchError((error: HttpErrorResponse) => {
@@ -117,7 +118,7 @@ export class PostService {
       }),
       finalize(() => {
         this.loadService.hideLoader();
-      }),
+      })
     );
   }
 

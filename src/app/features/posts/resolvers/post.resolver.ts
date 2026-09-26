@@ -6,8 +6,7 @@ import { MessageService } from '../../../../services/message.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { catchError, throwError } from 'rxjs';
 
-export const postResolver: ResolveFn<IPost> = (route, state) => {
-
+export const postResolver: ResolveFn<IPost> = (route) => {
   const postService: PostService= inject(PostService);
   const postId: string = route.paramMap.get('id')!;
   const messageService: MessageService = inject(MessageService); 
@@ -16,7 +15,6 @@ export const postResolver: ResolveFn<IPost> = (route, state) => {
     catchError((error: HttpErrorResponse) => {
       messageService.showError(error.error.message);
       return throwError(() => error);
-    }),
+    })
   );
-
 };

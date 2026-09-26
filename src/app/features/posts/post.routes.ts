@@ -4,12 +4,12 @@ import { postResolver } from './resolvers/post.resolver';
 export const postRoutes: Routes = [
   {
     path: '',
-    loadComponent: () => import('./pages/posts/posts.component').then((m) => m.PostsComponent),
+    loadComponent: () => import('./pages/posts/posts.component').then((m) => m.PostsComponent)
   },
   {
     path: 'create',
     loadComponent: () =>
-      import('./pages/post-create/post-create.component').then((m) => m.PostCreateComponent), 
+      import('./pages/post-create/post-create.component').then((m) => m.PostCreateComponent) 
   },
   {
     path: ':id',
@@ -18,5 +18,5 @@ export const postRoutes: Routes = [
     resolve: {
       post: postResolver
     }
-  },
+  }
 ];

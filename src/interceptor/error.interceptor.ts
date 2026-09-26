@@ -3,7 +3,7 @@ import {
   HttpEvent,
   HttpHandlerFn,
   HttpInterceptorFn,
-  HttpRequest,
+  HttpRequest
 } from '@angular/common/http';
 import { catchError, Observable, throwError } from 'rxjs';
 import { MessageService } from '../services/message.service';
@@ -11,9 +11,8 @@ import { inject } from '@angular/core';
 
 export const errorInterceptor: HttpInterceptorFn = (
   req: HttpRequest<unknown>,
-  next: HttpHandlerFn,
+  next: HttpHandlerFn
 ): Observable<HttpEvent<unknown>> => {
-
   const messageService: MessageService = inject(MessageService);
 
   return next(req).pipe(
@@ -22,7 +21,6 @@ export const errorInterceptor: HttpInterceptorFn = (
         messageService.showError(error.message);
       }
       return throwError(() => error);
-    }),
+    })
   );
-  
 };

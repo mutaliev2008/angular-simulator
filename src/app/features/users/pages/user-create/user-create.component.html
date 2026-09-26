@@ -3,7 +3,7 @@
 
   <form [formGroup]="createForm" class="create-form w-full" (ngSubmit)="createUser()">
         <div class="create-form__input-container">
-      <label>Name</label>
+      <label for="text">Name</label>
       <input appGradientBorder type="text" placeholder="Enter your name" formControlName="name">
       
       @if (createForm.get('name')?.touched && createForm.get('name')?.invalid) {
@@ -19,7 +19,7 @@
       }
     </div>
     <div class="create-form__input-container">
-      <label>Username</label>
+      <label for="text">Username</label>
       <input appGradientBorder type="text" placeholder="Enter your username" formControlName="username">
       
       @if (createForm.get('username')?.touched && createForm.get('username')?.invalid) {
@@ -35,7 +35,7 @@
       }
     </div>
     <div class="create-form__input-container">
-      <label>Email</label>
+      <label for="email">Email</label>
       <input appGradientBorder type="email" placeholder="Enter your email" formControlName="email">
       
       @if (createForm.get('email')?.touched && createForm.get('email')?.invalid) {
@@ -51,7 +51,7 @@
       }
     </div>
     <div class="create-form__input-container">
-      <label>Phone</label>
+      <label for="text">Phone</label>
       <input appGradientBorder type="text" placeholder="Enter your phone" formControlName="phone">
       
       @if (createForm.get('phone')?.touched && createForm.get('phone')?.invalid) {
@@ -67,7 +67,7 @@
       }
     </div>
     <div class="create-form__input-container">
-      <label>Website</label>
+      <label for="text">Website</label>
       <input appGradientBorder type="text" placeholder="Enter your website" formControlName="website">
       
       @if (createForm.get('website')?.touched && createForm.get('website')?.hasError('maxlength')) {
@@ -78,7 +78,7 @@
       <h3>Address</h3>
       
       <div class="create-form__input-container">
-        <label>City</label>
+        <label for="text">City</label>
         <input type="text" placeholder="Enter your city" formControlName="city">
         
         @if (createForm.get('address.city')?.touched && createForm.get('address.city')?.invalid) {
@@ -93,7 +93,7 @@
       </div>
 
       <div class="create-form__input-container">
-        <label>Street</label>
+        <label for="text">Street</label>
         <input appGradientBorder type="text" placeholder="Enter your street" formControlName="street">
         
         @if (createForm.get('address.street')?.touched && createForm.get('address.street')?.invalid) {
@@ -107,7 +107,7 @@
         }
       </div>
       <div class="create-form__input-container">
-        <label>Suite</label>
+        <label for="text">Suite</label>
         <input appGradientBorder type="text" placeholder="Enter your suite" formControlName="suite">
         
         @if (createForm.get('address.suite')?.touched && createForm.get('address.suite')?.invalid) {
@@ -121,7 +121,7 @@
         }
       </div>
       <div class="create-form__input-container">
-        <label>Zipcode</label>
+        <label for="text">Zipcode</label>
         <input appGradientBorder type="text" placeholder="Enter your zipcode" formControlName="zipcode">
         
         @if (createForm.get('address.zipcode')?.touched && createForm.get('address.zipcode')?.invalid) {
@@ -140,7 +140,7 @@
         <h3>Geo Location</h3>
         
         <div class="create-form__input-container">
-          <label>Latitude</label>
+          <label for="text">Latitude</label>
           <input appGradientBorder type="text" placeholder="Enter latitude" formControlName="lat">
           
           @if (createForm.get('address.geo.lat')?.touched && createForm.get('address.geo.lat')?.hasError('required')) {
@@ -149,7 +149,7 @@
         </div>
 
         <div class="create-form__input-container">
-          <label>Longitude</label>
+          <label for="text">Longitude</label>
           <input type="text" placeholder="Enter longitude" formControlName="lng">
           
           @if (createForm.get('address.geo.lng')?.touched && createForm.get('address.geo.lng')?.hasError('required')) {
@@ -162,7 +162,7 @@
       <h3>Company</h3>
       
       <div class="create-form__input-container">
-        <label>Company name</label>
+        <label for="text">Company name</label>
         <input appGradientBorder type="text" placeholder="Enter company name" formControlName="name">
         
         @if (createForm.get('company.name')?.touched && createForm.get('company.name')?.invalid) {
@@ -177,7 +177,7 @@
       </div>
 
       <div class="create-form__input-container">
-        <label>Catch phrase</label>
+        <label for="text">Catch phrase</label>
         <input appGradientBorder type="text" placeholder="Enter catch phrase" formControlName="catchPhrase">
         
         @if (createForm.get('company.catchPhrase')?.touched && createForm.get('company.catchPhrase')?.hasError('maxlength')) {
@@ -186,7 +186,7 @@
       </div>
 
       <div class="create-form__input-container">
-        <label>BS</label>
+        <label for="text">BS</label>
         <input appGradientBorder type="text" placeholder="Enter BS" formControlName="bs">
         
         @if (createForm.get('company.bs')?.touched && createForm.get('company.bs')?.hasError('maxlength')) {

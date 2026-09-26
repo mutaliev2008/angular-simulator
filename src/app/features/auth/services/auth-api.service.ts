@@ -6,7 +6,7 @@ import { IAuthResponse, IToken, IUser } from '../interface/IAuth';
 import { ICredentials } from '../interface/ICredentials ';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class AuthApiService {
   

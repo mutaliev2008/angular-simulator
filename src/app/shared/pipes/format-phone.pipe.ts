@@ -2,7 +2,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { PhoneFormat } from '../../../enum/PhoneFormat';
 
 @Pipe({
-  name: 'formatPhone',
+  name: 'formatPhone'
 })
 export class FormatPhonePipe implements PipeTransform {
 
@@ -20,24 +20,24 @@ export class FormatPhonePipe implements PipeTransform {
     } 
 
     switch (mode) {
-      case PhoneFormat.COMPACT:
-        return '+' + cleanPhone;    
-        break;
-      case PhoneFormat.INTERNATIONAL:
-        return "+" + mainPhoneNumber;
-        break;
-      case PhoneFormat.NATIONAL:
-        return mainPhoneNumber.slice(2);
-        break;
-      case PhoneFormat.MASKED:
-        return "+" + `${ cleanPhone.slice(0, 2) }
+    case PhoneFormat.COMPACT:
+      return '+' + cleanPhone;    
+      break;
+    case PhoneFormat.INTERNATIONAL:
+      return '+' + mainPhoneNumber;
+      break;
+    case PhoneFormat.NATIONAL:
+      return mainPhoneNumber.slice(2);
+      break;
+    case PhoneFormat.MASKED:
+      return '+' + `${ cleanPhone.slice(0, 2) }
         ${ cleanPhone.slice(2, 5) } 
         ${ cleanPhone.slice(5, 10).replace(/\d/g, '*') }
         ${ cleanPhone.slice(10) }`;  
-      default:
-        return '+' + mainPhoneNumber.split(' ').join(''); 
-        break;
+    default:
+      return '+' + mainPhoneNumber.split(' ').join(''); 
+      break;
     }
-
   }
+
 }

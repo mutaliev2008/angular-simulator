@@ -9,58 +9,58 @@ export const routes: Routes = [
     canActivateChild: [guestGuard],
     loadComponent: () =>
       import('./layouts/unauthorized-user-layout/unauthorized-user-layout.component').then(
-        (m) => m.UnauthorizedUserLayoutComponent,
+        (m) => m.UnauthorizedUserLayoutComponent
       ),
 
     children: [
       {
         path: '',
         pathMatch: 'full',
-        redirectTo: 'login',
+        redirectTo: 'login'
       },
       {
         path: 'login',
         loadComponent: () =>
-          import('./features/auth/page/login/login.component').then((m) => m.LoginComponent),
-      },
-    ],
+          import('./features/auth/page/login/login.component').then((m) => m.LoginComponent)
+      }
+    ]
   },
   {
     path: '',
     canActivateChild: [authGuard],
     loadComponent: () =>
       import('./layouts/authorized-user-layout/authorized-user-layout.component').then(
-        (m) => m.AuthorizedUserLayoutComponent,
+        (m) => m.AuthorizedUserLayoutComponent
       ),
     children: [
       {
         path: '',
         pathMatch: 'full',
-        redirectTo: 'home',
+        redirectTo: 'home'
       },
       {
         path: 'home',
         loadComponent: () =>
-          import('./features/home-page/home-page.component').then((m) => m.HomePageComponent),
+          import('./features/home-page/home-page.component').then((m) => m.HomePageComponent)
       },
       {
         path: 'users',
         canActivate: [adminGuard],
         loadComponent: () =>
-          import('./features/users/pages/users-page/users.component').then((m) => m.UsersComponent),
+          import('./features/users/pages/users-page/users.component').then((m) => m.UsersComponent)
       },
       {
         path: 'posts',
         canActivate: [adminGuard],
-        loadChildren: () => import('./features/posts/post.routes').then((m) => m.postRoutes),
-      },
-    ],
+        loadChildren: () => import('./features/posts/post.routes').then((m) => m.postRoutes)
+      }
+    ]
   },
   {
     path: '**',
     loadComponent: () =>
       import('./features/not-found-page/not-found-page.component').then(
-        (m) => m.NotFoundPageComponent,
-      ),
-  },
+        (m) => m.NotFoundPageComponent
+      )
+  }
 ];

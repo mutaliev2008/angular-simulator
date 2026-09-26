@@ -1,7 +1,7 @@
-import { faShield, faTag, faUsers } from "@fortawesome/free-solid-svg-icons";
-import { IPopularPlace } from "../interface/IPopularPlace";
-import { ITour } from "../interface/ITour";
-import { ITravelBlog } from "../interface/ITravelBlog";
+import { faShield, faTag, faUsers } from '@fortawesome/free-solid-svg-icons';
+import { IPopularPlace } from '../interface/IPopularPlace';
+import { ITour } from '../interface/ITour';
+import { ITravelBlog } from '../interface/ITravelBlog';
 
 export const tours: ITour[] = [
   {
@@ -9,22 +9,22 @@ export const tours: ITour[] = [
     title: 'Опытный гид',
     description:
       'Для современного мира базовый вектор развития предполагает независимые способы реализации соответствующих условий активизации.',
-    imageName: faUsers,
+    imageName: faUsers
   },
   {
     id: 2,
     title: 'Безопасный поход',
     description:
       'Для современного мира базовый вектор развития предполагает независимые способы реализации соответствующих условий активизации.',
-    imageName: faShield,
+    imageName: faShield
   },
   {
     id: 3,
     title: 'Лояльные цены',
     description:
       'Для современного мира базовый вектор развития предполагает независимые способы реализации соответствующих условий активизации.',
-    imageName: faTag,
-  },
+    imageName: faTag
+  }
 ];
 
 
@@ -52,11 +52,11 @@ export const popularPlace: IPopularPlace[] = [
     price: 500,
     stars: 4.5,
     imgName: 'yoga'
-  },
-]
+  }
+];
 
 export const travelBlog: ITravelBlog[] = [
-    {
+  {
     id: '1',
     title: 'Красивая Италия, какая она в реальности?',
     description: 'Для современного мира базовый вектор развития предполагает независимые способы реализации соответствующих условий активизации.',
@@ -83,5 +83,5 @@ export const travelBlog: ITravelBlog[] = [
     description: 'Для современного мира базовый.',
     imgName: 'india',
     date: '01/04/2023'
-  },
-]
+  }
+];

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { IUser } from '../../../../../interface/IUser';
 import { UpperCasePipe } from '@angular/common';
 import { FormatPhonePipe } from '../../../../shared/pipes/format-phone.pipe';
@@ -9,7 +9,7 @@ import { GradientBorderDirective } from '../../../../shared/derectives/gradient-
   selector: 'app-user-card',
   imports: [UpperCasePipe, FormatPhonePipe, BoldOnHoverDirective, GradientBorderDirective],
   templateUrl: './user-card.component.html',
-  styleUrl: './user-card.component.scss',
+  styleUrl: './user-card.component.scss'
 })
 export class UserCardComponent {
 
@@ -21,5 +21,5 @@ export class UserCardComponent {
   onDelete(): void {
     this.removeUser.emit(this.user.id);
   }
-
+  
 }

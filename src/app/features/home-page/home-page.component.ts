@@ -16,7 +16,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
   selector: 'app-home-page',
   imports: [FormsModule, CommonModule, MessageComponent, ButtonModule, FontAwesomeModule],
   templateUrl: './home-page.component.html',
-  styleUrl: './home-page.component.scss',
+  styleUrl: './home-page.component.scss'
 })
 export class HomePageComponent {
 

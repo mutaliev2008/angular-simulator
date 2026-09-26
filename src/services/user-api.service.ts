@@ -1,10 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { Observable, tap } from 'rxjs';
+import { Observable } from 'rxjs';
 import { IUser } from '../interface/IUser';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class UserApiService {
   

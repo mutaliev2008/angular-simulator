@@ -5,8 +5,7 @@ import { map } from 'rxjs';
 import { IUser } from '../interface/IAuth';
 import { UserRole } from '../../enam/UserRole';
 
-export const adminGuard: CanActivateFn = (route, state) => {
-
+export const adminGuard: CanActivateFn = () => {
   const authService: AuthService = inject(AuthService);
   const router: Router = inject(Router);
 
@@ -17,7 +16,6 @@ export const adminGuard: CanActivateFn = (route, state) => {
       } else {
         return router.createUrlTree(['/']);
       }
-    }),
+    })
   );
-  
 };

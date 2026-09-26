@@ -13,7 +13,7 @@
             <option>3 человека</option>
             <option>4+ человек</option>
           </select>
-          <label class="input-label regular">выберите из списка</label>
+          <label for="text" class="input-label regular">выберите из списка</label>
         </div>
         <div class="input-group">
           <input
@@ -23,7 +23,7 @@
             value="2026-05-24"
             [(ngModel)]="tourDate"
           />
-          <label class="input-label regular">укажите дату</label>
+          <label for="date" class="input-label regular">укажите дату</label>
         </div>
         <div class="input-group">
           <select id="participants" class="custom-select" [(ngModel)]="tourParticipants">
@@ -33,7 +33,7 @@
             <option>3 человека</option>
             <option>4+ человек</option>
           </select>
-          <label class="input-label regular">выберите из списка</label>
+          <label for="text" class="input-label regular">выберите из списка</label>
         </div>
         <button
           id="search-btn"
@@ -66,7 +66,7 @@
         class="about-tour__above-picture"
       />
       <button id="play-button" class="about-tour__media-play-btn">
-        <fa-icon [icon]="faPlay" color="#1a3e3e"></fa-icon>
+        <fa-icon [icon]="faPlay" color="#1a3e3e" />
       </button>
     </div>
     <div class="about-tour__content">
@@ -100,7 +100,7 @@
         @for (tour of tours; track tour.id) {
           <div class="tours-catalog__card">
             <div class="tours-catalog__icon">
-              <fa-icon class="catalog__icon" [icon]="tour.imageName"></fa-icon>
+              <fa-icon class="catalog__icon" [icon]="tour.imageName" />
             </div>
             <div class="tours-catalog__content">
               <h3 class="tours-catalog__title">{{ tour.title }}</h3>
@@ -157,7 +157,7 @@
           "
         >
           <div class="popular-destination__evaluation">
-            <fa-icon [icon]="faStar" style="color: #ffcc00"></fa-icon>
+            <fa-icon [icon]="faStar" style="color: #ffcc00" />
             <p class="stars">{{ place.stars }}</p>
           </div>
           <div class="popular-destination__description w-full">
@@ -235,4 +235,4 @@
   <button class="photo-report__btn">Наш pinterest</button>
 </section>
 
-<app-message></app-message>
+<app-message />

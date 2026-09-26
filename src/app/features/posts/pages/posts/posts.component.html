@@ -1,3 +1,4 @@
+@let isLoading = isLoading$ | async;
 @let postRespone = postService.postResponse$ | async;
 <p-contextmenu #cm [model]="items" (onHide)="selectedPost = null" />
 
@@ -11,7 +12,7 @@
   (onPage)="changePage($event)"
   [lazy]=true
   [contextMenu]="cm"
-  [loading]="isLoading$ | async"
+  [loading]="isLoading"
   [showCurrentPageReport]="true"
   currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
   [(contextMenuSelection)]="selectedPost" 
@@ -24,7 +25,7 @@
     </tr>
   </ng-template>
   <ng-template #body let-post>
-    @if (!(isLoading$ | async)) {
+    @if (!isLoading) {
       <tr [pContextMenuRow]="post" (dblclick)="goDetailInfoPage(post.id)">
         <td>{{ post.title }}</td>
         <td>{{ post.tags }}</td>

@@ -24,7 +24,8 @@ export class Collection<T> {
 
   replaceCollectionItem(index: number, obj: T): void {
     this.collection = this.collection.map((e: T, elemIndex: number) =>
-      elemIndex === index ? obj : e,
+      elemIndex === index ? obj : e
     );
   }
+
 }

@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { IMessage } from '../interface/IMessage';
 import { Message } from '../enum/Message';
-import { BehaviorSubject, filter, Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class MessageService {
 
@@ -30,7 +30,7 @@ export class MessageService {
   close(message: IMessage): void {
     const current: IMessage[] = this.messageSubject.value;
     this.messageSubject.next(
-      current.filter((msg: IMessage) =>  msg !== message)
+      current.filter((msg: IMessage) => msg !== message)
     );
   }
 

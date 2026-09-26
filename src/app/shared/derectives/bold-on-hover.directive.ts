@@ -1,7 +1,7 @@
-import { Directive, ElementRef, HostBinding, HostListener } from '@angular/core';
+import { Directive, HostBinding, HostListener } from '@angular/core';
 
 @Directive({
-  selector: '[appBoldOnHover]',
+  selector: '[appBoldOnHover]'
 })
 export class BoldOnHoverDirective {
 

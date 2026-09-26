@@ -18,7 +18,7 @@
     <div class="header-buttons-container">
       <p-toggleswitch [ngModel]="themeService.darkThemeActive$ | async" (onChange)="themeService.changeTheme($event)">
         <ng-template #handle let-checked="checked">
-            <fa-icon [icon]="checked ? faMoon : faSun" style="color: #ffcc00 "></fa-icon>
+            <fa-icon [icon]="checked ? faMoon : faSun" style="color: #ffcc00 " />
         </ng-template>
       </p-toggleswitch>
 
@@ -72,7 +72,7 @@
        <p-avatar [image]="`${ user?.image }`" size="large" shape="circle" />
        <p class="userName"> {{ `${ user?.firstName } ${ user?.lastName }` }}</p>
        <button class="logout" (click)="logout()">
-         <fa-icon size="xl" [icon]="faLogoutIcon"></fa-icon>
+         <fa-icon size="xl" [icon]="faLogoutIcon" />
        </button>
      </div>
   </div>

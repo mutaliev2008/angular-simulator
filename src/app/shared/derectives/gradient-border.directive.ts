@@ -1,20 +1,20 @@
-import { ChangeDetectorRef, Directive, Host, HostBinding, HostListener, inject, Input, OnDestroy } from '@angular/core';
+import { ChangeDetectorRef, Directive, HostBinding, HostListener, inject, Input, OnDestroy } from '@angular/core';
 import { IGradientConfiguration } from '../../../interface/IGradientConfiguration';
 
 @Directive({
-  selector: '[appGradientBorder]',
+  selector: '[appGradientBorder]'
 })
 export class GradientBorderDirective implements OnDestroy {
 
-  @Input() gradientConfiguration: IGradientConfiguration = {}
+  @Input() gradientConfiguration: IGradientConfiguration = {};
 
   private defaultConfig: IGradientConfiguration = {
-  delay: 1000,
-  colors: ['#1b5e20', '#f90202', '#6600ff'],
-  thickness: '6px'
-};
+    delay: 1000,
+    colors: ['#1b5e20', '#f90202', '#6600ff'],
+    thickness: '6px'
+  };
 
-  get config(): IGradientConfiguration {
+  private get config(): IGradientConfiguration {
     return {
       ...this.defaultConfig,
       ...this.gradientConfiguration
