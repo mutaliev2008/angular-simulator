@@ -13,12 +13,12 @@ export class AuthApiService {
   private http: HttpClient = inject(HttpClient);
   private readonly apiUrl: string = `${ API_URL }/auth`;
 
-  login(credentials: ICredentials): Observable<IAuthResponse> {
-    return this.http.post<IAuthResponse>(`${ this.apiUrl }/login`, credentials);
+  login(credentials: ICredentials, sessionTimeout: number): Observable<IAuthResponse> {
+    return this.http.post<IAuthResponse>(`${ this.apiUrl }/login`, { credentials, sessionTimeout });
   }
 
-  refreshToken(refreshToken: string): Observable<IToken> {
-    return this.http.post<IToken>(`${ this.apiUrl }/refresh`, refreshToken);
+  refreshToken(refreshToken: string, sessionTimeout: number): Observable<IToken> {
+    return this.http.post<IToken>(`${ this.apiUrl }/refresh`, { refreshToken, sessionTimeout });
   }
 
   loadCurrentUser(): Observable<IUser> {

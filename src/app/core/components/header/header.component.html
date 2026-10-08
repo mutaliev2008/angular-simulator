@@ -2,7 +2,7 @@
   <div class="header-content-wrapper">
     <div class="logo-container">
       <img class="logo" src="/images/logo/logo.svg" alt="Логотип горы" />
-      <p class="company-name semi-bold fz-16">{{ companyName }}</p>
+      <p class="company-name semi-bold fz-16">{{ config.companyName }}</p>
     </div>
     <nav class="navigation">
       @for (link of navLinks; track link.path) {
@@ -15,18 +15,21 @@
         </a>
       }
     </nav>
-    <div class="header-buttons-container">
-      <p-toggleswitch [ngModel]="themeService.darkThemeActive$ | async" (onChange)="themeService.changeTheme($event)">
-        <ng-template #handle let-checked="checked">
-            <fa-icon [icon]="checked ? faMoon : faSun" style="color: #ffcc00 " />
-        </ng-template>
-      </p-toggleswitch>
+      @if(config.enableTheming) {
+        <div class="header-buttons-container">
+          <p-toggleswitch [ngModel]="themeService.darkThemeActive$ | async" (onChange)="themeService.changeTheme($event)">
+            <ng-template #handle let-checked="checked">
+                <fa-icon [icon]="checked ? faMoon : faSun" style="color: #ffcc00 " />
+            </ng-template>
+          </p-toggleswitch>
 
-      <div class="switch-theme-btn-container">
-        <p-selectbutton (onChange)="themeService.applyTheme($event.value)" [options]="stateOptions" [ngModel]="themeService.colorMode$ | async" optionLabel="label" optionValue="value" aria-labelledby="basic" />
-      </div>
+          <div class="switch-theme-btn-container">
+            <p-selectbutton (onChange)="themeService.applyTheme($event.value)" [options]="stateOptions" [ngModel]="themeService.colorMode$ | async" optionLabel="label" optionValue="value" aria-labelledby="basic" />
+          </div>
 
-    <button id="consultation-btn" class="consultation-btn">Консультация</button></div>
+          <button id="consultation-btn" class="consultation-btn">Консультация</button>
+        </div>
+      }
   </div>
 
   <div class="header__toggle-view">
@@ -49,7 +52,7 @@
         </button>
       }
       @if (currentView === viewMode.DATE) {
-        <p>{{ timerValue }}</p>
+        <p>{{ timerValue | date }}</p>
       } @else if (currentView === viewMode.COUNT) {
         <div class="header__counter">
         <button id="counter-button-plus" (click)="addQuantity()" class="header__counter-button">

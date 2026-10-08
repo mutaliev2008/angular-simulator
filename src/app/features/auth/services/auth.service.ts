@@ -7,6 +7,8 @@ import { LocalStorageService } from '../../../../services/local-storage.service'
 import { LoaderService } from '../../../../services/loader.service';
 import { ICredentials } from '../interface/ICredentials ';
 import { Router } from '@angular/router';
+import { IAppConfig } from '../../../../interface/IAppConfig';
+import { APP_CONFIG } from '../../../core/tokens/app-configuration.token';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +18,7 @@ export class AuthService {
   private authApiService: AuthApiService = inject(AuthApiService);
   private loaderServices: LoaderService = inject(LoaderService);
   private router: Router = inject(Router);
-
+  private config: IAppConfig = inject(APP_CONFIG);
   private localStorage: LocalStorageService = inject(LocalStorageService);
 
   private authorizedUserSubject: BehaviorSubject<IUser | null> = new BehaviorSubject<IUser | null>(null);
@@ -24,7 +26,7 @@ export class AuthService {
 
   login(credentials: ICredentials): Observable<IAuthResponse> {
     this.loaderServices.showLoader();
-    return this.authApiService.login(credentials).pipe(
+    return this.authApiService.login(credentials, this.config.sessionTimeout).pipe(
       tap((authResponse: IAuthResponse) => {
         const { accessToken, refreshToken, ...user } = authResponse;
 
@@ -51,7 +53,7 @@ export class AuthService {
     const refreshToken: string | undefined = authTokens?.refreshToken;
 
     if (refreshToken) {
-      return this.authApiService.refreshToken(refreshToken).pipe(
+      return this.authApiService.refreshToken(refreshToken, this.config.sessionTimeout).pipe(
         tap((tokens: IToken) => {
           this.localStorage.setItem('authTokens', tokens);
         })

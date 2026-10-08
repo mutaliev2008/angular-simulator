@@ -7,12 +7,15 @@ import Nora from '@primeuix/themes/nora';
 import Aura from '@primeuix/themes/aura';
 import Lara from '@primeuix/themes/lara';
 import { ToggleSwitchChangeEvent } from 'primeng/toggleswitch';
+import { IAppConfig } from '../interface/IAppConfig';
+import { APP_CONFIG } from '../app/core/tokens/app-configuration.token';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ThemeService {
 
+  private config: IAppConfig = inject(APP_CONFIG);
   private localStorage: LocalStorageService = inject(LocalStorageService);
 
   private colorModeSubject: BehaviorSubject<AppTheme> = new BehaviorSubject<AppTheme>(AppTheme.AURA);
@@ -45,6 +48,7 @@ export class ThemeService {
   }
   
   applyTheme(color: AppTheme): void {
+    if (!this.config.enableTheming) return;
     this.colorModeSubject.next(color);
     this.localStorage.setItem('color', color);
     switch (color) {
@@ -66,6 +70,7 @@ export class ThemeService {
   }
 
   changeTheme(event: ToggleSwitchChangeEvent): void {
+    if (!this.config.enableTheming) return;
     this.darkThemeActiveSubject.next(event.checked);
     this.localStorage.setItem('theme', event.checked);
   }
