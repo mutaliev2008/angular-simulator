@@ -4,7 +4,7 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 import { INavLink } from '../../../../enum/INavLink';
 import { ToggleSwitch } from 'primeng/toggleswitch';
 import { FormsModule } from '@angular/forms';
-import { AsyncPipe, CommonModule } from '@angular/common';
+import { AsyncPipe, CommonModule, DatePipe } from '@angular/common';
 import { ThemeService } from '../../../../services/theme.service';
 import { ButtonModule } from 'primeng/button';
 import { SelectButtonModule } from 'primeng/selectbutton';
@@ -14,6 +14,8 @@ import { faArrowRightFromBracket, faMoon, faSun } from '@fortawesome/free-solid-
 import { FontAwesomeModule, IconDefinition } from '@fortawesome/angular-fontawesome';
 import { AvatarModule } from 'primeng/avatar';
 import { AuthService } from '../../../features/auth/services/auth.service';
+import { APP_CONFIG } from '../../tokens/app-configuration.token';
+import { IAppConfig } from '../../../../interface/IAppConfig';
 
 type currentView = 'date' | 'count';
 
@@ -29,13 +31,15 @@ type currentView = 'date' | 'count';
     ButtonModule,
     SelectButtonModule,
     AvatarModule,
-    AsyncPipe
+    AsyncPipe,
+    DatePipe
   ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })
 export class HeaderComponent implements OnInit{
 
+  config: IAppConfig = inject(APP_CONFIG); 
   themeService: ThemeService = inject(ThemeService);
   authService: AuthService = inject(AuthService);
   stateOptions: IThemeOption[] = [
@@ -53,8 +57,7 @@ export class HeaderComponent implements OnInit{
   viewMode: typeof ViewMode = ViewMode;
   currentView: currentView = 'date';
   currentQuantity: number = 0;
-  timerValue!: string;
-  companyName: string = 'РУМТИБЕТ';
+  timerValue: Date = new Date;
   faSun: IconDefinition = faSun;
   faMoon: IconDefinition = faMoon;
   faLogoutIcon: IconDefinition = faArrowRightFromBracket;
@@ -81,7 +84,7 @@ export class HeaderComponent implements OnInit{
 
   private updateTimer(): void {
     setInterval(() => {
-      this.timerValue = new Date().toLocaleString();
+      this.timerValue = new Date();
     }, 1000);
   }
 

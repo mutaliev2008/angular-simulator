@@ -12,6 +12,9 @@ import { loggingInterceptor } from '../interceptor/logging.interceptor';
 import { errorInterceptor } from '../interceptor/error.interceptor';
 import { authInterceptor } from './features/auth/interceptor/auth.interceptor';
 import { AuthService } from './features/auth/services/auth.service';
+import { DATE_PIPE_DEFAULT_OPTIONS } from '@angular/common';
+import { APP_CONFIG } from './core/tokens/app-configuration.token';
+import { configuration } from './configuration';
 
 function getPreset(): Preset {
   const theme: string | null = localStorage.getItem('color');
@@ -48,6 +51,14 @@ export const appConfig: ApplicationConfig = {
         }
       }
     }),
-    provideHttpClient(withInterceptors([loggingInterceptor, errorInterceptor, authInterceptor]))
+    provideHttpClient(withInterceptors([loggingInterceptor, errorInterceptor, authInterceptor])),
+    {
+      provide: DATE_PIPE_DEFAULT_OPTIONS,
+      useValue: { dateFormat: 'dd.MM.yyyy HH:mm' }
+    },
+    {
+      provide: APP_CONFIG,
+      useValue: configuration
+    }
   ]
 };
