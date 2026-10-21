@@ -15,6 +15,7 @@ import { AuthService } from './features/auth/services/auth.service';
 import { DATE_PIPE_DEFAULT_OPTIONS } from '@angular/common';
 import { APP_CONFIG } from './core/tokens/app-configuration.token';
 import { configuration } from './configuration';
+import { API_URL } from './core/tokens/api.token';
 
 function getPreset(): Preset {
   const theme: string | null = localStorage.getItem('color');
@@ -59,6 +60,10 @@ export const appConfig: ApplicationConfig = {
     {
       provide: APP_CONFIG,
       useValue: configuration
+    },
+    {
+      provide: API_URL,
+      useValue: 'https://dummyjson.com'
     }
   ]
 };

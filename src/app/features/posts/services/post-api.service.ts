@@ -3,7 +3,7 @@ import { inject, Injectable } from '@angular/core';
 import { IPostResponse } from '../interface/IPostResponce';
 import { Observable } from 'rxjs';
 import { IPost } from '../interface/IPost';
-import { API_URL } from '../../../core/constants/api.constants';
+import { API_URL } from '../../../core/tokens/api.token';
 
 
 @Injectable({
@@ -12,7 +12,8 @@ import { API_URL } from '../../../core/constants/api.constants';
 export class PostApiService {
 
   private http: HttpClient = inject(HttpClient);
-  private apiUrl: string = `${ API_URL }/posts`;
+  private API_URL: string = inject(API_URL);
+  private apiUrl: string = `${ this.API_URL }/posts`;
 
   getApiPosts(skip: number, limit: number): Observable<IPostResponse> {
     return this.http.get<IPostResponse>(`${ this.apiUrl }?limit=${ limit }&skip=${ skip }`);

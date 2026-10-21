@@ -1,0 +1,51 @@
+<p-card
+  class="product-card block h-full overflow-hidden"
+  [routerLink]="['/products', product().id]"
+  [pt]="{
+    root: { class: 'h-full overflow-hidden' },
+    body: { class: 'p-4!' },
+    content: { class: 'p-0!' },
+  }"
+>
+  <ng-template #header>
+    <div class="product-image">
+      <img [src]="product().thumbnail" [alt]="product().title" loading="lazy" />
+
+      <p-tag
+        [value]="product().category"
+        severity="secondary"
+        class="category-tag"
+      />
+    </div>
+  </ng-template>
+
+  <div class="flex flex-col gap-3">
+    <h3 class="product-title">
+      {{ product().title }}
+    </h3>
+
+    <div class="flex items-center justify-between gap-2">
+      <span class="product-price"> {{ product().price.toFixed(2) }} $ </span>
+
+      <div class="rating">
+        <i class="pi pi-star-fill"></i>
+        <span>{{ product().rating }}</span>
+      </div>
+    </div>
+
+    <div class="stock-row">
+      <span class="stock-label">In stock</span>
+
+      <p-tag
+        [value]="product().stock + ' pcs'"
+        [severity]="
+          product().stock === 0
+            ? 'danger'
+            : product().stock < 10
+              ? 'warn'
+              : 'success'
+        "
+      />
+    </div>
+  </div>
+</p-card>

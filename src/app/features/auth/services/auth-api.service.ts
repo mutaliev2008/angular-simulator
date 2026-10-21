@@ -1,9 +1,9 @@
 import { inject, Injectable } from '@angular/core';
-import { API_URL } from '../../../core/constants/api.constants';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { IAuthResponse, IToken, IUser } from '../interface/IAuth';
 import { ICredentials } from '../interface/ICredentials ';
+import { API_URL } from '../../../core/tokens/api.token';
 
 @Injectable({
   providedIn: 'root'
@@ -11,10 +11,11 @@ import { ICredentials } from '../interface/ICredentials ';
 export class AuthApiService {
   
   private http: HttpClient = inject(HttpClient);
-  private readonly apiUrl: string = `${ API_URL }/auth`;
+  private API_URL: string = inject(API_URL);
+  private readonly apiUrl: string = `${ this.API_URL }/auth`;
 
   login(credentials: ICredentials, sessionTimeout: number): Observable<IAuthResponse> {
-    return this.http.post<IAuthResponse>(`${ this.apiUrl }/login`, { credentials, sessionTimeout });
+    return this.http.post<IAuthResponse>(`${ this.apiUrl }/login`, { ...credentials, sessionTimeout });
   }
 
   refreshToken(refreshToken: string, sessionTimeout: number): Observable<IToken> {

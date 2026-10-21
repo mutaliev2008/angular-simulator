@@ -26,6 +26,7 @@ export class AuthService {
 
   login(credentials: ICredentials): Observable<IAuthResponse> {
     this.loaderServices.showLoader();
+    
     return this.authApiService.login(credentials, this.config.sessionTimeout).pipe(
       tap((authResponse: IAuthResponse) => {
         const { accessToken, refreshToken, ...user } = authResponse;
@@ -40,6 +41,10 @@ export class AuthService {
         this.loaderServices.hideLoader();
       })
     );
+  }
+
+  getUserId(): number | undefined {
+    return this.authorizedUserSubject.value?.id;
   }
 
   logout(): void {
@@ -64,7 +69,6 @@ export class AuthService {
 
   loadCurrentUser(): Observable<IUser | null> {
     const authTokens: IToken | null = this.localStorage.getItem('authTokens');
-
     if (authTokens?.accessToken) {
       return this.authApiService.loadCurrentUser().pipe(
         tap((user:IUser) => {

@@ -1,0 +1,63 @@
+<article class="cart-item">
+  <div class="product-cell">
+    <div class="product-image">
+      <img [src]="cartProduct().thumbnail" alt="Perfume Oil" />
+    </div>
+
+    <div class="product-info">
+      <span class="product-category">LAPTOPS</span>
+      <h3>{{ cartProduct().title }}</h3>
+      <span class="stock-status">
+        <span class="status-dot"></span>
+        In stock
+      </span>
+    </div>
+  </div>
+
+  <div class="quantity-control">
+    <button
+      [class.disabled]="cartProduct().quantity === 1"
+      [disabled]="cartProduct().quantity === 1"
+      type="button"
+      (click)="decrement(cartProduct().id, cartProduct().quantity)"
+      aria-label="Decrease quantity"
+    >
+      −
+    </button>
+    <span>{{ cartProduct().quantity }}</span>
+    <button
+      type="button"
+      (click)="increment(cartProduct().id, cartProduct().quantity)"
+      aria-label="Increase quantity"
+    >
+      +
+    </button>
+  </div>
+
+  <div class="price-cell">
+    <span class="mobile-label">Price</span>
+    <span>{{ cartProduct().price }}$</span>
+  </div>
+
+  <div class="subtotal-cell">
+    <span class="mobile-label">Subtotal</span>
+    <strong>{{ subtotal() | number: '1.2-2' }}$</strong>
+  </div>
+
+  <button
+    type="button"
+    (click)="deleteProduct(cartProduct().id)"
+    class="remove-button"
+    aria-label="Remove Perfume Oil"
+  >
+    <svg viewBox="0 0 24 24" fill="none">
+      <path
+        d="M4 7h16M10 11v6M14 11v6M5 7l1 13h12l1-13M9 7V4h6v3"
+        stroke="currentColor"
+        stroke-width="1.6"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+    </svg>
+  </button>
+</article>

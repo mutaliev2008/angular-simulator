@@ -14,7 +14,17 @@
           {{ link.label }}
         </a>
       }
+
     </nav>
+      <button
+        pButton
+        type="button"
+        class="cart-button"
+        routerLink="products/cart"
+        aria-label="Корзина"
+      >
+        <fa-icon [icon]="faCartIcon" />
+      </button>
       @if(config.enableTheming) {
         <div class="header-buttons-container">
           <p-toggleswitch [ngModel]="themeService.darkThemeActive$ | async" (onChange)="themeService.changeTheme($event)">
