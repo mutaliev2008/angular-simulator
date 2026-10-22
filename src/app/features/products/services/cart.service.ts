@@ -1,10 +1,12 @@
 import { computed, inject, Injectable, Signal, signal, WritableSignal } from '@angular/core';
-import { ICart, ICartProduct, ICartResponse } from '../interfaces/ICart';
+import { ICart } from '../interfaces/ICart';
 import { CartApiService } from './cart-api.service';
 import { AuthService } from '../../auth/services/auth.service';
 import { Observable, tap } from 'rxjs';
 import { IModifiedProductCart } from '../interfaces/IModifiedProductCart';
 import { ICreateCart } from '../interfaces/ICreateCart';
+import { ICartProduct } from '../interfaces/ICartProduct';
+import { ICartResponse } from '../interfaces/ICartResponse';
 
 @Injectable({
   providedIn: 'root'

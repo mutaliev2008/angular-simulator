@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
-import { ICart, ICartResponse } from '../interfaces/ICart';
+import { ICart } from '../interfaces/ICart';
 import { Observable } from 'rxjs';
 import { BaseApiService } from '../../../core/api-services/base-api.service';
 import { IModifiedProductCart } from '../interfaces/IModifiedProductCart';
 import { ICreateCart } from '../interfaces/ICreateCart';
+import { ICartResponse } from '../interfaces/ICartResponse';
 
 @Injectable({
   providedIn: 'root'

@@ -25,7 +25,7 @@
       <div class="state-icon">!</div>
       <h2>Something went wrong</h2>
       <p>We couldn't load your cart. Please try again.</p>
-      <button type="button" class="secondary-button">Try again</button>
+      <button id="secondary-button" type="button" class="secondary-button">Try again</button>
     </section>
   }
 
@@ -58,6 +58,7 @@
           </a>
 
           <button
+            id="clear-button"
             (click)="cartService.deleteCart()"
             type="button"
             class="clear-button"

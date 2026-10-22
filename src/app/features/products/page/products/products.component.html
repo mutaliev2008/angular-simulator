@@ -4,12 +4,14 @@
 <div class="products-containers">
   <div class="products-filters-container">
     <input
+      id="search-input"
       type="text"
       pInputText
       [(ngModel)]="searchValue"
       placeholder="Найти продукт"
     />
     <p-select
+      id="sort-by-select"
       [options]="sortOptions"
       [(ngModel)]="productService.sortBy"
       optionLabel="label"
@@ -18,6 +20,7 @@
       class="w-full md:w-56"
     />
     <p-select
+      id="order-select"
       [options]="sortOrderOptions"
       [(ngModel)]="productService.order"
       optionLabel="label"
@@ -26,6 +29,7 @@
       class="w-full md:w-56"
     />
     <p-select
+      id="category-select"
       [options]="sortCategoryOptions"
       [(ngModel)]="productService.category"
       optionLabel="label"
@@ -64,7 +68,7 @@
           <div class="error-state">
             <i class="pi pi-exclamation-circle"></i>
             <h2>Что-то пошло не так</h2>
-            <button (click)="repeatRequest()" class="back-button">
+            <button id="back-button" (click)="repeatRequest()" class="back-button">
               Обновить
             </button>
           </div>

@@ -1,13 +1,4 @@
-export interface ICartProduct {
-  id: number;
-  title: string;
-  price: number;
-  quantity: number;
-  total: number;
-  discountPercentage: number;
-  discountedTotal: number;
-  thumbnail: string;
-}
+import { ICartProduct } from './ICartProduct';
 
 export interface ICart {
   id: number;
@@ -17,11 +8,4 @@ export interface ICart {
   userId: number;
   totalProducts: number;
   totalQuantity: number;
-}
-
-export interface ICartResponse {
-  carts: ICart[];
-  total: number;
-  skip: number;
-  limit: number;
 }

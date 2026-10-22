@@ -12,7 +12,7 @@ import { catchError, finalize, of } from 'rxjs';
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.scss'
 })
-export class CartComponent implements OnInit{
+export class CartComponent implements OnInit {
 
   cartService: CartService = inject(CartService);
   readonly isLoading: WritableSignal<boolean> = signal(false);
@@ -22,7 +22,7 @@ export class CartComponent implements OnInit{
     this.loadCart();
   }
 
-  loadCart(): void{
+  loadCart(): void {
     if (!this.cartService.cart()) {
       this.isLoading.set(true);
 

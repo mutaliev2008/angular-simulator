@@ -11,5 +11,7 @@ import { RouterLink } from '@angular/router';
   styleUrl: './product-card.component.scss',
 })
 export class ProductCardComponent {
+
   product: InputSignal<IProduct> = input.required<IProduct>();
+  
 }

@@ -1,4 +1,4 @@
 export interface IModifiedProductCart {
-    id: number;
-    quantity: number;
+  id: number;
+  quantity: number;
 }

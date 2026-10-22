@@ -1,7 +1,7 @@
 import { Component, computed, inject, model, ModelSignal, Signal } from '@angular/core';
-import { ICartProduct } from '../../interfaces/ICart';
 import { CartService } from '../../services/cart.service';
 import { DecimalPipe } from '@angular/common';
+import { ICartProduct } from '../../interfaces/ICartProduct';
 
 @Component({
   selector: 'app-cart-product-card',

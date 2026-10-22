@@ -9,11 +9,14 @@ import {
   WritableSignal
 } from '@angular/core';
 import { ProductApiService } from './product-api.service';
-import { IProduct, IProductsQuery, ProductSortField, SortDirection } from '../interfaces/IProduct';
+import { IProduct } from '../interfaces/IProduct';
 import { Observable } from 'rxjs';
 import { IProductResponse } from '../interfaces/IProductResponse';
 import { rxResource } from '@angular/core/rxjs-interop';
 import { ICategory } from '../interfaces/ICategory';
+import { ProductSortField } from '../enum/ProductSortField';
+import { SortDirection } from '../enum/SortDirection';
+import { IProductsQuery } from '../interfaces/IProductsQuery';
 
 @Injectable({
   providedIn: 'root'

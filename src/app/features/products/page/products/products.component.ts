@@ -42,14 +42,14 @@ export class ProductsComponent implements OnInit {
 
   debouncedSearch: Resource<string> = debounced(this.searchValue, 300);
 
-  sortOptions : ISortOptions [] = [
+  sortOptions: ISortOptions [] = [
     { label: 'Title', value: 'title' },
     { label: 'Price', value: 'price' },
     { label: 'Rating', value: 'rating' },
     { label: 'Stock', value: 'stock' }
   ];
 
-  sortOrderOptions : ISortOptions [] = [
+  sortOrderOptions: ISortOptions [] = [
     { label: 'Ascending', value: 'asc' },
     { label: 'Descending', value: 'desc' }
   ];

@@ -1,32 +1,6 @@
-export interface IProductDimensions {
-  width: number;
-  height: number;
-  depth: number;
-}
-
-export interface IProductReview {
-  rating: number;
-  comment: string;
-  date: string;
-  reviewerName: string;
-  reviewerEmail: string;
-}
-
-export interface IProductsQuery {
-  skip?: number;
-  limit?: number;
-  q?: string;
-  sortBy?: ProductSortField;
-  order?: SortDirection;
-  category?: string;
-}
-
-export interface IProductMeta {
-  createdAt: string;
-  updatedAt: string;
-  barcode: string;
-  qrCode: string;
-}
+import { IProductDimensions } from './IProductDimensions';
+import { IProductMeta } from './IProductMeta';
+import { IProductReview } from './IProductReview';
 
 export interface IProduct {
   id: number;
@@ -52,6 +26,3 @@ export interface IProduct {
   thumbnail: string;
   images: string[];
 }
-
-export type ProductSortField = 'title' | 'price' | 'rating' | 'stock';
-export type SortDirection = 'asc' | 'desc';

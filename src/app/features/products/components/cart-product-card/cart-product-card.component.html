@@ -16,6 +16,7 @@
 
   <div class="quantity-control">
     <button
+      id="quantity-control-button"
       [class.disabled]="cartProduct().quantity === 1"
       [disabled]="cartProduct().quantity === 1"
       type="button"
@@ -26,6 +27,7 @@
     </button>
     <span>{{ cartProduct().quantity }}</span>
     <button
+      id="quantity-control-button"
       type="button"
       (click)="increment(cartProduct().id, cartProduct().quantity)"
       aria-label="Increase quantity"
@@ -45,6 +47,7 @@
   </div>
 
   <button
+    id="remove-button"
     type="button"
     (click)="deleteProduct(cartProduct().id)"
     class="remove-button"
