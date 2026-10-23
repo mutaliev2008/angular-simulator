@@ -1,4 +1,4 @@
-export interface ISortOptions {
+export interface ISortOptions<T> {
   label: string;
-  value: string;
+  value: T;
 }

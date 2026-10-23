@@ -1,19 +1,20 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { API_URL } from '../tokens/api.token';
 import { Observable } from 'rxjs';
 import { IProductsQuery } from '../../features/products/interfaces/IProductsQuery';
+import { APP_CONFIG } from '../tokens/app-configuration.token';
+import { IAppConfig } from '../../../interface/IAppConfig';
 
 @Injectable()
 export abstract class BaseApiService {
 
   protected http: HttpClient = inject(HttpClient);
-  private API_URL: string = inject(API_URL);
+  private APP_CONFIG: IAppConfig = inject(APP_CONFIG);
   abstract key: string;
 
   protected getUrl(url: string | number): string {
     const urlString: string = typeof url === 'number' ? String(url) : url;
-    const preparedUrl: string = `${ this.API_URL }/${ this.key }/${ urlString }`;
+    const preparedUrl: string = `${ this.APP_CONFIG.apiUrl }/${ this.key }/${ urlString }`;
 
     return preparedUrl;
   }
@@ -31,7 +32,7 @@ export abstract class BaseApiService {
 
   getParam(name: string, value: unknown): string {
     if (value) {
-      return `${name}=${value}`;
+      return `${ name }=${ value }`;
     } else {
       return '';
     }

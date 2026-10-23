@@ -16,6 +16,7 @@ export class CartService {
   private cartApiService: CartApiService = inject(CartApiService);
   private authService: AuthService = inject(AuthService);
   private userId: number = this.authService.getUserId()!; 
+  private readonly TAX_RATE = 0.2;
 
   cart: WritableSignal<ICart | null> = signal(null);
 
@@ -23,6 +24,7 @@ export class CartService {
     if (!this.cart()) {
       return 0;
     }
+    // eslint-disable-next-line no-useless-assignment
     return this.cart()!.products.reduce((acc: number, product: ICartProduct) => acc += product.quantity * product.price, 0);
   });
 
@@ -34,7 +36,7 @@ export class CartService {
   });
   
   readonly tax: Signal<number> = computed(() => {
-    return this.subtotal() * 0.2; 
+    return this.subtotal() * this.TAX_RATE; 
   });
   
   readonly total: Signal<number> = computed(() => {

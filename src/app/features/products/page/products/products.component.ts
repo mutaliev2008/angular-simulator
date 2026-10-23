@@ -19,6 +19,8 @@ import { SelectModule } from 'primeng/select';
 import { ISortOptions } from '../../interfaces/ISortOptions';
 import { tap } from 'rxjs';
 import { ICategory } from '../../interfaces/ICategory';
+import { ProductSortField } from '../../enum/ProductSortField';
+import { SortDirection } from '../../enum/SortDirection';
 
 @Component({
   selector: 'app-products',
@@ -42,20 +44,26 @@ export class ProductsComponent implements OnInit {
 
   debouncedSearch: Resource<string> = debounced(this.searchValue, 300);
 
-  sortOptions: ISortOptions [] = [
-    { label: 'Title', value: 'title' },
-    { label: 'Price', value: 'price' },
-    { label: 'Rating', value: 'rating' },
-    { label: 'Stock', value: 'stock' }
+  sortOptions: ISortOptions<ProductSortField>[] = [
+    { label: 'Title', value: ProductSortField.TITLE },
+    { label: 'Price', value: ProductSortField.PRICE },
+    { label: 'Rating', value: ProductSortField.RATING },
+    { label: 'Stock', value: ProductSortField.STOCK }
   ];
 
-  sortOrderOptions: ISortOptions [] = [
-    { label: 'Ascending', value: 'asc' },
-    { label: 'Descending', value: 'desc' }
+  sortOrderOptions: ISortOptions<SortDirection> [] = [
+    { label: 'Ascending', value: SortDirection.ASCENDING },
+    { label: 'Descending', value: SortDirection.DESCENDING }
   ];
-
-  sortCategoryOptions: ISortOptions[] = [];
-
+  
+  sortCategoryOptions: ISortOptions<string>[] = [];
+  
+  constructor() {
+    effect(() => {
+      this.productService.updateSearchQuery(this.debouncedSearch.value());
+    });
+  }
+  
   ngOnInit(): void {
     this.loadCategories();
   }
@@ -73,11 +81,6 @@ export class ProductsComponent implements OnInit {
     ).subscribe();
   }
   
-  constructor() {
-    effect(() => {
-      this.productService.updateSearchQuery(this.debouncedSearch.value());
-    });
-  }
   
   repeatRequest(): void {
     this.productService.productResponseResource.reload();
