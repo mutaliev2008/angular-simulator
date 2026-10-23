@@ -25,6 +25,13 @@ export class CartService {
     }
     return this.cart()!.products.reduce((acc: number, product: ICartProduct) => acc += product.quantity * product.price, 0);
   });
+
+  readonly itemsTotal: Signal<number> = computed((): number => {
+    if (!this.cart()) {
+      return 0;
+    }
+    return this.cart()!.products.length;
+  });
   
   readonly tax: Signal<number> = computed(() => {
     return this.subtotal() * 0.2; 
@@ -66,36 +73,25 @@ export class CartService {
   }
 
   updateQuantity(productId: number, quantity: number): Observable<ICart> {
-    const cart: ICart = this.cart()!;
-
-    const updatedCart: ICart = {
-      ...cart,
-      products: cart.products.map((p: ICartProduct) =>
-        p.id === productId ? { ...p, quantity } : p
-      )
-    };
-    this.cart.set(updatedCart);
-
-    return this.updateCart({ id: productId, quantity });
+    return this.updateCart({ id: productId, quantity }).pipe(
+      tap((cart: ICart) => {
+        this.cart.set(cart);
+      })
+    );
   }
 
   deleteProduct(productId: number): Observable<ICart> {
-    const cart: ICart = this.cart()!;
-
-    const updatedCart: ICart = {
-      ...cart,
-      products: cart.products.filter((p: ICartProduct) => p.id !== productId)
-    };
-    this.cart.set(updatedCart);
-
-    return this.updateCart({ id: productId, quantity: 0 });
+    return this.updateCart({ id: productId, quantity: 0 }).pipe(
+      tap((cart: ICart) => {
+        this.cart.set(cart);
+      })
+    );
   }
 
   deleteCart(): Observable<void> {
     this.cart.set(null);
     return this.cartApiService.deleteCart(this.cart()!.id);
   }
-
 
 }
 

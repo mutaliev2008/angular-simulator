@@ -16,6 +16,7 @@ import { AvatarModule } from 'primeng/avatar';
 import { AuthService } from '../../../features/auth/services/auth.service';
 import { APP_CONFIG } from '../../tokens/app-configuration.token';
 import { IAppConfig } from '../../../../interface/IAppConfig';
+import { CartService } from '../../../features/products/services/cart.service';
 
 type currentView = 'date' | 'count';
 
@@ -43,6 +44,7 @@ export class HeaderComponent implements OnInit{
   config: IAppConfig = inject(APP_CONFIG); 
   themeService: ThemeService = inject(ThemeService);
   authService: AuthService = inject(AuthService);
+  cartService: CartService = inject(CartService);
   stateOptions: IThemeOption[] = [
     { label: 'Nora', value: AppTheme.NORA },
     { label: 'Aura', value: AppTheme.AURA },
