@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { UserService } from '../../../../../services/user.service';
-import { IUser } from '../../../../../interface/IUser';
+import { UserService } from '../../services/user.service';
+import { IUser } from '../../interface/IUser';
 import { GradientBorderDirective } from '../../../../shared/derectives/gradient-border.directive';
 
 @Component({

@@ -2,7 +2,7 @@ import { ResolveFn } from '@angular/router';
 import { inject } from '@angular/core';
 import { PostService } from '../services/post.service';
 import { IPost } from '../interface/IPost';
-import { MessageService } from '../../../../services/message.service';
+import { MessageService } from '../../../core/services/message.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { catchError, throwError } from 'rxjs';
 

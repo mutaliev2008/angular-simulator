@@ -3,7 +3,7 @@ import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { IPost } from '../../interface/IPost';
 import { FormsModule } from '@angular/forms';
 import { PostService } from '../../services/post.service';
-import { MessageService } from '../../../../../services/message.service';
+import { MessageService } from '../../../../core/services/message.service';
 import { catchError, tap, throwError } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
 

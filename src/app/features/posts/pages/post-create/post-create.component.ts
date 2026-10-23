@@ -4,7 +4,7 @@ import { IPost } from '../../interface/IPost';
 import { PostService } from '../../services/post.service';
 import { catchError, tap, throwError } from 'rxjs';
 import { Router } from '@angular/router';
-import { MessageService } from '../../../../../services/message.service';
+import { MessageService } from '../../../../core/services/message.service';
 import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({

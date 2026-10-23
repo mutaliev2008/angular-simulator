@@ -11,7 +11,7 @@ import { IPost } from '../../interface/IPost';
 import { Router } from '@angular/router';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { PostEditDialogComponent } from '../post-edit-dialog/post-edit-dialog.component';
-import { MessageService } from '../../../../../services/message.service';
+import { MessageService } from '../../../../core/services/message.service';
 import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({

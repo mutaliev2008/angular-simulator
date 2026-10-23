@@ -8,13 +8,13 @@ import Lara from '@primeuix/themes/lara';
 import Nara from '@primeuix/themes/nora';
 import { AppTheme } from '../enum/AppTheme';
 import { Preset } from '@primeuix/themes';
-import { loggingInterceptor } from '../interceptor/logging.interceptor';
-import { errorInterceptor } from '../interceptor/error.interceptor';
+import { loggingInterceptor } from './core/interceptors/logging.interceptor';
+import { errorInterceptor } from './core/interceptors/error.interceptor';
 import { authInterceptor } from './features/auth/interceptor/auth.interceptor';
-import { AuthService } from './features/auth/services/auth.service';
+import { AuthService } from './core/services/auth.service';
 import { DATE_PIPE_DEFAULT_OPTIONS } from '@angular/common';
 import { APP_CONFIG } from './core/tokens/app-configuration.token';
-import { configuration } from './configuration';
+import { configuration } from './features/training/configuration';
 
 function getPreset(): Preset {
   const theme: string | null = localStorage.getItem('color');

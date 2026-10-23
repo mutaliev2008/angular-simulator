@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
-import { authGuard } from './features/auth/guards/auth.guard';
-import { guestGuard } from './features/auth/guards/guest.guard';
-import { adminGuard } from './features/auth/guards/admin.guard';
+import { authGuard } from './core/guards/auth.guard';
+import { guestGuard } from './core/guards/guest.guard';
+import { adminGuard } from './core/guards/admin.guard';
 
 export const routes: Routes = [
   {
@@ -21,7 +21,7 @@ export const routes: Routes = [
       {
         path: 'login',
         loadComponent: () =>
-          import('./features/auth/page/login/login.component').then((m) => m.LoginComponent)
+          import('./features/auth/login.component').then((m) => m.LoginComponent)
       }
     ]
   },
@@ -41,13 +41,13 @@ export const routes: Routes = [
       {
         path: 'home',
         loadComponent: () =>
-          import('./features/home-page/home-page.component').then((m) => m.HomePageComponent)
+          import('./features/home/home-page/home-page.component').then((m) => m.HomePageComponent)
       },
       {
         path: 'users',
         canActivate: [adminGuard],
         loadComponent: () =>
-          import('./features/users/pages/users-page/users.component').then((m) => m.UsersComponent)
+          import('./features/users/pages/user-list/users.component').then((m) => m.UsersComponent)
       },
       {
         path: 'posts',
@@ -64,7 +64,7 @@ export const routes: Routes = [
   {
     path: '**',
     loadComponent: () =>
-      import('./features/not-found-page/not-found-page.component').then(
+      import('./features/not-found/not-found-page/not-found-page.component').then(
         (m) => m.NotFoundPageComponent
       )
   }

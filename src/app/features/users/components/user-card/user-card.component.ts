@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { IUser } from '../../../../../interface/IUser';
+import { IUser } from '../../interface/IUser';
 import { UpperCasePipe } from '@angular/common';
 import { FormatPhonePipe } from '../../../../shared/pipes/format-phone.pipe';
 import { PhoneFormat } from '../../../../../enum/PhoneFormat';
