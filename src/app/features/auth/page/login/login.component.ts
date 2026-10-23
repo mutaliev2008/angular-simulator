@@ -32,7 +32,7 @@ export class LoginComponent {
       
       this.authService.login(credentials).pipe(
         tap(() => {
-          this.router.navigate(['/']);
+          this.router.navigate(['/home']);
           this.messageService.showSuccess('Вход прошел успешно');          
         }),
         catchError((error:HttpErrorResponse) => {

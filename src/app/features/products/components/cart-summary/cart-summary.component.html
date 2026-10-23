@@ -1,0 +1,67 @@
+<aside class="order-summary">
+  <h2>Order Summary</h2>
+  <p class="summary-description">Review your order details.</p>
+
+  <div class="summary-products">
+    @for (product of cart()?.products; track product) {
+      <div class="mini-product">
+        <span
+          >{{ product.title }}
+          <span class="mini-quantity">× {{ product.quantity }}</span></span
+        >
+        <span>${{ product.price }}</span>
+      </div>
+    }
+  </div>
+
+  <div class="summary-divider"></div>
+
+  <div class="summary-row">
+    <span>Subtotal</span>
+    <span>${{ cartService.subtotal() | number: '1.2-2' }}</span>
+  </div>
+
+  <div class="summary-row">
+    <span>Tax <small>(20%)</small></span>
+    <span>${{ cartService.tax() | number: '1.2-2' }}</span>
+  </div>
+
+  <div class="summary-divider"></div>
+
+  <div class="total-row">
+    <span>Total</span>
+    <strong>${{ cartService.total() | number: '1.2-2' }}</strong>
+  </div>
+
+  <button id="checkout-button" type="button" class="checkout-button">
+    Proceed to checkout
+    <span>→</span>
+  </button>
+
+  <div class="secure-note">
+    <svg viewBox="0 0 24 24" fill="none">
+      <path
+        d="M12 3 19 6v5c0 4.5-3 7.5-7 10-4-2.5-7-5.5-7-10V6l7-3Z"
+        stroke="currentColor"
+        stroke-width="1.6"
+        stroke-linejoin="round"
+      />
+      <path
+        d="m9 12 2 2 4-4"
+        stroke="currentColor"
+        stroke-width="1.6"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+    </svg>
+    Secure checkout
+  </div>
+
+  <div class="support-card">
+    <div class="support-icon">?</div>
+    <div>
+      <h3>Need help?</h3>
+      <p>Our support team is here to help with your order.</p>
+    </div>
+  </div>
+</aside>

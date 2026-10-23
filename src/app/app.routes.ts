@@ -53,6 +53,11 @@ export const routes: Routes = [
         path: 'posts',
         canActivate: [adminGuard],
         loadChildren: () => import('./features/posts/post.routes').then((m) => m.postRoutes)
+      },
+      {
+        path: 'products',
+        canActivate: [adminGuard],
+        loadChildren: () => import('./features/products/product.routes').then((m) => m.productRoutes)
       }
     ]
   },

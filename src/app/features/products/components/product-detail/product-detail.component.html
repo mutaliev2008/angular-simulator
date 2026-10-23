@@ -1,0 +1,108 @@
+<div class="details-page-container">
+  <div class="details-page">
+    <a routerLink="/products" class="back-link">
+      <i class="pi pi-arrow-left"></i>
+      Назад к товарам
+    </a>
+    @if (product(); as productDetail) {
+      <div class="product-card">
+        <div class="product-image">
+          <img [src]="productDetail.thumbnail" [alt]="productDetail.title" />
+        </div>
+
+        <div class="product-info">
+          <span class="category">{{ productDetail.category }}</span>
+
+          <h1>{{ productDetail.title }}</h1>
+
+          <div class="rating">
+            <i class="pi pi-star-fill"></i>
+            <strong>{{ productDetail.rating }}</strong>
+            <span>Рейтинг товара</span>
+          </div>
+
+          <p class="description">
+            {{ productDetail.description }}
+          </p>
+
+          <div class="price">
+            {{ productDetail.price | currency: 'USD' : 'symbol' : '1.2-2' }}
+
+            <span class="discount">
+              -{{ productDetail.discountPercentage | number: '1.0-0' }}%
+            </span>
+          </div>
+
+          <div class="stock">
+            <span class="stock-dot"></span>
+            {{ productDetail.availabilityStatus }}
+            <span class="stock-count">({{ productDetail.stock }} шт.)</span>
+          </div>
+
+          <div class="product-meta">
+            <div>
+              <span>Бренд</span>
+              <strong>{{ productDetail.brand || 'Не указан' }}</strong>
+            </div>
+
+            <div>
+              <span>Артикул</span>
+              <strong>{{ productDetail.sku }}</strong>
+            </div>
+
+            <div>
+              <span>Вес</span>
+              <strong>{{ productDetail.weight }} г</strong>
+            </div>
+
+            <button
+              id="add-product-button"
+              class="add-product-btn"
+              (click)="addProduct(productDetail.id)"
+            >
+              Добавить в корзину
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <section class="additional-info">
+        <h2>Информация о товаре</h2>
+
+        <div class="info-grid">
+          <div class="info-item">
+            <i class="pi pi-truck"></i>
+            <div>
+              <span>Доставка</span>
+              <strong>{{ productDetail.shippingInformation }}</strong>
+            </div>
+          </div>
+
+          <div class="info-item">
+            <i class="pi pi-shield"></i>
+            <div>
+              <span>Гарантия</span>
+              <strong>{{ productDetail.warrantyInformation }}</strong>
+            </div>
+          </div>
+
+          <div class="info-item">
+            <i class="pi pi-refresh"></i>
+            <div>
+              <span>Возврат</span>
+              <strong>{{ productDetail.returnPolicy }}</strong>
+            </div>
+          </div>
+
+          <div class="info-item">
+            <i class="pi pi-box"></i>
+            <div>
+              <span>Минимальный заказ</span>
+              <strong>{{ productDetail.minimumOrderQuantity }} шт.</strong>
+            </div>
+          </div>
+        </div>
+      </section>
+    }
+  </div>
+</div>

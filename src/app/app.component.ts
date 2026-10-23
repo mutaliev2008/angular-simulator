@@ -17,12 +17,10 @@ import { RouterOutlet } from '@angular/router';
 import { LoaderService } from '../services/loader.service';
 import { LoaderComponent } from './core/components/loader/loader.component';
 import { MessageComponent } from './core/components/message/message.component';
-import { ParentComponent } from './homework-28/parent/parent.component';
-import { TrainingTwoComponent } from './homework-28/training №2/training-two.component';
 
 @Component({
   selector: 'app-root',
-  imports: [FormsModule, CommonModule, MessageComponent, RouterOutlet, LoaderComponent, TrainingTwoComponent, ParentComponent],
+  imports: [FormsModule, CommonModule, MessageComponent, RouterOutlet, LoaderComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })

@@ -1,0 +1,108 @@
+<div class="cart-page">
+  <header class="cart-header">
+    <div>
+      <span class="eyebrow">YOUR STORE</span>
+      <h1>Shopping Cart</h1>
+      <p>Manage your products and review your order.</p>
+    </div>
+
+    <a class="continue-link" routerLink="/products">
+      <span>←</span>
+      Continue shopping
+    </a>
+  </header>
+
+  @if (isLoading()) {
+    <section class="state-card">
+      <div class="loader"></div>
+      <h2>Loading your cart</h2>
+      <p>Please wait while we retrieve your products.</p>
+    </section>
+  }
+
+  @if (hasError()) {
+    <section class="state-card error-state">
+      <div class="state-icon">!</div>
+      <h2>Something went wrong</h2>
+      <p>We couldn't load your cart. Please try again.</p>
+      <button id="secondary-button" type="button" class="secondary-button">Try again</button>
+    </section>
+  }
+
+  @if (cartService.cart()) {
+    <div class="cart-layout">
+      <div class="cart-main">
+        <div class="cart-section-header">
+          <div class="section-title">
+            <h2>Your items</h2>
+            <span class="count-badge">3 items</span>
+          </div>
+        </div>
+
+        <div class="cart-table">
+          <div class="table-heading">
+            <span>Product</span>
+            <span>Quantity</span>
+            <span>Price</span>
+            <span>Subtotal</span>
+            <span></span>
+          </div>
+          @for (product of cartService.cart()?.products; track product.id) {
+            <app-cart-product-card [cartProduct]="product" />
+          }
+        </div>
+
+        <footer class="cart-footer">
+          <a routerLink="/products" class="continue-link">
+            <span>←</span> Continue shopping
+          </a>
+
+          <button
+            id="clear-button"
+            (click)="cartService.deleteCart()"
+            type="button"
+            class="clear-button"
+          >
+            Clear entire cart
+          </button>
+        </footer>
+      </div>
+      <app-cart-summary [cart]="cartService.cart()" />
+    </div>
+  } @else if (!hasError() && !cartService.cart() && !isLoading()) {
+    <section class="state-card empty-state">
+      <div class="empty-icon">
+        <svg viewBox="0 0 64 64" fill="none">
+          <path
+            d="M10 14h7l6 29h26l7-21H20"
+            stroke="currentColor"
+            stroke-width="2.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+          <circle
+            cx="27"
+            cy="51"
+            r="3"
+            stroke="currentColor"
+            stroke-width="2.5"
+          />
+          <circle
+            cx="46"
+            cy="51"
+            r="3"
+            stroke="currentColor"
+            stroke-width="2.5"
+          />
+        </svg>
+      </div>
+
+      <h2>Your cart is empty</h2>
+      <p>Looks like you haven't added anything to your cart yet.</p>
+
+      <a routerLink="/products" class="primary-button">
+        Explore products <span>→</span>
+      </a>
+    </section>
+  }
+</div>

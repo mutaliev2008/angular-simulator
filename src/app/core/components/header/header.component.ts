@@ -10,12 +10,13 @@ import { ButtonModule } from 'primeng/button';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { AppTheme } from '../../../../enum/AppTheme';
 import { IThemeOption } from '../../../../interface/IThemeOption';
-import { faArrowRightFromBracket, faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
+import { faArrowRightFromBracket, faCartShopping, faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeModule, IconDefinition } from '@fortawesome/angular-fontawesome';
 import { AvatarModule } from 'primeng/avatar';
 import { AuthService } from '../../../features/auth/services/auth.service';
 import { APP_CONFIG } from '../../tokens/app-configuration.token';
 import { IAppConfig } from '../../../../interface/IAppConfig';
+import { CartService } from '../../../features/products/services/cart.service';
 
 type currentView = 'date' | 'count';
 
@@ -32,7 +33,8 @@ type currentView = 'date' | 'count';
     SelectButtonModule,
     AvatarModule,
     AsyncPipe,
-    DatePipe
+    DatePipe,
+    ButtonModule
   ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
@@ -42,6 +44,7 @@ export class HeaderComponent implements OnInit{
   config: IAppConfig = inject(APP_CONFIG); 
   themeService: ThemeService = inject(ThemeService);
   authService: AuthService = inject(AuthService);
+  cartService: CartService = inject(CartService);
   stateOptions: IThemeOption[] = [
     { label: 'Nora', value: AppTheme.NORA },
     { label: 'Aura', value: AppTheme.AURA },
@@ -51,7 +54,8 @@ export class HeaderComponent implements OnInit{
   navLinks: INavLink[] = [
     { path: '/home', label: 'Главная' },
     { path: '/users', label: 'Пользователи' },
-    { path: '/posts', label: 'Посты' }
+    { path: '/posts', label: 'Посты' },
+    { path: '/products', label: 'Продукты' }
   ];
 
   viewMode: typeof ViewMode = ViewMode;
@@ -61,6 +65,7 @@ export class HeaderComponent implements OnInit{
   faSun: IconDefinition = faSun;
   faMoon: IconDefinition = faMoon;
   faLogoutIcon: IconDefinition = faArrowRightFromBracket;
+  faCartIcon: IconDefinition = faCartShopping;
 
   ngOnInit() {
     this.updateTimer();

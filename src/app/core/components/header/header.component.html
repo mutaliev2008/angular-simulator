@@ -14,7 +14,25 @@
           {{ link.label }}
         </a>
       }
+
     </nav>
+    
+<button
+  pButton
+  id="cart-button"
+  type="button"
+  class="cart-button"
+  routerLink="products/cart"
+  aria-label="Корзина"
+>
+  <div class="cart-icon-wrapper">
+    <fa-icon [icon]="faCartIcon" />
+
+    @if (cartService.itemsTotal() > 0) {
+      <span class="cart-badge">{{ cartService.itemsTotal() }}</span>
+    }
+  </div>
+      </button>
       @if(config.enableTheming) {
         <div class="header-buttons-container">
           <p-toggleswitch [ngModel]="themeService.darkThemeActive$ | async" (onChange)="themeService.changeTheme($event)">

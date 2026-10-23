@@ -1,0 +1,79 @@
+@let products = productService.products();
+@let productsResource = productService.productResponseResource;
+
+<div class="products-containers">
+  <div class="products-filters-container">
+    <input
+      id="search-input"
+      type="text"
+      pInputText
+      [(ngModel)]="searchValue"
+      placeholder="Найти продукт"
+    />
+    <p-select
+      id="sort-by-select"
+      [options]="sortOptions"
+      [(ngModel)]="productService.sortBy"
+      optionLabel="label"
+      optionValue="value"
+      placeholder="Сортировать по"
+      class="w-full md:w-56"
+    />
+    <p-select
+      id="order-select"
+      [options]="sortOrderOptions"
+      [(ngModel)]="productService.order"
+      optionLabel="label"
+      optionValue="value"
+      placeholder="Порядок"
+      class="w-full md:w-56"
+    />
+    <p-select
+      id="category-select"
+      [options]="sortCategoryOptions"
+      [(ngModel)]="productService.category"
+      optionLabel="label"
+      optionValue="value"
+      placeholder="Категория"
+      class="w-full md:w-56"
+    />
+  </div>
+  <p-dataview
+    #dv
+    [value]="products"
+    [paginator]="true"
+    [lazy]="true"
+    (onPage)="onPageChange($event)"
+    [first]="productService.skip()"
+    [rows]="productService.limit()"
+    [totalRecords]="productsResource?.value()?.total ?? 0"
+    [rowsPerPageOptions]="[10, 20, 30]"
+    [loading]="productsResource.isLoading()"
+    [showCurrentPageReport]="true"
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords}"
+  >
+    <ng-template #list>
+      <div class="products-grid">
+        @if (productsResource.isLoading()) {
+          @for (i of [1, 2, 3, 4, 5, 6, 7, 8, 9]; track i) {
+            <p-skeleton width="377px" height="383px" borderRadius="12px" />
+          }
+        } @else if (productsResource.hasValue()) {
+          @for (product of products; track product.id) {
+            <app-product-card [product]="product" />
+          } @empty {
+            <div class="not-found-products">Товаров не найдено</div>
+          }
+        } @else if (productsResource.error()) {
+          <div class="error-state">
+            <i class="pi pi-exclamation-circle"></i>
+            <h2>Что-то пошло не так</h2>
+            <button id="back-button" (click)="repeatRequest()" class="back-button">
+              Обновить
+            </button>
+          </div>
+        }
+      </div>
+    </ng-template>
+  </p-dataview>
+</div>
