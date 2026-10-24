@@ -1,8 +1,8 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { IUser } from '../../../../../interface/IUser';
+import { IUser } from '../../interface/IUser';
 import { UpperCasePipe } from '@angular/common';
 import { FormatPhonePipe } from '../../../../shared/pipes/format-phone.pipe';
-import { PhoneFormat } from '../../../../../enum/PhoneFormat';
+import { PhoneFormat } from '../../../training/enum/PhoneFormat';
 import { BoldOnHoverDirective } from '../../../../shared/derectives/bold-on-hover.directive';
 import { GradientBorderDirective } from '../../../../shared/derectives/gradient-border.directive';
 @Component({

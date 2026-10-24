@@ -3,7 +3,7 @@ import { inject, Injectable } from '@angular/core';
 import { IPostResponse } from '../interface/IPostResponce';
 import { Observable } from 'rxjs';
 import { IPost } from '../interface/IPost';
-import { IAppConfig } from '../../../../interface/IAppConfig';
+import { IAppConfig } from '../../../core/interface/IAppConfig';
 import { APP_CONFIG } from '../../../core/tokens/app-configuration.token';
 
 

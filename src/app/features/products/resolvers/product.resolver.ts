@@ -4,7 +4,7 @@ import { ProductService } from '../services/product.service';
 import { IProduct } from '../interfaces/IProduct';
 import { catchError, throwError } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
-import { MessageService } from '../../../../services/message.service';
+import { MessageService } from '../../../core/services/message.service';
 
 export const productResolver: ResolveFn<IProduct> = (route) => {
   const productServices: ProductService = inject(ProductService);

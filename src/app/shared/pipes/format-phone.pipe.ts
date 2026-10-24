@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { PhoneFormat } from '../../../enum/PhoneFormat';
+import { PhoneFormat } from '../../features/training/enum/PhoneFormat';
 
 @Pipe({
   name: 'formatPhone'

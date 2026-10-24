@@ -3,7 +3,7 @@ import { IProductResponse } from '../interfaces/IProductResponse';
 import { IProduct } from '../interfaces/IProduct';
 import { Observable } from 'rxjs';
 import { ICategory } from '../interfaces/ICategory';
-import { BaseApiService } from '../../../core/api-services/base-api.service';
+import { BaseApiService } from '../../../core/services/base-api.service';
 import { IProductsQuery } from '../interfaces/IProductsQuery';
 
 @Injectable({

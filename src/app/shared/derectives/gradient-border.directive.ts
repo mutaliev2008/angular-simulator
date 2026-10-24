@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Directive, HostBinding, HostListener, inject, Input, OnDestroy } from '@angular/core';
-import { IGradientConfiguration } from '../../../interface/IGradientConfiguration';
+import { IGradientConfiguration } from '../interface/IGradientConfiguration';
 
 @Directive({
   selector: '[appGradientBorder]'

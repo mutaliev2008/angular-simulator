@@ -10,12 +10,12 @@ export const productRoutes: Routes = [
   {
     path: 'cart',
     loadComponent: () =>
-      import('./page/cart/cart.component').then((m) => m.CartComponent)
+      import('../cart/page/cart/cart.component').then((m) => m.CartComponent)
   },
   {
     path: ':id',
     loadComponent: () => 
-      import('./components/product-detail/product-detail.component').then((m) => m.ProductDetailComponent),
+      import('./page/product-detail/product-detail.component').then((m) => m.ProductDetailComponent),
     resolve: {
       product: productResolver
     }
