@@ -6,7 +6,7 @@ import { provideHttpClient, withInterceptors, withXhr } from '@angular/common/ht
 import Aura from '@primeuix/themes/aura';
 import Lara from '@primeuix/themes/lara';
 import Nara from '@primeuix/themes/nora';
-import { AppTheme } from '../enum/AppTheme';
+import { AppTheme } from './features/training/enum/AppTheme';
 import { Preset } from '@primeuix/themes';
 import { loggingInterceptor } from './core/interceptors/logging.interceptor';
 import { errorInterceptor } from './core/interceptors/error.interceptor';

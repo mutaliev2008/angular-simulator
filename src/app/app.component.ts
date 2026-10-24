@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { Color } from '../enum/Color';
+import { Color } from './features/training/enum/Color';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { LocalStorageService } from './core/services/local-storage.service';

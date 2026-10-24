@@ -1,14 +1,14 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { ViewMode } from '../../../../enum/ViewMode';
+import { ViewMode } from '../../../features/training/enum/ViewMode';
 import { RouterLink, RouterLinkActive } from '@angular/router';
-import { INavLink } from '../../../../enum/INavLink';
+import { INavLink } from '../../../features/training/enum/INavLink';
 import { ToggleSwitch } from 'primeng/toggleswitch';
 import { FormsModule } from '@angular/forms';
 import { AsyncPipe, CommonModule, DatePipe } from '@angular/common';
 import { ThemeService } from '../../../core/services/theme.service';
 import { ButtonModule } from 'primeng/button';
 import { SelectButtonModule } from 'primeng/selectbutton';
-import { AppTheme } from '../../../../enum/AppTheme';
+import { AppTheme } from '../../../features/training/enum/AppTheme';
 import { IThemeOption } from '../../../features/home/interface/IThemeOption';
 import { faArrowRightFromBracket, faCartShopping, faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeModule, IconDefinition } from '@fortawesome/angular-fontawesome';

@@ -1,6 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { IMessage } from '../../shared/interface/IMessage';
-import { Message } from '../../../enum/Message';
+import { Message } from '../../features/training/enum/Message';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { IAppConfig } from '../interface/IAppConfig';
 import { APP_CONFIG } from '../tokens/app-configuration.token';

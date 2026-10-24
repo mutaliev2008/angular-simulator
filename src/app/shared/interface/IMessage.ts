@@ -1,4 +1,4 @@
-import { Message } from '../../../enum/Message';
+import { Message } from '../../features/training/enum/Message';
 
 export interface IMessage {
   id: number;

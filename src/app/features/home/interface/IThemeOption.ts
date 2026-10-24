@@ -1,4 +1,4 @@
-import { AppTheme } from '../../../../enum/AppTheme';
+import { AppTheme } from '../../training/enum/AppTheme';
 
 export interface IThemeOption {
   label: string;

@@ -1,7 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { LocalStorageService } from './local-storage.service';
-import { AppTheme } from '../../../enum/AppTheme';
+import { AppTheme } from '../../features/training/enum/AppTheme';
 import { usePreset } from '@primeuix/themes';
 import Nora from '@primeuix/themes/nora';
 import Aura from '@primeuix/themes/aura';

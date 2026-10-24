@@ -3,7 +3,7 @@ import { AuthService } from '../services/auth.service';
 import { inject } from '@angular/core';
 import { map } from 'rxjs';
 import { IUser } from '../../features/auth/interface/IAuth';
-import { UserRole } from '../../features/auth/enam/UserRole';
+import { UserRole } from '../../shared/enam/UserRole';
 
 export const adminGuard: CanActivateFn = () => {
   const authService: AuthService = inject(AuthService);

@@ -3,7 +3,7 @@ import { IPopularPlace } from '../interface/IPopularPlace';
 import { ITravelBlog } from '../interface/ITravelBlog';
 import { popularPlace, tours, travelBlog } from '../../training/data/cardData';
 import { ITour } from '../interface/ITour';
-import { Message } from '../../../../enum/Message';
+import { Message } from '../../training/enum/Message';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { MessageService } from '../../../core/services/message.service';
