@@ -3,7 +3,7 @@ import { faAngleRight, IconDefinition } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faPinterest, faSkype, faTelegram, faVk } from '@fortawesome/free-brands-svg-icons';
 import { IAppConfig } from '../../../core/interface/IAppConfig';
-import { APP_CONFIG } from '../../tokens/app-configuration.token';
+import { APP_CONFIG } from '../../../core/tokens/app-configuration.token';
 
 @Component({
   selector: 'app-footer',

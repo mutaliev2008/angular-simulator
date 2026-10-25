@@ -45,7 +45,6 @@ export const routes: Routes = [
       },
       {
         path: 'users',
-        canActivate: [adminGuard],
         loadComponent: () =>
           import('./features/users/pages/user-list/users.component').then((m) => m.UsersComponent)
       },
@@ -58,6 +57,10 @@ export const routes: Routes = [
         path: 'products',
         canActivate: [adminGuard],
         loadChildren: () => import('./features/products/product.routes').then((m) => m.productRoutes)
+      },
+      {
+        path: 'recipes',
+        loadComponent: () => import('./features/recipes/page/recipe-list/recipe-list.component').then((m) => m.RecipeListComponent)
       }
     ]
   },

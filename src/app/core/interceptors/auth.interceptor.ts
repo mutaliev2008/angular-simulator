@@ -7,9 +7,10 @@ import {
 } from '@angular/common/http';
 import { catchError, Observable, switchMap, throwError } from 'rxjs';
 import { inject } from '@angular/core';
-import { AuthService } from '../../../core/services/auth.service';
-import { LocalStorageService } from '../../../core/services/local-storage.service';
-import { IToken } from '../interface/IAuth';
+import { AuthService } from '../services/auth.service';
+import { LocalStorageService } from '../services/local-storage.service';
+import { IToken } from '../../features/auth/interface/IAuth';
+
 
 function addAuthHeader(req: HttpRequest<unknown>, token: string | undefined): HttpRequest<unknown> {
   return req.clone({

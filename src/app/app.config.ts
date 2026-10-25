@@ -10,11 +10,16 @@ import { AppTheme } from './features/training/enum/AppTheme';
 import { Preset } from '@primeuix/themes';
 import { loggingInterceptor } from './core/interceptors/logging.interceptor';
 import { errorInterceptor } from './core/interceptors/error.interceptor';
-import { authInterceptor } from './features/auth/interceptor/auth.interceptor';
 import { AuthService } from './core/services/auth.service';
 import { DATE_PIPE_DEFAULT_OPTIONS } from '@angular/common';
 import { APP_CONFIG } from './core/tokens/app-configuration.token';
 import { configuration } from './features/training/configuration';
+import { provideStore } from '@ngrx/store';
+import { RECIPES_FEATURE_KEY } from './features/recipes/recipes.model';
+import { provideEffects } from '@ngrx/effects';
+import { recipesReducer } from './features/recipes/recipes.reducer';
+import { authInterceptor } from './core/interceptors/auth.interceptor';
+import { RecipesEffects } from './features/recipes/recipes.effects';
 
 function getPreset(): Preset {
   const theme: string | null = localStorage.getItem('color');
@@ -39,6 +44,8 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     provideZoneChangeDetection(),
     provideHttpClient(withXhr()),
+    provideStore({ [RECIPES_FEATURE_KEY]: recipesReducer }),
+    provideEffects(RecipesEffects),
     provideAppInitializer(() => {
       const authService: AuthService = inject(AuthService);
       return authService.loadCurrentUser();
