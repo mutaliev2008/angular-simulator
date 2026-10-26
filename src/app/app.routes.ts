@@ -61,6 +61,10 @@ export const routes: Routes = [
       {
         path: 'recipes',
         loadComponent: () => import('./features/recipes/page/recipe-list/recipe-list.component').then((m) => m.RecipeListComponent)
+      },
+      {
+        path: 'quotes',
+        loadComponent: () => import('./features/quotes/page/quote-list/quote-list.component').then((m) => m.QuoteListComponent)
       }
     ]
   },
