@@ -14,9 +14,9 @@ import { faArrowRightFromBracket, faCartShopping, faMoon, faSun } from '@fortawe
 import { FontAwesomeModule, IconDefinition } from '@fortawesome/angular-fontawesome';
 import { AvatarModule } from 'primeng/avatar';
 import { AuthService } from '../../../core/services/auth.service';
-import { APP_CONFIG } from '../../tokens/app-configuration.token';
 import { IAppConfig } from '../../../core/interface/IAppConfig';
 import { CartService } from '../../../features/cart/services/cart.service';
+import { APP_CONFIG } from '../../../core/tokens/app-configuration.token';
 
 type currentView = 'date' | 'count';
 
@@ -55,7 +55,8 @@ export class HeaderComponent implements OnInit{
     { path: '/home', label: 'Главная' },
     { path: '/users', label: 'Пользователи' },
     { path: '/posts', label: 'Посты' },
-    { path: '/products', label: 'Продукты' }
+    { path: '/products', label: 'Продукты' },
+    { path: '/recipes', label: 'Рецепты' }
   ];
 
   viewMode: typeof ViewMode = ViewMode;

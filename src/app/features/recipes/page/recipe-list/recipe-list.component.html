@@ -1,0 +1,36 @@
+<div class="recipes-page">
+  <div class="recipes-container">
+    <section class="recipes-heading">
+      <div>
+        <span class="eyebrow">DISCOVER SOMETHING DELICIOUS</span>
+        <h1>Recipes for every day</h1>
+        <p>
+          Explore delicious dishes from around the world. Find your next
+          favorite meal.
+        </p>
+      </div>
+
+      <button type="button" class="reload-button" (click)="loadRecipes()">
+        <span class="reload-icon">↻</span>
+        Reload recipes
+      </button>
+    </section>
+
+    <section class="recipes-grid">
+      @for (recipe of recipes$ | async; track recipe.id) {
+        <app-recipe-card [recipe]="recipe" />
+      }
+    </section>
+
+    <div class="recipes-footer">
+      <button
+        type="button"
+        class="reload-button reload-button-bottom"
+        (click)="loadRecipes()"
+      >
+        <span class="reload-icon">↻</span>
+        Reload recipes
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,27 @@
+<article class="recipe-card">
+  <div class="recipe-image-wrapper">
+    <img class="recipe-image" [src]="recipe().image" [alt]="recipe().name" />
+
+    <span class="recipe-rating">
+      <span class="star">★</span>
+      {{ recipe().rating }}
+    </span>
+  </div>
+
+  <div class="recipe-content">
+    <span class="recipe-cuisine">
+      {{ recipe().cuisine }}
+    </span>
+
+    <h2>{{ recipe().name }}</h2>
+
+    <div class="recipe-details">
+      <span class="recipe-time">
+        <span class="detail-icon">◷</span>
+        {{ recipe().cookTimeMinutes }} min
+      </span>
+
+      <span class="recipe-reviews"> {{ recipe().reviewCount }} reviews </span>
+    </div>
+  </div>
+</article>

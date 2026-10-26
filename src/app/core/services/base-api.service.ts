@@ -10,7 +10,7 @@ export abstract class BaseApiService {
 
   protected http: HttpClient = inject(HttpClient);
   private APP_CONFIG: IAppConfig = inject(APP_CONFIG);
-  abstract key: string;
+  protected abstract key: string;
 
   protected getUrl(url: string | number): string {
     const urlString: string = typeof url === 'number' ? String(url) : url;
@@ -30,7 +30,7 @@ export abstract class BaseApiService {
     }
   }
 
-  getParam(name: string, value: unknown): string {
+  protected getParam(name: string, value: unknown): string {
     if (value) {
       return `${ name }=${ value }`;
     } else {
