@@ -1,5 +1,5 @@
 import { computed, inject } from '@angular/core';
-import { IQuoteState } from './quotes.model';
+import { IQuoteState } from '../quotes.model';
 import {
   patchState,
   signalStore,
@@ -7,13 +7,14 @@ import {
   withMethods,
   withState
 } from '@ngrx/signals';
-import { QuotesService } from './qoutes.service';
+import { QuoteApiService } from '../qoutes.service';
 import { rxMethod } from '@ngrx/signals/rxjs-interop';
 import { catchError, EMPTY, mergeMap, pipe, tap } from 'rxjs';
-import { IQuotesResponse } from './interface/IQuotesResponse';
+import { IQuotesResponse } from '../interface/IQuotesResponse';
 import { HttpErrorResponse } from '@angular/common/http';
-import { IQuote } from './interface/IQuote';
-import { QuotesFilter } from './enum/QuotesFilter';
+import { IQuote } from '../interface/IQuote';
+import { QuotesFilter } from '../enum/QuotesFilter';
+import { withLoading } from './features/with-loading';
 
 export const initialQuoteState: IQuoteState = {
   quotes: [],
@@ -27,25 +28,30 @@ export const initialQuoteState: IQuoteState = {
 export const quotesStore = signalStore(
   { providedIn: 'root' }, 
   withState(initialQuoteState),
+  withLoading(),
   withComputed(({ quotes, favorites, filter }) => ({
     favoritesCount: computed(() => favorites().length),
     authorsCount: computed(() => quotes().length),
     filteredQuotes: computed(() => filter() === QuotesFilter.ALL ? quotes() : favorites())
   })),
-  withMethods((store, qoutesService: QuotesService = inject(QuotesService)) => ({
+  withMethods((store, qoutesService: QuoteApiService = inject(QuoteApiService)) => ({
     loadQuotes: rxMethod<void>(
       pipe(
-        tap(() => patchState(store, { loading: true })),
+        tap(() => {
+          store.setLoading(true);
+          store.setError(null);
+        }),
         mergeMap(() =>
           qoutesService.getQuotes().pipe(
             tap((qouteResponse: IQuotesResponse) =>
               patchState(store, {
-                quotes: qouteResponse.quotes,
-                loading: false
+                quotes: qouteResponse.quotes
               })
             ),
+            tap(() => store.setLoading(false)),
             catchError((error: HttpErrorResponse) => {
-              patchState(store, { error: error.message, loading: false });
+              store.setLoading(false);
+              store.setError(error.message);
               return EMPTY;
             })
           )

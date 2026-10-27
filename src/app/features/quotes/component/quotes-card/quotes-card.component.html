@@ -19,23 +19,29 @@
         <span class="author-label">Author</span>
       </div>
     </div>
-
-    <button
-      type="button"
-      class="favorite-button"
-      [class.is-favorite]="store.isFavorite(quote().id)"
-      [attr.aria-label]="
-        store.isFavorite(quote().id)
-          ? 'Remove from favorites'
-          : 'Add to favorites'
-      "
-      (click)="store.toggleFavorite(quote())"
-    >
-      <span>
-        {{ store.isFavorite(quote().id) ? '★' : '☆' }}
-      </span>
-
-      {{ store.isFavorite(quote().id) ? 'Saved' : 'Add to favorites' }}
-    </button>
+    
+      @if (store.isFavorite(quote().id)) {
+        <button
+          type="button"
+          class="favorite-button is-favorite"
+          [attr.aria-label]="'Remove from favorites'"
+          (click)="store.toggleFavorite(quote())"
+        >
+          <span>★</span>
+    
+          Saved
+        </button>
+      } @else {
+        <button
+          type="button"
+          class="favorite-button"
+          [attr.aria-label]="'Add to favorites'"
+          (click)="store.toggleFavorite(quote())"
+        >
+          <span>☆</span>
+    
+          Add to favorites
+        </button>
+      }
   </div>
 </article>

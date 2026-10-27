@@ -6,7 +6,7 @@ import { IQuotesResponse } from './interface/IQuotesResponse';
 @Injectable({
   providedIn: 'root'
 })
-export class QuotesService extends BaseApiService {
+export class QuoteApiService extends BaseApiService {
 
   key: string = 'quotes';
 

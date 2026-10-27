@@ -1,11 +1,10 @@
 import { QuotesFilter } from './enum/QuotesFilter';
+import { ILoadingState } from './interface/ILoadingState';
 import { IQuote } from './interface/IQuote';
 
-export interface IQuoteState {
+export interface IQuoteState extends ILoadingState {
   quotes: IQuote[];
   favorites: IQuote[];
-  loading: boolean;
   filter: QuotesFilter;
   randomQuote: IQuote | null;
-  error: string | null;
 }

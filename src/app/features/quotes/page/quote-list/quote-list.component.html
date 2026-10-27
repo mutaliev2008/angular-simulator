@@ -13,7 +13,6 @@
 
   <section class="stats-grid">
     <article class="stat-card">
-      <div class="stat-icon">✦</div>
       <div>
         <span class="stat-label">Total quotes</span>
         <strong>{{ store.quotes().length }}</strong>
@@ -21,7 +20,6 @@
     </article>
 
     <article class="stat-card">
-      <div class="stat-icon favorite-icon">♡</div>
       <div>
         <span class="stat-label">Favorites</span>
         <strong>{{ store.favoritesCount() }}</strong>
@@ -41,7 +39,7 @@
         class="random-button"
         (click)="store.selectRandomQuote()"
       >
-        <span>↻</span>
+          <fa-icon [icon]="faRotateRight" />
         Random quote
       </button>
     </div>
@@ -50,11 +48,7 @@
       <span class="quote-mark">“</span>
 
       <div class="random-quote-content">
-        <p>
-          {{
-            store.randomQuote()?.quote || 'Choose a quote to get inspired.'
-          }}
-        </p>
+        <p>{{ store.randomQuote()?.quote || 'Choose a quote to get inspired.' }}</p>
         <span class="random-author">
           — {{ store.randomQuote()?.author || 'Your next favorite author' }}
         </span>
@@ -87,7 +81,6 @@
           [class.selected]="store.filter() === quoteFilter.FAVORITES"
           (click)="store.setFilter(quoteFilter.FAVORITES)"
         >
-          <span>♡</span>
           Favorites
         </button>
       </div>
@@ -112,14 +105,13 @@
           class="primary-button"
           (click)="uploadQuotes()"
         >
-          ↻ Retry
+          <fa-icon [icon]="faRotateRight" /> Retry
         </button>
       </div>
     }
 
     @if (!store.loading() && !store.error() && store.filteredQuotes().length === 0) {
       <div class="state-card">
-        <div class="state-icon">♡</div>
         <h3>No quotes here yet</h3>
         <p>
           {{
