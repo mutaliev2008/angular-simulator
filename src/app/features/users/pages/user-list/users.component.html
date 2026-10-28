@@ -7,7 +7,7 @@
     <app-users-filter [searchQuery]="store.searchQuery()" (searchTerm)="store.updateSearch($event)" />
 
     <div class="user-list">
-            @for (user of filteredUsers(); track $index) {
+            @for (user of store.filteredUsers(); track $index) {
                 <app-user-card [user]="user" (removeUser)="store.removeUsers($event)" />
             }
          @empty {

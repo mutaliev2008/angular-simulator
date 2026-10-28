@@ -32,14 +32,6 @@ export class UsersComponent implements OnInit {
   store: InstanceType<typeof usersStore> = inject(usersStore);
   router: Router = inject(Router);
 
-  filteredUsers: Signal<IUser[]> = computed(() =>
-    this.store
-      .users()
-      .filter((user: IUser) =>
-        user.name.toLowerCase().trim().includes(this.store.searchQuery())
-      )
-  );
-
   ngOnInit(): void {
     this.store.loadUsers();
   }

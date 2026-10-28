@@ -1,8 +1,8 @@
-import { patchState, signalStore, withMethods, withState } from "@ngrx/signals";
+import { patchState, signalStore, withComputed, withMethods, withState } from "@ngrx/signals";
 import { IUsersState } from "../interface/IUsersState";
 import { withDevtools } from "@angular-architects/ngrx-toolkit";
 import { UserApiService } from "../services/user-api.service";
-import { inject } from "@angular/core";
+import { computed, inject } from "@angular/core";
 import { rxMethod } from "@ngrx/signals/rxjs-interop";
 import { catchError, EMPTY, mergeMap, pipe, tap } from "rxjs";
 import { withLoading } from "../../quotes/store/features/with-loading";
@@ -22,6 +22,16 @@ export const usersStore = signalStore(
   withState(initialState),
   withLoading(),
   withLocal(),
+  withComputed(({ searchQuery, users }) => ({
+    filteredUsers: computed(() => {
+      if(users().length === 0) {
+        return [];
+      }
+      return users().filter((user: IUser) =>
+        user.name.toLowerCase().trim().includes(searchQuery())
+      );
+    })
+  })),
   withMethods(
     (store, usersService: UserApiService = inject(UserApiService)) => ({
       setUsers(users: IUser[]): void {
