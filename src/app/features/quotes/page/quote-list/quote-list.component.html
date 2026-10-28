@@ -1,0 +1,134 @@
+<main class="quotes-container">
+  <section class="page-heading">
+    <div>
+      <span class="eyebrow">WORDS THAT MATTER</span>
+      <h1>A little inspiration</h1>
+      <p>
+        Thoughtful words, powerful ideas, and perspectives worth remembering.
+      </p>
+    </div>
+
+    <div class="heading-decoration">“</div>
+  </section>
+
+  <section class="stats-grid">
+    <article class="stat-card">
+      <div>
+        <span class="stat-label">Total quotes</span>
+        <strong>{{ store.quotes().length }}</strong>
+      </div>
+    </article>
+
+    <article class="stat-card">
+      <div>
+        <span class="stat-label">Favorites</span>
+        <strong>{{ store.favoritesCount() }}</strong>
+      </div>
+    </article>
+  </section>
+
+  <section class="random-section">
+    <div class="random-heading">
+      <div>
+        <span class="eyebrow">A MOMENT OF INSPIRATION</span>
+        <h2>Random quote</h2>
+      </div>
+
+      <button
+        type="button"
+        class="random-button"
+        (click)="store.selectRandomQuote()"
+      >
+          <fa-icon [icon]="faRotateRight" />
+        Random quote
+      </button>
+    </div>
+
+    <div class="random-quote-card">
+      <span class="quote-mark">“</span>
+
+      <div class="random-quote-content">
+        <p>{{ store.randomQuote()?.quote || 'Choose a quote to get inspired.' }}</p>
+        <span class="random-author">
+          — {{ store.randomQuote()?.author || 'Your next favorite author' }}
+        </span>
+      </div>
+
+      <span class="quote-decoration">”</span>
+    </div>
+  </section>
+
+  <section class="quotes-list-section">
+    <div class="list-heading">
+      <div>
+        <h2>Explore quotes</h2>
+        <p>Save the words you want to remember.</p>
+      </div>
+
+      <div class="filter-switch">
+        <button
+          type="button"
+          class="filter-button"
+          [class.selected]="store.filter() === quoteFilter.ALL"
+          (click)="store.setFilter(quoteFilter.ALL)"
+        >
+          All quotes
+        </button>
+
+        <button
+          type="button"
+          class="filter-button"
+          [class.selected]="store.filter() === quoteFilter.FAVORITES"
+          (click)="store.setFilter(quoteFilter.FAVORITES)"
+        >
+          Favorites
+        </button>
+      </div>
+    </div>
+
+    @if (store.loading()) {
+      <div class="state-card">
+        <span class="loading-spinner"></span>
+        <h3>Loading quotes...</h3>
+        <p>Finding some words worth sharing.</p>
+      </div>
+    }
+
+    @if (store.error()) {
+      <div class="state-card error-state">
+        <div class="state-icon">!</div>
+        <h3>Failed to load quotes</h3>
+        <p>Something went wrong. Please try again.</p>
+
+        <button
+          type="button"
+          class="primary-button"
+          (click)="uploadQuotes()"
+        >
+          <fa-icon [icon]="faRotateRight" /> Retry
+        </button>
+      </div>
+    }
+
+    @if (!store.loading() && !store.error() && store.filteredQuotes().length === 0) {
+      <div class="state-card">
+        <h3>No quotes here yet</h3>
+        <p>
+          {{
+            store.filter() === quoteFilter.FAVORITES
+              ? 'Save a quote to see it in your favorites.'
+              : 'There are no quotes to display.'
+          }}
+        </p>
+      </div>
+    }
+
+    @if (!store.loading() && !store.error()) {
+      <div class="quotes-grid">
+      @for (quote of store.filteredQuotes(); track quote.id) {
+          <app-quotes-card [quote]="quote" />
+        }
+      </div>
+    }
+  </section>
+</main>

@@ -1,0 +1,47 @@
+<article class="quote-card">
+  <div class="quote-card-top">
+    <span class="quote-category">DAILY THOUGHT</span>
+    <span class="small-quote-mark">“</span>
+  </div>
+
+  <blockquote>
+    {{ quote().quote }}
+  </blockquote>
+
+  <div class="quote-card-footer">
+    <div class="author-info">
+      <span class="author-avatar">
+        {{ quote().author.charAt(0) }}
+      </span>
+
+      <div class="author-details">
+        <span class="author-name">{{ quote().author }}</span>
+        <span class="author-label">Author</span>
+      </div>
+    </div>
+    
+      @if (store.isFavorite(quote().id)) {
+        <button
+          type="button"
+          class="favorite-button is-favorite"
+          [attr.aria-label]="'Remove from favorites'"
+          (click)="store.toggleFavorite(quote())"
+        >
+          <span>★</span>
+    
+          Saved
+        </button>
+      } @else {
+        <button
+          type="button"
+          class="favorite-button"
+          [attr.aria-label]="'Add to favorites'"
+          (click)="store.toggleFavorite(quote())"
+        >
+          <span>☆</span>
+    
+          Add to favorites
+        </button>
+      }
+  </div>
+</article>

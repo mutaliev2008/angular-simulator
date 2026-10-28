@@ -56,7 +56,8 @@ export class HeaderComponent implements OnInit{
     { path: '/users', label: 'Пользователи' },
     { path: '/posts', label: 'Посты' },
     { path: '/products', label: 'Продукты' },
-    { path: '/recipes', label: 'Рецепты' }
+    { path: '/recipes', label: 'Рецепты' },
+    { path: '/quotes', label: 'Цитаты' }
   ];
 
   viewMode: typeof ViewMode = ViewMode;
