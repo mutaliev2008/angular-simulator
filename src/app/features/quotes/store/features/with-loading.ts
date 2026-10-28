@@ -8,7 +8,7 @@ const withLoaindgState: ILoadingState = {
 
 export function withLoading() {
   return signalStoreFeature(
-    withState(() => withLoaindgState),
+    withState(withLoaindgState),
     withMethods((store) => ({
       setLoading(value: boolean): void {
         patchState(store, { loading: value });

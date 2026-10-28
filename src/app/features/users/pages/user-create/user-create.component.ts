@@ -1,8 +1,8 @@
 import { Component, inject } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { UserService } from '../../services/user.service';
 import { IUser } from '../../interface/IUser';
 import { GradientBorderDirective } from '../../../../shared/derectives/gradient-border.directive';
+import { usersStore } from '../../store/users.store';
 
 @Component({
   selector: 'app-user-create',
@@ -12,7 +12,7 @@ import { GradientBorderDirective } from '../../../../shared/derectives/gradient-
 })
 export class UserCreateComponent {
 
-  userService: UserService = inject(UserService);
+  store: InstanceType<typeof usersStore> = inject(usersStore);
   fb: FormBuilder = inject(FormBuilder);
   
   createForm: FormGroup = this.fb.group({
@@ -42,7 +42,7 @@ export class UserCreateComponent {
     const data: Omit<IUser, 'id'> = this.createForm.getRawValue();
 
     if(this.createForm.valid) {
-      this.userService.createUsers({ id: Date.now(), ...data });
+      this.store.createUser({ id: Date.now(), ...data });
       this.createForm.reset();
     } 
   }
