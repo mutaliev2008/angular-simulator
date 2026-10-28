@@ -15,6 +15,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { IQuote } from '../interface/IQuote';
 import { QuotesFilter } from '../enum/QuotesFilter';
 import { withLoading } from './features/with-loading';
+import { withDevtools } from '@angular-architects/ngrx-toolkit';
 
 export const initialQuoteState: IQuoteState = {
   quotes: [],
@@ -26,7 +27,8 @@ export const initialQuoteState: IQuoteState = {
 };
 
 export const quotesStore = signalStore(
-  { providedIn: 'root' }, 
+  { providedIn: 'root' },
+  withDevtools('quotes'),
   withState(initialQuoteState),
   withLoading(),
   withComputed(({ quotes, favorites, filter }) => ({

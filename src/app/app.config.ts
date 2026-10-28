@@ -1,6 +1,7 @@
 import { ApplicationConfig, inject, provideAppInitializer, provideBrowserGlobalErrorListeners, provideZoneChangeDetection } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { providePrimeNG } from 'primeng/config';
+import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { routes } from './app.routes';
 import { provideHttpClient, withInterceptors, withXhr } from '@angular/common/http';
 import Aura from '@primeuix/themes/aura';
@@ -49,6 +50,10 @@ export const appConfig: ApplicationConfig = {
     provideAppInitializer(() => {
       const authService: AuthService = inject(AuthService);
       return authService.loadCurrentUser();
+    }),
+    provideStoreDevtools({
+      maxAge: 25,
+      logOnly: false
     }),
     providePrimeNG({
       theme: {
