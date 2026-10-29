@@ -8,7 +8,8 @@ import { usersStore } from '../../store/users.store';
   selector: 'app-user-create',
   imports: [ReactiveFormsModule, GradientBorderDirective],
   templateUrl: './user-create.component.html',
-  styleUrl: './user-create.component.scss'
+  styleUrl: './user-create.component.scss',
+  providers: [usersStore]
 })
 export class UserCreateComponent {
 

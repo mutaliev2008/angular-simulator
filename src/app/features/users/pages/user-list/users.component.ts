@@ -1,11 +1,8 @@
 import {
   Component,
-  computed,
   inject,
-  OnInit,
-  Signal
+  OnInit
 } from '@angular/core';
-import { IUser } from '../../interface/IUser';
 import { CommonModule } from '@angular/common';
 import { UserCardComponent } from '../../components/user-card/user-card.component';
 import { UserCreateComponent } from '../user-create/user-create.component';
@@ -26,6 +23,7 @@ import { Router } from '@angular/router';
   ],
   templateUrl: './users.component.html',
   styleUrl: './users.component.scss',
+  providers: [usersStore]
 })
 export class UsersComponent implements OnInit {
 

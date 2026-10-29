@@ -2,7 +2,7 @@ import { signalStoreFeature, withMethods } from '@ngrx/signals';
 import { LocalStorageService } from '../../../../core/services/local-storage.service';
 import { inject } from '@angular/core';
 
-export function withLocal() {
+export function withLocalStorage() {
   return signalStoreFeature(
     withMethods(
       (store, localStorageService: LocalStorageService = inject(LocalStorageService)) => ({

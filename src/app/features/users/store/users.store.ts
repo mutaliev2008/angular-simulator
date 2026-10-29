@@ -8,7 +8,7 @@ import { catchError, EMPTY, mergeMap, pipe, tap } from "rxjs";
 import { withLoading } from "../../quotes/store/features/with-loading";
 import { IUser } from "../interface/IUser";
 import { HttpErrorResponse } from "@angular/common/http";
-import { withLocal } from "./features/withLocal";
+import { withLocalStorage } from "./features/withLocal";
 import { withSyncToRouteQueryParams, getQueryMapperForState } from '@ngrx-traits/signals';
 
 const initialState: IUsersState = {
@@ -17,16 +17,12 @@ const initialState: IUsersState = {
 };
 
 export const usersStore = signalStore(
-  { providedIn: 'root' },
   withDevtools('quotes'),
   withState(initialState),
   withLoading(),
-  withLocal(),
+  withLocalStorage(),
   withComputed(({ searchQuery, users }) => ({
     filteredUsers: computed(() => {
-      if(users().length === 0) {
-        return [];
-      }
       return users().filter((user: IUser) =>
         user.name.toLowerCase().trim().includes(searchQuery())
       );

@@ -27,7 +27,6 @@ export const initialQuoteState: IQuoteState = {
 };
 
 export const quotesStore = signalStore(
-  { providedIn: 'root' },
   withDevtools('quotes'),
   withState(initialQuoteState),
   withLoading(),
