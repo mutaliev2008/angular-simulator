@@ -10,6 +10,7 @@ import { FontAwesomeModule, IconDefinition } from '@fortawesome/angular-fontawes
   imports: [QuotesCardComponent, FontAwesomeModule],
   templateUrl: './quote-list.component.html',
   styleUrl: './quote-list.component.scss',
+  providers: [quotesStore]
 })
 export class QuoteListComponent implements OnInit {
 

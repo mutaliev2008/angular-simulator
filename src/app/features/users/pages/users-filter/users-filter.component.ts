@@ -1,4 +1,4 @@
-import { Component, DestroyRef, EventEmitter, inject, OnInit, Output } from '@angular/core';
+import { Component, DestroyRef, effect, EventEmitter, inject, input, InputSignal, OnInit, Output } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { debounceTime, distinctUntilChanged, tap } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
@@ -12,10 +12,16 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 export class UsersFilterComponent implements OnInit {
 
   destroyRef: DestroyRef = inject(DestroyRef);
-
+  searchQuery: InputSignal<string> = input.required<string>();
   @Output() searchTerm: EventEmitter<string> = new EventEmitter<string>();
 
   name: FormControl<string> = new FormControl<string>('', { nonNullable: true });
+
+  constructor() {
+    effect(() => {
+      this.name.patchValue(this.searchQuery());
+    });
+  }
 
   ngOnInit(): void {
     this.name.valueChanges
