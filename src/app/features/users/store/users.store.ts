@@ -8,8 +8,8 @@ import { catchError, EMPTY, mergeMap, pipe, tap } from "rxjs";
 import { withLoading } from "../../quotes/store/features/with-loading";
 import { IUser } from "../interface/IUser";
 import { HttpErrorResponse } from "@angular/common/http";
-import { withLocalStorage } from "./features/withLocal";
 import { withSyncToRouteQueryParams, getQueryMapperForState } from '@ngrx-traits/signals';
+import { withSyncToWebStorage } from '@ngrx-traits/signals';
 
 const initialState: IUsersState = {
   users: [],
@@ -17,10 +17,22 @@ const initialState: IUsersState = {
 };
 
 export const usersStore = signalStore(
-  withDevtools('quotes'),
+  withDevtools('users'),
   withState(initialState),
+  withSyncToWebStorage({
+    key: 'search-query',
+    type: 'session',
+    filterState: ['searchQuery'],
+    expires: 1000 * 60 * 30,
+    saveStateChangesAfterMs: 300
+  }),
+  withSyncToWebStorage({
+    key: 'users-state',
+    type: 'local',
+    filterState: ['users'],
+    expires: 1000 * 60 * 60 * 24
+  }),
   withLoading(),
-  withLocalStorage(),
   withComputed(({ searchQuery, users }) => ({
     filteredUsers: computed(() => {
       return users().filter((user: IUser) =>
@@ -32,7 +44,6 @@ export const usersStore = signalStore(
     (store, usersService: UserApiService = inject(UserApiService)) => ({
       setUsers(users: IUser[]): void {
         patchState(store, { users: users });
-        store.setItem('users', users);
       },
       loadUsers: rxMethod<void>(
         pipe(
@@ -41,9 +52,7 @@ export const usersStore = signalStore(
             store.setError(null);
           }),
           mergeMap(() => {
-            const localData: IUser[] | null = store.getItem<IUser[]>('users');
-            if (localData && localData.length > 0) {
-              patchState(store, { users: localData });
+            if (store.users().length > 0) {
               store.setLoading(false);
               return EMPTY;
             }
