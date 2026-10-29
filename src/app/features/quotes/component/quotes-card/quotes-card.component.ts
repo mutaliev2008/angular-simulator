@@ -6,8 +6,7 @@ import { quotesStore } from '../../store/qoutes.store';
   selector: 'app-quotes-card',
   imports: [],
   templateUrl: './quotes-card.component.html',
-  styleUrl: './quotes-card.component.scss',
-  providers: [quotesStore]
+  styleUrl: './quotes-card.component.scss'
 })
 export class QuotesCardComponent {
 
